@@ -12,14 +12,22 @@
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.4.0",
+    "@types/dotenv-safe": "^8.1.1",
+    "@types/pg": "^8.6.0",
+    "argon2": "^0.28.2",
     "camelcase-keys": "^6.2.2",
+    "cookie": "^0.4.1",
+    "cookies": "^0.8.0",
     "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
+    "js-cookies": "^1.0.4",
     "ley": "^0.7.1",
-    "next": "11.0.1",
+    "next": "^11.0.1",
+    "pg-connection-string": "^2.5.0",
     "postgres": "^1.0.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-rangeslider": "^2.2.0",
     "react-slideshow-image": "^3.4.7"
   },
   "devDependencies": {
@@ -49,5 +57,8 @@
   "resolutions": {
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-testing-library": "4.6.0"
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }

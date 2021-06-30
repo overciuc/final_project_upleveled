@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import Header from './Header';
+import UserNavMenu from './UserNavMenu';
 
 const containerStyles = css`
   margin: auto;
@@ -8,10 +8,11 @@ const containerStyles = css`
   right: 0;
 `;
 
-export default function Layout(props) {
+export default function UserLayout(props) {
+  console.log(props);
   return (
     <>
-      <Header username={props.username} />
+      <UserNavMenu username={props.username} />
       <div css={containerStyles}>{props.children}</div>
     </>
   );

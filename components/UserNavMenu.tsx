@@ -1,6 +1,10 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 
+type Props = {
+  username?: string;
+};
+
 const headerStyles = css`
   display: flex;
   padding: 5px 15px;
@@ -45,6 +49,7 @@ const headerStyles = css`
     font-size: 20px;
     padding: 10px 10px;
     font-weight: bold;
+    margin-right: 10px;
     :hover {
       text-decoration: #fff;
     }
@@ -59,12 +64,42 @@ const headerStyles = css`
     text-align: center;
     cursor: pointer;
     color: #583dfd;
-    font-weight: bold;
+    //font-weight: bold;
     font-size: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
     :hover {
       background-color: #f309df;
       color: #fff;
+    }
+  }
+
+  > div > span {
+    font-size: 24px;
+    font-weight: normal;
+    margin-left: 30px;
+    margin-right: 10px;
+    color: #583dfd;
+    > span {
+      font-weight: bold;
+    }
+    > a {
+      width: 120px;
+      height: 50px;
+      padding: 10px 20px;
+      background-color: #fed648;
+      border-radius: 10px;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      color: #583dfd;
+      font-weight: bold;
+      font-size: 20px;
+      //margin-left: 10px;
+      text-decoration: none;
+      :hover {
+        background-color: #f309df;
+        color: #fff;
+      }
     }
   }
 `;
@@ -73,7 +108,7 @@ const logoStyles = css`
   height: 100px;
 `;
 
-export default function Header() {
+export default function UserNavMenu(props: Props) {
   return (
     <header css={headerStyles}>
       <span>
@@ -92,14 +127,15 @@ export default function Header() {
         <Link href="/contact">
           <a>Contact</a>
         </Link>
-
-        <Link href="/login">
-          <a>Login</a>
-        </Link>
-
-        <Link href="/signUp">
-          <a>Sign Up</a>
-        </Link>
+        <span>
+          Hello,
+          <span>&nbsp;{props.username}</span>
+        </span>
+        <span>
+          <Link href="/logout">
+            <a>Logout</a>
+          </Link>
+        </span>
       </div>
     </header>
   );

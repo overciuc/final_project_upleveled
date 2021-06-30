@@ -11,9 +11,9 @@ const footerStyles = css`
   z-index: 10;
   height: 65px;
   width: 100%;
-  position: relative;
   border-top: 1px solid #069099;
   justify-content: center;
+  position: absolute;
 `;
 
 const copyrightStyles = css`

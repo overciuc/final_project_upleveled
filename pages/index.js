@@ -4,14 +4,28 @@ import Head from 'next/head';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 
-const sliderContainer = css`
-  width: 1400px;
+const landingPageContainer = css`
+  width: 100%;
   display: flex;
   position: relative;
   margin: auto;
   justify-content: center;
-  height: 500px;
-  border: 2px solid black;
+  height: 900px;
+  //border: 2px solid black;
+`;
+
+const frontPageMap = css`
+  max-width: 1200px;
+  width: 100%;
+  max-height: 1000px;
+  height: 100%;
+  background-image: url('../images/3D-map-of-Vienna.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  float: right;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 50px;
 `;
 
 export default function Home() {
@@ -21,7 +35,9 @@ export default function Home() {
         <title>Home</title>
       </Head>
 
-      <section css={sliderContainer}>ghf</section>
+      <section css={landingPageContainer}>
+        <div css={frontPageMap} />
+      </section>
 
       <Footer />
     </Layout>
