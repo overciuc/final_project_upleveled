@@ -6,7 +6,7 @@ class Horizontal extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      value: 0,
+      value: props.initial === undefined ? 1 : props.initial,
     };
   }
 
@@ -21,7 +21,7 @@ class Horizontal extends Component {
   };
 
   handleChangeComplete = () => {
-    console.log('Change event completed');
+    this.props.onChangeComplete(this.state.value);
   };
 
   render() {
@@ -29,7 +29,7 @@ class Horizontal extends Component {
     return (
       <div className="slider">
         <Slider
-          min={0}
+          min={1}
           max={10}
           value={value}
           onChangeStart={this.handleChangeStart}

@@ -2,42 +2,49 @@ import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
+// import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import UserDataSection from '../../components/UserDataSection';
 import UserLayout from '../../components/UserLayout';
 import UserPostsSection from '../../components/UserPostsSection';
-import { ApplicationError, User } from '../../util/types';
+import { getUserPosts } from '../../util/database';
+import { ApplicationError, Review, User } from '../../util/types';
 import { SingleUserResponseType } from '../api/users-by-username/[username]';
 
 type Props = {
   user?: User;
-  username?: string;
+  firstName?: string;
   errors?: ApplicationError[];
+  posts?: Review[];
 };
 
 const backgroundColor = css`
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
-    url('../images/squirrel.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #0bc6d2;
-  z-index: -1;
+  background: #0bc6d2;
   width: 100%;
-  height: 900px;
+  min-height: auto;
+  min-height: 1000px;
+  margin-top: -100px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -10;
+  content: '';
 `;
 
 const containerBox = css`
   background-color: #fff;
   width: 1300px;
-  height: 900px;
+  min-height: auto;
   left: 0;
   position: absolute;
   float: left;
   margin-right: auto;
   margin-left: 80px;
+  margin-bottom: 100px;
+  margin-top: 100px;
+  z-index: 10;
 `;
 
 const userTabStyles = css`
@@ -141,7 +148,7 @@ export default function SingleUserProfile(props: Props) {
   const errors = props.errors;
   if (errors) {
     return (
-      <UserLayout username={props.username}>
+      <UserLayout firstName={props.firstName}>
         <Head>
           <title>Error</title>
         </Head>
@@ -153,7 +160,7 @@ export default function SingleUserProfile(props: Props) {
   // Show message if user does not exist
   if (!props.user) {
     return (
-      <UserLayout username={props.username}>
+      <UserLayout firstName={props.firstName}>
         <Head>
           <title>User not found!</title>
         </Head>
@@ -163,7 +170,7 @@ export default function SingleUserProfile(props: Props) {
   }
 
   return (
-    <UserLayout username={props.user.username}>
+    <UserLayout firstName={props.user.firstName}>
       <Head>
         <title>
           {props.user.firstName} {props.user.lastName}
@@ -194,6 +201,7 @@ export default function SingleUserProfile(props: Props) {
                 <UserPostsSection
                   postsSection={showSection}
                   user={props.user}
+                  posts={props.posts}
                 />
               ) : (
                 <UserDataSection dataSection={showSection} user={props.user} />
@@ -229,8 +237,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const json = (await response.json()) as SingleUserResponseType;
 
-  console.log('API decoded JSON from response', json);
-
   if ('errors' in json) {
     // Better would be to return the status code
     // in the error itself
@@ -242,8 +248,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     context.res.statusCode = 404;
   }
 
+  let posts = [];
+  if ('user' in json && json.user != null) {
+    posts = await getUserPosts(json.user.id);
+  }
+
   return {
     props: {
+      posts: posts,
       ...json,
     },
   };

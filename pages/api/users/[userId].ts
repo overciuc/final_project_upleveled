@@ -22,6 +22,7 @@ export default async function singleUserHandler(
       userId,
       req.body.firstName,
       req.body.lastName,
+      req.body.email,
     );
     return res.status(200).json({ user: user || null });
   } else if (req.method === 'DELETE') {

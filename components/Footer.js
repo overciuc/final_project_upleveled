@@ -8,19 +8,19 @@ const footerStyles = css`
   left: 0;
   right: 0;
   content: '';
-  z-index: 10;
+  z-index: 1;
   height: 65px;
   width: 100%;
   border-top: 1px solid #069099;
   justify-content: center;
-  position: absolute;
+  margin-top: auto 0;
 `;
 
 const copyrightStyles = css`
   color: #fff;
   font-size: 16px;
   text-align: center;
-  margin-top: 20px;
+  //margin-top: 20px;
 `;
 
 export default function Footer() {

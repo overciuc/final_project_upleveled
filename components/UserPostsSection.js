@@ -7,10 +7,13 @@ const userPostsPageGrid = css`
   margin: auto;
   display: grid;
   grid-template-columns: 70% 25%;
-  grid-gap: 30px;
+  grid-column-gap: 30px;
+  grid-row-gap: 0;
   list-style-type: none;
-  margin-bottom: 50px;
+  //margin-bottom: 50px;
   margin-top: 50px;
+  height: 900px;
+  overflow: scroll;
 
   > div {
     width: 900px;
@@ -52,26 +55,42 @@ const postsGrid = css`
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-template-rows: repeat(3, 300px);
   align-items: center;
-  grid-gap: 1rem;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
   text-align: left;
   list-style-type: none;
-  max-height: 600px;
-  height: 600px;
 
   > li {
     box-shadow: 1px 0px 5px #a8a8a8;
     border: none;
     padding: 10px 15px;
+    padding-left: 30px;
     width: 350px;
-    height: 240px;
+    height: 220px;
     margin-left: 20px;
+    margin-bottom: 20px;
     transition: transform 0.3s ease;
     :hover {
       transform: translate(0, -10px);
     }
+    > h6 {
+      color: #0bc6d2;
+      font-size: 14px;
+      margin-top: -10px;
+      > span {
+        font-size: 14px;
+        color: gray;
+      }
+    }
+
+    > h3 {
+      color: gray;
+      font-size: 20px;
+      margin-top: -20px;
+    }
 
     > h2 {
-      font-size: 16px;
+      font-size: 20px;
       color: #0bc6d2;
       > span {
         color: gray;
@@ -81,7 +100,7 @@ const postsGrid = css`
     > p {
       font-size: 16px;
       color: gray;
-      max-height: 40px;
+      margin-top: -10px;
     }
 
     > a {
@@ -92,7 +111,7 @@ const postsGrid = css`
     }
 
     > div {
-      margin-top: 20px;
+      margin-top: -20px;
     }
     > div > button {
       border: none;
@@ -127,59 +146,31 @@ export default function UserPostsSection(props) {
       <div>
         {props.postsSection}
         <ul css={postsGrid}>
-          <li>
-            <h2>
-              Rating: <span>10</span>
-            </h2>
-            <p>
-              kjsdhjkdfvyucihvjkshdfjkfjhkhg
-              <br />
-              kdjfsdhfjskdhf
-            </p>
-            <a>Read more ...</a>
-            <div>
-              <button>Edit review</button>
-              <button>&#128465;</button>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Rating: <span>10</span>
-            </h2>
-            <p>kjsdhjkdfvyucihvjkshdfjk</p>
-            <a>Read more ...</a>
-            <div>
-              <button>Edit review</button>
-              <button>&#128465;</button>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Rating: <span>10</span>
-            </h2>
-            <p>kjsdhjkdfvyucihvjkshdfjk</p>
-            <a>Read more ...</a>
-            <div>
-              <button>Edit review</button>
-              <button>&#128465;</button>
-            </div>
-          </li>
-          <li>
-            <h2>
-              Rating: <span>10</span>
-            </h2>
-            <p>kjsdhjkdfvyucihvjkshdfjk</p>
-            <a>Read more ...</a>
-            <div>
-              <button>Edit review</button>
-              <button>&#128465;</button>
-            </div>
-          </li>
+          {props.posts.map((review) => (
+            <li key={`review-${review.id}`}>
+              <h2>
+                Rating: &nbsp; <span>{review.averageScore}</span>
+              </h2>
+              <h6>
+                Date published:&nbsp;<span>{review.dateString}</span>
+              </h6>
+              <h3>
+                {review.district}&nbsp;
+                {review.districtName}{' '}
+              </h3>
+              <p>{review.streetName}</p>
+
+              <div>
+                <a href={`/reviews/${review.id}`}>Edit review</a>
+                <button>&#128465;</button>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
       <div>
         <Link href="/newReviewPostPage">
-          <a>Create new review</a>
+          <a>Write new review</a>
         </Link>
       </div>
     </div>

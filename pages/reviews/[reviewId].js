@@ -1,16 +1,16 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Footer from '../components/Footer';
-import Horizontal from '../components/RangeSlider';
-import UserLayout from '../components/UserLayout';
+import Footer from '../../components/Footer';
+import Horizontal from '../../components/RangeSlider';
+import UserLayout from '../../components/UserLayout';
 import {
   getDistricts,
   getUserById,
+  getUserPostById,
   getValidSessionByToken,
-} from '../util/database';
+} from '../../util/database';
 
 const formStyle = css`
   margin-left: 20px;
@@ -167,7 +167,7 @@ const submitButton = css`
 
 export default function NewReviewPost(props) {
   const router = useRouter();
-
+  console.log(props.review);
   const [streetName, setStreetName] = useState('');
   const [houseNumber, setHouseNumber] = useState(1);
   const [district, setDistrict] = useState('');
@@ -273,7 +273,7 @@ export default function NewReviewPost(props) {
                 <h4>Safety</h4>
                 <Horizontal
                   onChangeComplete={setSafetyScore}
-                  initial={safetyScore}
+                  initial={props.review.safetyScore}
                 />
               </li>
               <li>
@@ -423,10 +423,10 @@ export default function NewReviewPost(props) {
                 }),
               });
               await response.json();
-              router.push(`/profiles/${props.user.username}/posts`);
+              router.push(`/profiles/${props.user.username}`);
             }}
           >
-            Submit Review
+            Save Changes
           </button>
         </div>
       </form>
@@ -439,12 +439,15 @@ export async function getServerSideProps(context) {
   const sessionToken = context.req.cookies.sessionToken;
 
   const session = await getValidSessionByToken(sessionToken);
+  const reviewId = context.params.reviewId;
+
+  const review = await getUserPostById(reviewId);
   const districts = await getDistricts();
 
   if (session) {
     const user = await getUserById(session.userId);
     return {
-      props: { user: user, districts: districts },
+      props: { user: user, districts: districts, review: review },
     };
   }
 }

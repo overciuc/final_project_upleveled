@@ -1,6 +1,13 @@
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
-import { ApplicationError, Session, User, UserWithPasswordHash } from './types';
+import {
+  ApplicationError,
+  District,
+  Review,
+  Session,
+  User,
+  UserWithPasswordHash,
+} from './types';
 
 // import postgres from 'postgres';
 
@@ -138,6 +145,7 @@ export async function updateUserById(
   userId: number | undefined,
   firstName: string,
   lastName: string,
+  email: string,
 ) {
   if (!userId) return undefined;
 
@@ -146,7 +154,8 @@ export async function updateUserById(
       users
     SET
       first_name = ${firstName},
-      last_name = ${lastName}
+      last_name = ${lastName},
+      email = ${email}
     WHERE
       id = ${userId}
     RETURNING
@@ -249,6 +258,89 @@ export async function getUsers() {
   return users.map((user: any) => camelcaseKeys(user));
 }
 
+export async function getDistricts() {
+  const districts = await sql<District[]>`
+    SELECT
+      zip,
+      district_name
+    FROM
+      districts
+  `;
+  return districts.map((district: any) => camelcaseKeys(district));
+}
+
+export async function getUserPosts(userId: number) {
+  const posts = await sql<Review[]>`
+    SELECT
+      user_id,
+      district,
+      safety_score,
+      safety_comment,
+      parks_score,
+      parks_comment,
+      shopping_score,
+      shopping_comment,
+      kids_friendly_score,
+      kids_friendly_comment,
+      public_transport_score,
+      public_transport_comment,
+      dining_score,
+      dining_comment,
+      entertainment_score,
+      entertainment_comment,
+      noise_level_score,
+      noise_level_comment,
+      street_name,
+      house_number,
+      id,
+      district_name,
+      (safety_score + parks_score + shopping_score + kids_friendly_score + public_transport_score +
+        dining_score + entertainment_score + noise_level_score) / 8 as average_score,
+      to_char(date, 'dd.mm.yyyy') as date_string
+    FROM
+      reviews inner join districts on reviews.district = districts.zip
+    WHERE
+      user_id = ${userId}
+  `;
+  return posts.map((review: any) => camelcaseKeys(review));
+}
+
+export async function getUserPostById(reviewId: number) {
+  const posts = await sql<Review[]>`
+    SELECT
+      user_id,
+      district,
+      safety_score,
+      safety_comment,
+      parks_score,
+      parks_comment,
+      shopping_score,
+      shopping_comment,
+      kids_friendly_score,
+      kids_friendly_comment,
+      public_transport_score,
+      public_transport_comment,
+      dining_score,
+      dining_comment,
+      entertainment_score,
+      entertainment_comment,
+      noise_level_score,
+      noise_level_comment,
+      street_name,
+      house_number,
+      id,
+      district_name,
+      (safety_score + parks_score + shopping_score + kids_friendly_score + public_transport_score +
+        dining_score + entertainment_score + noise_level_score) / 8 as average_score,
+      to_char(date, 'dd.mm.yyyy') as date_string
+    FROM
+      reviews inner join districts on reviews.district = districts.zip
+    WHERE
+      reviews.id = ${reviewId}
+  `;
+  return posts.map((review: any) => camelcaseKeys(review));
+}
+
 export async function getUserByUsernameAndToken(
   username?: string,
   token?: string,
@@ -299,4 +391,130 @@ export async function getUserByUsernameAndToken(
   }
 
   return camelcaseKeys(user);
+}
+
+export async function insertReview(
+  userId: number,
+
+  streetName: string,
+  houseNumber: string,
+  district: number,
+
+  safetyScore: number,
+  safetyComment: string,
+
+  parksScore: number,
+  parksComment: string,
+
+  shoppingScore: number,
+  shoppingComment: string,
+
+  kidsFriendlyScore: number,
+  kidsFriendlyComment: string,
+
+  publicTransportScore: number,
+  publicTransportComment: string,
+
+  diningScore: number,
+  diningComment: string,
+
+  entertainmentScore: number,
+  entertainmentComment: string,
+
+  noiseLevelScore: number,
+  noiseLevelComment: string,
+) {
+  const reviews = await sql`
+    INSERT INTO reviews
+      (user_id,
+
+      street_name,
+      house_number,
+      district,
+
+      safety_score,
+      safety_comment,
+
+      parks_score,
+      parks_comment,
+
+      shopping_score,
+      shopping_comment,
+
+      kids_friendly_score,
+      kids_friendly_comment,
+
+      public_transport_score,
+      public_transport_comment,
+
+      dining_score,
+      dining_comment,
+
+      entertainment_score,
+      entertainment_comment,
+
+      noise_level_score,
+      noise_level_comment
+      )
+    VALUES
+      (${userId},
+
+        ${streetName},
+      ${houseNumber},
+      ${district},
+
+      ${safetyScore},
+      ${safetyComment},
+
+      ${parksScore},
+      ${parksComment},
+
+      ${shoppingScore},
+      ${shoppingComment},
+
+      ${kidsFriendlyScore},
+      ${kidsFriendlyComment},
+
+      ${publicTransportScore},
+      ${publicTransportComment},
+
+      ${diningScore},
+      ${diningComment},
+
+      ${entertainmentScore},
+      ${entertainmentComment},
+
+      ${noiseLevelScore},
+      ${noiseLevelComment})
+    RETURNING
+    user_id,
+    street_name,
+      house_number,
+      district,
+
+      safety_score,
+      safety_comment,
+
+      parks_score,
+      parks_comment,
+
+      shopping_score,
+      shopping_comment,
+
+      kids_friendly_score,
+      kids_friendly_comment,
+
+      public_transport_score,
+      public_transport_comment,
+
+      dining_score,
+      dining_comment,
+
+      entertainment_score,
+      entertainment_comment,
+
+      noise_level_score,
+      noise_level_comment
+  `;
+  return reviews.map((review: any) => camelcaseKeys(review))[0];
 }

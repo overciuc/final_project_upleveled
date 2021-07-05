@@ -1,8 +1,5 @@
 import { css } from '@emotion/react';
-
-// import { GetServerSidePropsContext } from 'next';
-// import { ApplicationError, User } from '../../util/types';
-// import { SingleUserResponseType } from '../api/users-by-username/[username]';
+import { useState } from 'react';
 
 const userSectionGrid = css`
   max-width: 1300px;
@@ -41,10 +38,7 @@ const detailsTableStyles = css`
   }
 
   > div > span {
-    //font-weight: normal;
-    //font-size: 24px;
     margin-left: 20px;
-    //color: gray;
   }
 
   > div > span > input {
@@ -56,11 +50,10 @@ const detailsTableStyles = css`
     width: 500px;
     height: 40px;
     transition: 0.3s ease-in-out;
-    ::placeholder {
-      color: gray;
-      font-size: 24px;
-      font-weight: normal;
-    }
+    background-color: transparent;
+    color: gray;
+    font-size: 24px;
+    font-weight: normal;
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -74,16 +67,21 @@ const detailsTableStyles = css`
     width: 500px;
     height: 40px;
     transition: 0.3s ease-in-out;
-    ::placeholder {
-      color: gray;
-      font-size: 24px;
-      font-weight: normal;
-    }
+    background-color: transparent;
+    color: gray;
+    font-size: 24px;
+    font-weight: normal;
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
     }
   }
+`;
+
+const usernameStyles = css`
+  color: gray;
+  font-size: 24px;
+  font-weight: normal;
 `;
 
 const buttonSection = css`
@@ -131,93 +129,95 @@ const editButton = css`
 `;
 
 export default function UserDataSection(props) {
+  const [showEdit, setShowEdit] = useState(true);
+  const [firstName, setFirstName] = useState(props.user.firstName);
+  const [lastName, setLastName] = useState(props.user.lastName);
+  const [email, setEmail] = useState(props.user.email);
+
+  const handleFirstNameChange = (event) =>
+    setFirstName(event.currentTarget.value);
+  const handleLastNameChange = (event) =>
+    setLastName(event.currentTarget.value);
+  const handleEmailChange = (event) => setEmail(event.currentTarget.value);
+
   return (
     <div css={userSectionGrid}>
       {props.dataSection}
       <div css={userDetailsStyles}>
-        <div css={detailsTableStyles}>
-          <h2>Personal Details</h2>
-          <div>
-            First Name:
-            <span>
-              <input placeholder={props.user.firstName} />
-            </span>
+        <form>
+          <div css={detailsTableStyles}>
+            <h2>Personal Details</h2>
+            <div>
+              First Name:
+              <span>
+                <input
+                  onChange={handleFirstNameChange}
+                  value={firstName}
+                  disabled={showEdit ? 'disabled' : ''}
+                />
+              </span>
+            </div>
+            <div>
+              Last Name:
+              <span>
+                <input
+                  onChange={handleLastNameChange}
+                  value={lastName}
+                  disabled={showEdit ? 'disabled' : ''}
+                />
+              </span>
+            </div>
+            <div>
+              E-mail:
+              <span>
+                <input
+                  onChange={handleEmailChange}
+                  value={email}
+                  disabled={showEdit ? 'disabled' : ''}
+                />
+              </span>
+            </div>
+            <br />
+            <h2>Security details</h2>
+            <div>
+              Username:
+              <span css={usernameStyles}>{props.user.username}</span>
+            </div>
           </div>
-          <div>
-            Last Name:{' '}
-            <span>
-              <input placeholder={props.user.lastName} />
-            </span>
-          </div>
-          <div>
-            E-mail:
-            <span>
-              <input placeholder={props.user.email} />
-            </span>
-          </div>
-          <br />
-          <h2>Security details</h2>
-          <div>
-            Username:{' '}
-            <span>
-              <input placeholder={props.user.username} />
-            </span>
-          </div>
-          <div>
-            Password:{' '}
-            <span>
-              <input placeholder={props.user.password} />
-            </span>
-          </div>
-        </div>
+        </form>
       </div>
       <div css={buttonSection}>
-        <button css={editButton}>Edit details</button>
+        <button
+          css={editButton}
+          onClick={async () => {
+            if (showEdit) {
+              // This is to allow changes
+
+              setShowEdit(false);
+            } else {
+              // This is to disable input and save changes
+              setShowEdit(true);
+
+              const response = await fetch(`/api/users/${props.user.id}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  firstName: firstName,
+                  lastName: lastName,
+                  email: email,
+                  csrfToken: props.csrfToken,
+                }),
+              });
+              await response.json();
+            }
+          }}
+        >
+          {showEdit ? 'Edit Details' : 'Save Changes'}
+        </button>
         <button css={deleteButton}>Delete Account</button>
       </div>
     </div>
   );
 }
-/*
-export async function getServerSideProps(context) {
-  // API design here is not so great, maybe don't copy
-  const response =
-    // Since we're fetching on the server side,
-    // the browser is not a part of this `fetch`
-    // and it is therefore not sending the cookies along
-    //
-    // This is using the node-fetch library
-    // internally
-    await fetch(
-      `${process.env.API_BASE_URL}/users-by-username/${context.query.username}`,
-      {
-        method: 'GET',
-        headers: {
-          // This forwards the cookie to the API route
-          cookie: context.req.headers.cookie || '',
-        },
-      },
-    );
-  */
-/*
-  const json = (await response.json()) as SingleUserResponseType;
-
-  console.log('API decoded JSON from response', json);
-
-  if ('errors' in json) {
-    // Better would be to return the status code
-    // in the error itself
-    context.res.statusCode = 403;
-  } else if (!json.user) {
-    // Return a proper status code for a response
-    // with a null user (which indicates it has
-    // not been found in the database)
-    context.res.statusCode = 404;
-  }
-
-  return {
-    props: {
-      ...json,
-    },
-  };
-  */

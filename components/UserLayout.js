@@ -9,10 +9,9 @@ const containerStyles = css`
 `;
 
 export default function UserLayout(props) {
-  console.log(props);
   return (
     <>
-      <UserNavMenu username={props.username} />
+      <UserNavMenu firstName={props.firstName} />
       <div css={containerStyles}>{props.children}</div>
     </>
   );
