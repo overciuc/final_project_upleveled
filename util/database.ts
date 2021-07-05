@@ -116,31 +116,6 @@ export async function getUserWithPasswordHashByUsername(username?: string) {
   return users.map((user: any) => camelcaseKeys(user))[0];
 }
 
-export async function getUserByIdWithCourses(userId?: number) {
-  // Return undefined if userId is not parseable
-  // to an integer
-  if (!userId) return undefined;
-
-  const userCourses = await sql`
-    SELECT
-      users.id as user_id,
-      users.first_name as user_first_name,
-      users.last_name as user_last_name,
-      courses.id as course_id,
-      courses.title as course_title,
-      courses.slug as course_slug
-    FROM
-      users,
-      courses,
-      users_courses
-    WHERE
-      users.id = ${userId} AND
-      users.id = users_courses.user_id AND
-      users_courses.course_id = courses.id
-  `;
-  return userCourses.map((user: any) => camelcaseKeys(user));
-}
-
 export async function updateUserById(
   userId: number | undefined,
   firstName: string,
@@ -305,7 +280,8 @@ export async function getUserPosts(userId: number) {
   return posts.map((review: any) => camelcaseKeys(review));
 }
 
-export async function getUserPostById(reviewId: number) {
+export async function getUserPostById(reviewId: number | undefined) {
+  if (!reviewId) return undefined;
   const posts = await sql<Review[]>`
     SELECT
       user_id,
@@ -489,6 +465,147 @@ export async function insertReview(
     RETURNING
     user_id,
     street_name,
+      house_number,
+      district,
+
+      safety_score,
+      safety_comment,
+
+      parks_score,
+      parks_comment,
+
+      shopping_score,
+      shopping_comment,
+
+      kids_friendly_score,
+      kids_friendly_comment,
+
+      public_transport_score,
+      public_transport_comment,
+
+      dining_score,
+      dining_comment,
+
+      entertainment_score,
+      entertainment_comment,
+
+      noise_level_score,
+      noise_level_comment
+  `;
+  return reviews.map((review: any) => camelcaseKeys(review))[0];
+}
+
+export async function updateReviewById(
+  reviewId: number | undefined,
+
+  streetName: string,
+  houseNumber: string,
+  district: number,
+
+  safetyScore: number,
+  safetyComment: string,
+
+  parksScore: number,
+  parksComment: string,
+
+  shoppingScore: number,
+  shoppingComment: string,
+
+  kidsFriendlyScore: number,
+  kidsFriendlyComment: string,
+
+  publicTransportScore: number,
+  publicTransportComment: string,
+
+  diningScore: number,
+  diningComment: string,
+
+  entertainmentScore: number,
+  entertainmentComment: string,
+
+  noiseLevelScore: number,
+  noiseLevelComment: string,
+) {
+  if (!reviewId) return undefined;
+  const reviews = await sql<[Review]>`
+    UPDATE
+      reviews
+    SET
+      street_name = ${streetName},
+      house_number = ${houseNumber},
+      district = ${district},
+
+      safety_score = ${safetyScore},
+      safety_comment = ${safetyComment},
+
+      parks_score = ${parksScore},
+      parks_comment = ${parksComment},
+
+      shopping_score = ${shoppingScore},
+      shopping_comment = ${shoppingComment},
+
+      kids_friendly_score = ${kidsFriendlyScore},
+      kids_friendly_comment = ${kidsFriendlyComment},
+
+      public_transport_score = ${publicTransportScore},
+      public_transport_comment = ${publicTransportComment},
+
+      dining_score = ${diningScore},
+      dining_comment = ${diningComment},
+
+      entertainment_score = ${entertainmentScore},
+      entertainment_comment = ${entertainmentComment},
+
+      noise_level_score = ${noiseLevelScore},
+      noise_level_comment = ${noiseLevelComment}
+    WHERE
+      id = ${reviewId}
+    RETURNING
+      user_id,
+      id,
+      street_name,
+      house_number,
+      district,
+
+      safety_score,
+      safety_comment,
+
+      parks_score,
+      parks_comment,
+
+      shopping_score,
+      shopping_comment,
+
+      kids_friendly_score,
+      kids_friendly_comment,
+
+      public_transport_score,
+      public_transport_comment,
+
+      dining_score,
+      dining_comment,
+
+      entertainment_score,
+      entertainment_comment,
+
+      noise_level_score,
+      noise_level_comment
+  `;
+  return reviews.map((review: any) => camelcaseKeys(review))[0];
+}
+
+export async function deleteReviewById(id?: number) {
+  if (!id) return undefined;
+
+  const reviews = await sql`
+    DELETE FROM
+      reviews
+    WHERE
+      id = ${id}
+    RETURNING
+      user_id,
+      id,
+      street_name,
       house_number,
       district,
 

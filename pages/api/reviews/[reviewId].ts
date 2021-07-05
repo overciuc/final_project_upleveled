@@ -1,22 +1,24 @@
-// Since all files in the API folder
-// are server-side only, we can import from
-// the database statically at the top
+import { NextApiRequest, NextApiResponse } from 'next';
+import { convertQueryValue } from '../../../util/context';
 import {
-  getUserPosts,
-  insertReview,
+  deleteReviewById,
+  getUserPostById,
   updateReviewById,
 } from '../../../util/database';
 
-// An API Route needs to define the response
-// that is returned to the user
-export default async function reviewsHandler(req, res) {
-  if (req.method === 'GET') {
-    const reviews = await getUserPosts();
-    return res.status(200).json({ reviews: reviews });
-  } else if (req.method === 'POST') {
-    const {
-      userId,
+export default async function singleReviewHandler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  console.log('HTTP Method (aka verb)', req.method);
 
+  const reviewId = convertQueryValue(req.query.reviewId);
+
+  if (req.method === 'GET') {
+    const review = await getUserPostById(reviewId);
+    return res.status(200).json({ review: review || null });
+  } else if (req.method === 'PUT') {
+    const {
       streetName,
       houseNumber,
       district,
@@ -46,9 +48,8 @@ export default async function reviewsHandler(req, res) {
       noiseLevelComment,
     } = req.body;
 
-    const review = await insertReview(
-      userId,
-
+    const review = await updateReviewById(
+      reviewId,
       streetName,
       houseNumber,
       district,
@@ -77,7 +78,10 @@ export default async function reviewsHandler(req, res) {
       noiseLevelScore,
       noiseLevelComment,
     );
-    return res.status(200).json({ review: review });
+    return res.status(200).json({ review: review || null });
+  } else if (req.method === 'DELETE') {
+    const review = await deleteReviewById(reviewId);
+    return res.status(200).json({ review: review || null });
   }
 
   res.status(400).json(null);

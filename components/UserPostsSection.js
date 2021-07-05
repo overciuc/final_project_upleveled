@@ -10,9 +10,8 @@ const userPostsPageGrid = css`
   grid-column-gap: 30px;
   grid-row-gap: 0;
   list-style-type: none;
-  //margin-bottom: 50px;
   margin-top: 50px;
-  height: 900px;
+  height: 650px;
   overflow: scroll;
 
   > div {
@@ -83,6 +82,11 @@ const postsGrid = css`
       }
     }
 
+    > div > a {
+      text-decoration: none;
+      color: #0bc6d2;
+    }
+
     > h3 {
       color: gray;
       font-size: 20px;
@@ -113,18 +117,8 @@ const postsGrid = css`
     > div {
       margin-top: -20px;
     }
+
     > div > button {
-      border: none;
-      background-color: transparent;
-      float: left;
-      margin-right: auto;
-      margin-left: 0;
-      text-align: left;
-      padding-top: 30px;
-      color: #0bc6d2;
-      cursor: pointer;
-    }
-    > div > button + button {
       float: right;
       background-color: transparent;
       height: 30px;
@@ -162,7 +156,24 @@ export default function UserPostsSection(props) {
 
               <div>
                 <a href={`/reviews/${review.id}`}>Edit review</a>
-                <button>&#128465;</button>
+                <button
+                  onClick={async (event) => {
+                    event.preventDefault();
+
+                    const response = await fetch(`/api/reviews/${review.id}`, {
+                      method: 'DELETE',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        csrfToken: props.csrfToken,
+                      }),
+                    });
+                    await response.json();
+                  }}
+                >
+                  &#128465;
+                </button>
               </div>
             </li>
           ))}

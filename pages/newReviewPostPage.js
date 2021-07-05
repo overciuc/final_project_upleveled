@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Footer from '../components/Footer';
 import Horizontal from '../components/RangeSlider';
@@ -59,13 +58,13 @@ const firstDiv = css`
   > label + label > input {
     display: block;
     margin-right: 80px;
-    width: 100px;
+    width: 150px;
     height: 40px;
   }
 
   > label > select {
     display: block;
-    width: 400px;
+    width: 500px;
     height: 40px;
     margin-top: 10px;
     padding-left: 15px;
@@ -83,69 +82,76 @@ const categorySection = css`
   display: block;
   max-width: 1500px;
   margin: auto;
-  margin-top: 450px;
   justify-content: center;
-  margin-left: 50px;
-`;
+  margin-bottom: 50px;
 
-const categoryReviewGrid = css`
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  grid-template-rows: repeat(8, 100px);
-  align-items: center;
-  grid-gap: 1rem;
-  text-align: left;
+  > div {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
 
-  > ul {
-    list-style-type: none;
-    margin-top: 50px;
-  }
+    > span {
+      width: 500px;
+      padding-top: 10px;
+      padding-right: 20px;
+      margin-bottom: 20px;
 
-  > ul > h2 {
-    color: #0bc6d2;
-    font-weight: normal;
-  }
+      > h2 {
+        color: #0bc6d2;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
 
-  > ul > li {
-    border: none;
-    padding: 5px 15px;
-    width: 500px;
-    height: 100px;
-    margin-left: 0;
-    margin-bottom: 20px;
-  }
+      > h4 {
+        color: gray;
+        text-align: center;
+      }
+    }
 
-  > ul > li > h4 {
-    text-align: center;
-    margin-top: 5px;
-    color: gray;
-  }
+    > div + div {
+      height: 150px;
+    }
 
-  > ul + ul > li {
-    border: none;
-    box-shadow: none;
-    margin-bottom: 20px;
-  }
+    > span + span {
+      margin-left: 50px;
+      width: 800px;
 
-  > ul + ul > li > input {
-    border: 1px solid #0bc6d2;
-    width: 500px;
-    height: 100px;
-    padding: 15px;
-    ::placeholder {
-      border: none;
-      color: #ddd;
+      > textarea {
+        border: 1px solid #0bc6d2;
+        width: 700px;
+        height: 120px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        transition: 0.3s ease-in-out;
+        background-color: transparent;
+        color: gray;
+        font-size: 16px;
+        font-weight: normal;
+
+        :focus {
+          box-shadow: 0 0 10px rgba(11, 198, 210, 1);
+          outline: none !important;
+        }
+        ::placeholder {
+          border: none;
+          color: #ddd;
+        }
+      }
     }
   }
 `;
 
 const submitButton = css`
-  max-width: 1500px;
+  max-width: 1200px;
   width: 100%;
   height: 100px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
   > button {
     float: right;
     width: 200px;
@@ -158,6 +164,8 @@ const submitButton = css`
     color: #fff;
     font-size: 20px;
     box-shadow: 0px 2px 2px gray;
+    margin-right: 20px;
+
     :hover {
       background-color: #fed648;
       color: #583dfd;
@@ -266,117 +274,133 @@ export default function NewReviewPost(props) {
         </div>
 
         <div css={categorySection}>
-          <div css={categoryReviewGrid}>
-            <ul>
+          <div>
+            <span>
               <h2>Rating:</h2>
-              <li>
-                <h4>Safety</h4>
-                <Horizontal
-                  onChangeComplete={setSafetyScore}
-                  initial={safetyScore}
-                />
-              </li>
-              <li>
-                <h4>Parks and Recreational Areas</h4>
-                <Horizontal
-                  onChangeComplete={setParksScore}
-                  initial={parksScore}
-                />
-              </li>
-              <li>
-                <h4>Shopping</h4>
-                <Horizontal
-                  onChangeComplete={setShoppingScore}
-                  initial={shoppingScore}
-                />
-              </li>
-              <li>
-                <h4>Kids Friendly</h4>
-                <Horizontal
-                  onChangeComplete={setKidsFriendlyScore}
-                  initial={kidsFriendlyScore}
-                />
-              </li>
-              <li>
-                <h4>Public Transport</h4>
-                <Horizontal
-                  onChangeComplete={setPublicTransportScore}
-                  initial={publicTransportScore}
-                />
-              </li>
-              <li>
-                <h4>Dining</h4>
-                <Horizontal
-                  onChangeComplete={setDiningScore}
-                  initial={diningScore}
-                />
-              </li>
-              <li>
-                <h4>Entertainment</h4>
-                <Horizontal
-                  onChangeComplete={setEntertainmentScore}
-                  initial={entertainmentScore}
-                />
-              </li>
-              <li>
-                <h4>Noise Level</h4>
-                <Horizontal
-                  onChangeComplete={setNoiseLevelScore}
-                  initial={noiseLevelScore}
-                />
-              </li>
-            </ul>
-            <ul>
+            </span>
+            <span>
               <h2>Review:</h2>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleSafetyCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChnge={handleParksCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleShoppingCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleKidsFriendlyCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handlePublicTransportCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleDiningCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleEntertainmentCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleNoiseLevelCommentChange}
-                />
-              </li>
-            </ul>
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Safety</h4>
+              <Horizontal
+                onChangeComplete={setSafetyScore}
+                initial={safetyScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleSafetyCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Parks and Recreational Areas</h4>
+              <Horizontal
+                onChangeComplete={setParksScore}
+                initial={parksScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChnge={handleParksCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Shopping</h4>
+              <Horizontal
+                onChangeComplete={setShoppingScore}
+                initial={shoppingScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleShoppingCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Kids Friendly</h4>
+              <Horizontal
+                onChangeComplete={setKidsFriendlyScore}
+                initial={kidsFriendlyScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleKidsFriendlyCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Public Transport</h4>
+              <Horizontal
+                onChangeComplete={setPublicTransportScore}
+                initial={publicTransportScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handlePublicTransportCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Dining</h4>
+              <Horizontal
+                onChangeComplete={setDiningScore}
+                initial={diningScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleDiningCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Entertainment</h4>
+              <Horizontal
+                onChangeComplete={setEntertainmentScore}
+                initial={entertainmentScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleEntertainmentCommentChange}
+              />
+            </span>
+          </div>
+          <div>
+            <span>
+              <h4>Noise Level</h4>
+              <Horizontal
+                onChangeComplete={setNoiseLevelScore}
+                initial={noiseLevelScore}
+              />
+            </span>
+            <span>
+              <textarea
+                placeholder="Write your review here"
+                onChange={handleNoiseLevelCommentChange}
+              />
+            </span>
           </div>
         </div>
         <div css={submitButton}>

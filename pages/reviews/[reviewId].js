@@ -12,6 +12,31 @@ import {
   getValidSessionByToken,
 } from '../../util/database';
 
+/*
+const backgroundColor = css`
+  background: hsla(238, 100%, 71%, 1);
+  background: linear-gradient(
+    90deg,
+    hsla(238, 100%, 71%, 1) 0%,
+    hsla(295, 100%, 84%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(238, 100%, 71%, 1) 0%,
+    hsla(295, 100%, 84%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(238, 100%, 71%, 1) 0%,
+    hsla(295, 100%, 84%, 1) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696EFF", endColorstr="#F8ACFF", GradientType=1 );
+  background-size: cover;
+  z-index: -100;
+  position: relative;
+  content: '';
+`;
+*/
 const formStyle = css`
   margin-left: 20px;
   max-width: 1500px;
@@ -59,13 +84,13 @@ const firstDiv = css`
   > label + label > input {
     display: block;
     margin-right: 80px;
-    width: 100px;
+    width: 150px;
     height: 40px;
   }
 
   > label > select {
     display: block;
-    width: 400px;
+    width: 500px;
     height: 40px;
     margin-top: 10px;
     padding-left: 15px;
@@ -83,69 +108,76 @@ const categorySection = css`
   display: block;
   max-width: 1500px;
   margin: auto;
-  margin-top: 450px;
   justify-content: center;
-  margin-left: 50px;
-`;
+  margin-bottom: 50px;
 
-const categoryReviewGrid = css`
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  grid-template-rows: repeat(8, 100px);
-  align-items: center;
-  grid-gap: 1rem;
-  text-align: left;
+  > div {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
 
-  > ul {
-    list-style-type: none;
-    margin-top: 50px;
-  }
+    > span {
+      width: 500px;
+      padding-top: 10px;
+      padding-right: 20px;
+      margin-bottom: 20px;
 
-  > ul > h2 {
-    color: #0bc6d2;
-    font-weight: normal;
-  }
+      > h2 {
+        color: #0bc6d2;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
 
-  > ul > li {
-    border: none;
-    padding: 5px 15px;
-    width: 500px;
-    height: 100px;
-    margin-left: 0;
-    margin-bottom: 20px;
-  }
+      > h4 {
+        color: gray;
+        text-align: center;
+      }
+    }
 
-  > ul > li > h4 {
-    text-align: center;
-    margin-top: 5px;
-    color: gray;
-  }
+    > div + div {
+      height: 150px;
+    }
 
-  > ul + ul > li {
-    border: none;
-    box-shadow: none;
-    margin-bottom: 20px;
-  }
+    > span + span {
+      margin-left: 50px;
+      width: 800px;
 
-  > ul + ul > li > input {
-    border: 1px solid #0bc6d2;
-    width: 500px;
-    height: 100px;
-    padding: 15px;
-    ::placeholder {
-      border: none;
-      color: #ddd;
+      > textarea {
+        border: 1px solid #0bc6d2;
+        width: 700px;
+        height: 120px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        transition: 0.3s ease-in-out;
+        background-color: transparent;
+        color: gray;
+        font-size: 16px;
+        font-weight: normal;
+
+        :focus {
+          box-shadow: 0 0 10px rgba(11, 198, 210, 1);
+          outline: none !important;
+        }
+        ::placeholder {
+          border: none;
+          color: #ddd;
+        }
+      }
     }
   }
 `;
 
 const submitButton = css`
-  max-width: 1500px;
+  max-width: 1200px;
   width: 100%;
   height: 100px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+
   > button {
     float: right;
     width: 200px;
@@ -158,6 +190,8 @@ const submitButton = css`
     color: #fff;
     font-size: 20px;
     box-shadow: 0px 2px 2px gray;
+    margin-right: 20px;
+
     :hover {
       background-color: #fed648;
       color: #583dfd;
@@ -168,33 +202,59 @@ const submitButton = css`
 export default function NewReviewPost(props) {
   const router = useRouter();
   console.log(props.review);
-  const [streetName, setStreetName] = useState('');
-  const [houseNumber, setHouseNumber] = useState(1);
-  const [district, setDistrict] = useState('');
+  const [streetName, setStreetName] = useState(props.review[0].streetName);
+  const [houseNumber, setHouseNumber] = useState(props.review[0].houseNumber);
+  const [district, setDistrict] = useState(props.review[0].district);
 
-  const [safetyScore, setSafetyScore] = useState(1);
-  const [safetyComment, setSafetyComment] = useState('');
+  const [safetyScore, setSafetyScore] = useState(props.review[0].safetyScore);
+  const [safetyComment, setSafetyComment] = useState(
+    props.review[0].safetyComment,
+  );
 
-  const [parksScore, setParksScore] = useState(1);
-  const [parksComment, setParksComment] = useState('');
+  const [parksScore, setParksScore] = useState(props.review[0].parksScore);
+  const [parksComment, setParksComment] = useState(
+    props.review[0].parksComment,
+  );
 
-  const [shoppingScore, setShoppingScore] = useState(1);
-  const [shoppingComment, setShoppingComment] = useState('');
+  const [shoppingScore, setShoppingScore] = useState(
+    props.review[0].shoppingScore,
+  );
+  const [shoppingComment, setShoppingComment] = useState(
+    props.review[0].shoppingComment,
+  );
 
-  const [kidsFriendlyScore, setKidsFriendlyScore] = useState(1);
-  const [kidsFriendlyComment, setKidsFriendlyComment] = useState('');
+  const [kidsFriendlyScore, setKidsFriendlyScore] = useState(
+    props.review[0].kidsFriendlyScore,
+  );
+  const [kidsFriendlyComment, setKidsFriendlyComment] = useState(
+    props.review[0].kidsFriendlyComment,
+  );
 
-  const [publicTransportScore, setPublicTransportScore] = useState(1);
-  const [publicTransportComment, setPublicTransportComment] = useState('');
+  const [publicTransportScore, setPublicTransportScore] = useState(
+    props.review[0].publicTransportScore,
+  );
+  const [publicTransportComment, setPublicTransportComment] = useState(
+    props.review[0].publicTransportComment,
+  );
 
-  const [diningScore, setDiningScore] = useState(1);
-  const [diningComment, setDiningComment] = useState('');
+  const [diningScore, setDiningScore] = useState(props.review[0].diningScore);
+  const [diningComment, setDiningComment] = useState(
+    props.review[0].diningComment,
+  );
 
-  const [entertainmentScore, setEntertainmentScore] = useState(1);
-  const [entertainmentComment, setEntertainmentComment] = useState('');
+  const [entertainmentScore, setEntertainmentScore] = useState(
+    props.review[0].entertainmentScore,
+  );
+  const [entertainmentComment, setEntertainmentComment] = useState(
+    props.review[0].entertainmentComment,
+  );
 
-  const [noiseLevelScore, setNoiseLevelScore] = useState(1);
-  const [noiseLevelComment, setNoiseLevelComment] = useState('');
+  const [noiseLevelScore, setNoiseLevelScore] = useState(
+    props.review[0].noiseLevelScore,
+  );
+  const [noiseLevelComment, setNoiseLevelComment] = useState(
+    props.review[0].noiseLevelComment,
+  );
 
   const handleStreetNameChange = (event) =>
     setStreetName(event.currentTarget.value);
@@ -234,202 +294,239 @@ export default function NewReviewPost(props) {
           {props.user.firstName} {props.user.lastName}
         </title>
       </Head>
-      <form>
-        <div css={formStyle}>
-          <div css={firstDiv}>
-            <label>
-              Street name <span>*</span>:
-              <input
-                placeholder="Street Name"
-                onChange={handleStreetNameChange}
-              />
-            </label>
-            <label>
-              House # <span>*</span>:
-              <input placeholder="House #" onChange={handleHouseNumberChange} />
-            </label>
-            <label>
-              District <span>*</span>:
-              <select onChange={handleDistrictChange}>
-                <option value="">Please select district</option>
-                {props.districts.map((districtInstance) => (
-                  <option
-                    key={districtInstance.zip}
-                    value={districtInstance.zip}
-                  >
-                    {districtInstance.zip}&nbsp;{districtInstance.districtName}
-                  </option>
-                ))}
-              </select>
-            </label>
+      <div>
+        <form>
+          <div css={formStyle}>
+            <div css={firstDiv}>
+              <label>
+                Street name <span>*</span>:
+                <input
+                  placeholder="Street Name"
+                  onChange={handleStreetNameChange}
+                  defaultValue={streetName}
+                />
+              </label>
+              <label>
+                House # <span>*</span>:
+                <input
+                  placeholder="House #"
+                  onChange={handleHouseNumberChange}
+                  defaultValue={houseNumber}
+                />
+              </label>
+              <label>
+                District <span>*</span>:
+                <select onChange={handleDistrictChange}>
+                  <option value="">Please select district</option>
+                  {props.districts.map((districtInstance) => (
+                    <option
+                      key={districtInstance.zip}
+                      value={districtInstance.zip}
+                      selected={
+                        district === districtInstance.zip ? 'selected' : ''
+                      }
+                    >
+                      {districtInstance.zip}&nbsp;
+                      {districtInstance.districtName}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
           </div>
-        </div>
 
-        <div css={categorySection}>
-          <div css={categoryReviewGrid}>
-            <ul>
-              <h2>Rating:</h2>
-              <li>
+          <div css={categorySection}>
+            <div>
+              <span>
+                <h2>Rating:</h2>
+              </span>
+              <span>
+                <h2>Review:</h2>
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Safety</h4>
                 <Horizontal
                   onChangeComplete={setSafetyScore}
-                  initial={props.review.safetyScore}
+                  initial={safetyScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handleSafetyCommentChange}
+                  defaultValue={safetyComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Parks and Recreational Areas</h4>
                 <Horizontal
                   onChangeComplete={setParksScore}
                   initial={parksScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChnge={handleParksCommentChange}
+                  defaultValue={parksComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Shopping</h4>
                 <Horizontal
                   onChangeComplete={setShoppingScore}
                   initial={shoppingScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handleShoppingCommentChange}
+                  defaultValue={shoppingComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Kids Friendly</h4>
                 <Horizontal
                   onChangeComplete={setKidsFriendlyScore}
                   initial={kidsFriendlyScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handleKidsFriendlyCommentChange}
+                  defaultValue={kidsFriendlyComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Public Transport</h4>
                 <Horizontal
                   onChangeComplete={setPublicTransportScore}
                   initial={publicTransportScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handlePublicTransportCommentChange}
+                  defaultValue={publicTransportComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Dining</h4>
                 <Horizontal
                   onChangeComplete={setDiningScore}
                   initial={diningScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handleDiningCommentChange}
+                  defaultValue={diningComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Entertainment</h4>
                 <Horizontal
                   onChangeComplete={setEntertainmentScore}
                   initial={entertainmentScore}
                 />
-              </li>
-              <li>
+              </span>
+              <span>
+                <textarea
+                  placeholder="Write your review here"
+                  onChange={handleEntertainmentCommentChange}
+                  defaultValue={entertainmentComment}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
                 <h4>Noise Level</h4>
                 <Horizontal
                   onChangeComplete={setNoiseLevelScore}
                   initial={noiseLevelScore}
                 />
-              </li>
-            </ul>
-            <ul>
-              <h2>Review:</h2>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleSafetyCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChnge={handleParksCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleShoppingCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleKidsFriendlyCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handlePublicTransportCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleDiningCommentChange}
-                />
-              </li>
-              <li>
-                <input
-                  placeholder="Write your review here"
-                  onChange={handleEntertainmentCommentChange}
-                />
-              </li>
-              <li>
-                <input
+              </span>
+              <span>
+                <textarea
                   placeholder="Write your review here"
                   onChange={handleNoiseLevelCommentChange}
+                  defaultValue={noiseLevelComment}
                 />
-              </li>
-            </ul>
+              </span>
+            </div>
           </div>
-        </div>
-        <div css={submitButton}>
-          <button
-            onClick={async (event) => {
-              event.preventDefault();
-              const response = await fetch(`/api/reviews`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  userId: props.user.id,
+          <div css={submitButton}>
+            <button
+              onClick={async (event) => {
+                event.preventDefault();
+                console.log(props);
+                const response = await fetch(
+                  `/api/reviews/${props.review[0].id}`,
+                  {
+                    method: 'PUT',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      streetName: streetName,
+                      houseNumber: houseNumber,
+                      district: district,
 
-                  streetName: streetName,
-                  houseNumber: houseNumber,
-                  district: district,
+                      safetyScore: safetyScore,
+                      safetyComment: safetyComment,
 
-                  safetyScore: safetyScore,
-                  safetyComment: safetyComment,
+                      parksScore: parksScore,
+                      parksComment: parksComment,
 
-                  parksScore: parksScore,
-                  parksComment: parksComment,
+                      shoppingScore: shoppingScore,
+                      shoppingComment: shoppingComment,
 
-                  shoppingScore: shoppingScore,
-                  shoppingComment: shoppingComment,
+                      kidsFriendlyScore: kidsFriendlyScore,
+                      kidsFriendlyComment: kidsFriendlyComment,
 
-                  kidsFriendlyScore: kidsFriendlyScore,
-                  kidsFriendlyComment: kidsFriendlyComment,
+                      publicTransportScore: publicTransportScore,
+                      publicTransportComment: publicTransportComment,
 
-                  publicTransportScore: publicTransportScore,
-                  publicTransportComment: publicTransportComment,
+                      diningScore: diningScore,
+                      diningComment: diningComment,
 
-                  diningScore: diningScore,
-                  diningComment: diningComment,
+                      entertainmentScore: entertainmentScore,
+                      entertainmentComment: entertainmentComment,
 
-                  entertainmentScore: entertainmentScore,
-                  entertainmentComment: entertainmentComment,
+                      noiseLevelScore: noiseLevelScore,
+                      noiseLevelComment: noiseLevelComment,
 
-                  noiseLevelScore: noiseLevelScore,
-                  noiseLevelComment: noiseLevelComment,
-
-                  csrfToken: props.csrfToken,
-                }),
-              });
-              await response.json();
-              router.push(`/profiles/${props.user.username}`);
-            }}
-          >
-            Save Changes
-          </button>
-        </div>
-      </form>
+                      csrfToken: props.csrfToken,
+                    }),
+                  },
+                );
+                await response.json();
+                router.push(`/profiles/${props.user.username}`);
+              }}
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
       <Footer />
     </UserLayout>
   );

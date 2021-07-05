@@ -24,7 +24,7 @@ const backgroundColor = css`
   background: #0bc6d2;
   width: 100%;
   min-height: auto;
-  min-height: 1000px;
+  min-height: 950px;
   margin-top: -100px;
   bottom: 0;
   right: 0;
@@ -76,36 +76,7 @@ const avatarStyles = css`
     color: gray;
   }
 `;
-/*
-const detailsButtonStyle = css`
-  width: 300px;
-  height: 50px;
-  border: none;
-  border-radius: 10px 0px 0px 0px;
-  background-color: #ddd;
-  color: #8b1c1c;
-  font-size: 20px;
-  :active,
-  :focus {
-    background-color: gray;
-    color: #fff;
-  }
-`;
 
-const postsButtonStyle = css`
-  border-radius: 0px 10px 0px 0px;
-  margin-left: 1px;
-  margin-right: 1px;
-  background-color: #ddd;
-  color: #8b1c1c;
-  font-size: 20px;
-  :active,
-  :focus {
-    background-color: gray;
-    color: #fff;
-  }
-`;
-*/
 const userTabButton = css`
   float: right;
   margin-bottom: auto;
@@ -216,24 +187,16 @@ export default function SingleUserProfile(props: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  // API design here is not so great, maybe don't copy
-  const response =
-    // Since we're fetching on the server side,
-    // the browser is not a part of this `fetch`
-    // and it is therefore not sending the cookies along
-    //
-    // This is using the node-fetch library
-    // internally
-    await fetch(
-      `${process.env.API_BASE_URL}/users-by-username/${context.query.username}`,
-      {
-        method: 'GET',
-        headers: {
-          // This forwards the cookie to the API route
-          cookie: context.req.headers.cookie || '',
-        },
+  const response = await fetch(
+    `${process.env.API_BASE_URL}/users-by-username/${context.query.username}`,
+    {
+      method: 'GET',
+      headers: {
+        // This forwards the cookie to the API route
+        cookie: context.req.headers.cookie || '',
       },
-    );
+    },
+  );
 
   const json = (await response.json()) as SingleUserResponseType;
 
