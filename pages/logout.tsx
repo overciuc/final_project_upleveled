@@ -8,7 +8,7 @@ import { deleteSessionByToken } from '../util/database';
 const cookie = require('cookie');
 
 type Props = {
-  refreshUsername: () => void;
+  refreshUserinfo: () => void;
   username?: string;
 };
 
@@ -25,7 +25,7 @@ const textArea = css`
 `;
 
 export default function Logout(props: Props) {
-  useEffect(() => props.refreshUsername(), [props]);
+  useEffect(() => props.refreshUserinfo(), [props]);
 
   return (
     <Layout username={props.username}>

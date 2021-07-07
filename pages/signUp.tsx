@@ -1,4 +1,4 @@
-import 'react-slideshow-image/dist/styles.css';
+// import 'react-slideshow-image/dist/styles.css';
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -7,9 +7,10 @@ import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 
 type Props = {
-  refreshUsername: () => void;
+  refreshUserinfo: () => void;
   username: string;
   csrfToken: string;
+  firstName?: string;
 };
 
 const backgroundColor = css`
@@ -120,12 +121,13 @@ const signUpBox = css`
 export default function CreateSingleUser(props: Props) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
   return (
-    <Layout username={props.username}>
+    <Layout firstName={props.firstName} username={props.username}>
       <Head>
         <title>Sign Up</title>
       </Head>
@@ -141,6 +143,7 @@ export default function CreateSingleUser(props: Props) {
             body: JSON.stringify({
               firstName: firstName,
               lastName: lastName,
+              email: email,
               username: username,
               password: password,
               csrfToken: props.csrfToken,
@@ -148,7 +151,7 @@ export default function CreateSingleUser(props: Props) {
           });
           const { user: createdUser } = await response.json();
 
-          // login the newlz created user
+          // login the newly created user
           await fetch(`/api/login`, {
             method: 'POST',
             headers: {
@@ -160,7 +163,7 @@ export default function CreateSingleUser(props: Props) {
             }),
           });
 
-          props.refreshUsername();
+          props.refreshUserinfo();
 
           // Navigate to the user's page when
           // they have been successfully created
@@ -188,6 +191,16 @@ export default function CreateSingleUser(props: Props) {
                   value={lastName}
                   onChange={(event) => {
                     setLastName(event.currentTarget.value);
+                  }}
+                />
+              </div>
+              <div>
+                <input
+                  placeholder="Email"
+                  data-cy="users-management-create-email"
+                  value={email}
+                  onChange={(event) => {
+                    setEmail(event.currentTarget.value);
                   }}
                 />
               </div>

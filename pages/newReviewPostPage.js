@@ -236,7 +236,7 @@ export default function NewReviewPost(props) {
     setNoiseLevelComment(event.currentTarget.value);
 
   return (
-    <UserLayout firstName={props.user.firstName}>
+    <UserLayout firstName={props.user.firstName} username={props.user.username}>
       <Head>
         <title>
           {props.user.firstName} {props.user.lastName}
@@ -447,7 +447,7 @@ export default function NewReviewPost(props) {
                 }),
               });
               await response.json();
-              router.push(`/profiles/${props.user.username}/posts`);
+              router.push(`/profiles/${props.user.username}/?view=posts`);
             }}
           >
             Submit Review
@@ -470,5 +470,7 @@ export async function getServerSideProps(context) {
     return {
       props: { user: user, districts: districts },
     };
+  } else {
+    return { props: {} };
   }
 }

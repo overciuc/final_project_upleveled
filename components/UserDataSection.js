@@ -1,4 +1,7 @@
 import { css } from '@emotion/react';
+import { getRouteRegex } from 'next/dist/next-server/lib/router/utils';
+import { route } from 'next/dist/next-server/server/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const userSectionGrid = css`
@@ -129,6 +132,8 @@ const editButton = css`
 `;
 
 export default function UserDataSection(props) {
+  const router = useRouter();
+
   const [showEdit, setShowEdit] = useState(true);
   const [firstName, setFirstName] = useState(props.user.firstName);
   const [lastName, setLastName] = useState(props.user.lastName);
@@ -216,7 +221,29 @@ export default function UserDataSection(props) {
         >
           {showEdit ? 'Edit Details' : 'Save Changes'}
         </button>
-        <button css={deleteButton}>Delete Account</button>
+        <button
+          css={deleteButton}
+          onClick={async () => {
+            if (
+              !window.confirm(
+                `Really delete user ${props.user.firstName} ${props.user.lastName}?`,
+              )
+            ) {
+              return;
+            }
+
+            const response = await fetch(`/api/users/${props.user.id}`, {
+              method: 'DELETE',
+            });
+            const { user: deletedUser } = await response.json();
+            alert(
+              `Deleted user ${deletedUser.firstName} ${deletedUser.lastName}`,
+            );
+            router.push('/');
+          }}
+        >
+          Delete Account
+        </button>
       </div>
     </div>
   );

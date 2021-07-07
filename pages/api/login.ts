@@ -1,6 +1,5 @@
+import crypto from 'node:crypto';
 import argon2 from 'argon2';
-// eslint-disable-next-line unicorn/prefer-node-protocol
-import crypto from 'crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createSerializedSessionTokenCookie } from '../../util/cookies';
 // Since all files in the API folder

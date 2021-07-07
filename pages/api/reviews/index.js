@@ -1,11 +1,7 @@
 // Since all files in the API folder
 // are server-side only, we can import from
 // the database statically at the top
-import {
-  getUserPosts,
-  insertReview,
-  updateReviewById,
-} from '../../../util/database';
+import { getUserPosts, insertReview } from '../../../util/database';
 
 // An API Route needs to define the response
 // that is returned to the user

@@ -1,26 +1,27 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const userPostsPageGrid = css`
   max-width: 1300px;
   justify-content: center;
-  margin: auto;
   display: grid;
   grid-template-columns: 70% 25%;
   grid-column-gap: 30px;
-  grid-row-gap: 0;
   list-style-type: none;
   margin-top: 50px;
   height: 650px;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   > div {
     width: 900px;
+    padding: 10px 20px;
   }
 
   > div + div {
     width: 300px;
-    margin-top: 50px;
+    margin-top: 20px;
     text-align: center;
 
     > a {
@@ -52,10 +53,9 @@ const postsGrid = css`
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-template-rows: repeat(3, 300px);
+  grid-template-rows: repeat(3, 250px);
   align-items: center;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  gap: 20px 20px;
   text-align: left;
   list-style-type: none;
 
@@ -68,6 +68,7 @@ const postsGrid = css`
     height: 220px;
     margin-left: 20px;
     margin-bottom: 20px;
+    margin-top: 20px;
     transition: transform 0.3s ease;
     :hover {
       transform: translate(0, -10px);
@@ -80,11 +81,6 @@ const postsGrid = css`
         font-size: 14px;
         color: gray;
       }
-    }
-
-    > div > a {
-      text-decoration: none;
-      color: #0bc6d2;
     }
 
     > h3 {
@@ -101,46 +97,52 @@ const postsGrid = css`
         font-size: 20px;
       }
     }
-    > p {
-      font-size: 16px;
-      color: gray;
-      margin-top: -10px;
-    }
-
-    > a {
-      color: #e87676;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
 
     > div {
-      margin-top: -20px;
-    }
+      margin-top: 30px;
+      align-items: center;
 
-    > div > button {
-      float: right;
-      background-color: transparent;
-      height: 30px;
-      border: none;
-      margin-right: 20px;
-      font-size: 40px;
-      font-weight: 500;
-      color: red;
-      margin-bottom: 10px;
-      padding: 5px 15px;
-      cursor: pointer;
+      > div > a {
+        text-decoration: none;
+        color: #0bc6d2;
+        cursor: pointer;
+        padding-top: 10px;
+        float: left;
+        > i {
+          font-size: 30px;
+          color: #0bc6d2;
+          :hover {
+            color: blueviolet;
+          }
+        }
+      }
+      > div > button {
+        float: right;
+        background-color: transparent;
+        border: none;
+        margin-right: 20px;
+        font-size: 40px;
+        font-weight: 500;
+        color: red;
+        cursor: pointer;
+        padding-bottom: 30px;
+        :hover {
+          color: rebeccapurple;
+        }
+      }
     }
   }
 `;
 
 export default function UserPostsSection(props) {
+  const [reviews, setReviews] = useState(props.posts);
+
   return (
     <div css={userPostsPageGrid}>
       <div>
         {props.postsSection}
         <ul css={postsGrid}>
-          {props.posts.map((review) => (
+          {reviews.map((review) => (
             <li key={`review-${review.id}`}>
               <h2>
                 Rating: &nbsp; <span>{review.averageScore}</span>
@@ -152,28 +154,47 @@ export default function UserPostsSection(props) {
                 {review.district}&nbsp;
                 {review.districtName}{' '}
               </h3>
-              <p>{review.streetName}</p>
-
               <div>
-                <a href={`/reviews/${review.id}`}>Edit review</a>
-                <button
-                  onClick={async (event) => {
-                    event.preventDefault();
+                <div>
+                  <a href={`/reviews/${review.id}`}>
+                    <i class="bi bi-pencil-square" />
+                  </a>
+                </div>
+                <div>
+                  <button
+                    onClick={async (event) => {
+                      event.preventDefault();
 
-                    const response = await fetch(`/api/reviews/${review.id}`, {
-                      method: 'DELETE',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                        csrfToken: props.csrfToken,
-                      }),
-                    });
-                    await response.json();
-                  }}
-                >
-                  &#128465;
-                </button>
+                      if (
+                        !window.confirm(
+                          `Really delete review ${review.district}?`,
+                        )
+                      ) {
+                        return;
+                      }
+
+                      const response = await fetch(
+                        `/api/reviews/${review.id}`,
+                        {
+                          method: 'DELETE',
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                            csrfToken: props.csrfToken,
+                          }),
+                        },
+                      );
+                      const { review: deletedReview } = await response.json();
+
+                      setReviews(
+                        reviews.filter(({ id }) => id !== deletedReview.id),
+                      );
+                    }}
+                  >
+                    &#128465;
+                  </button>
+                </div>
               </div>
             </li>
           ))}

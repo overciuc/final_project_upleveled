@@ -10,7 +10,7 @@ import { getValidSessionByToken } from '../util/database';
 import { LoginResponse } from './api/login';
 
 type Props = {
-  refreshUsername: () => void;
+  refreshUserinfo: () => void;
   username?: string;
 };
 
@@ -164,7 +164,7 @@ export default function Login(props: Props) {
             return;
           }
 
-          props.refreshUsername();
+          props.refreshUserinfo();
 
           // Navigate to the user's page when
           // they have been successfully created

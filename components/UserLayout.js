@@ -11,7 +11,7 @@ const containerStyles = css`
 export default function UserLayout(props) {
   return (
     <>
-      <UserNavMenu firstName={props.firstName} />
+      <UserNavMenu firstName={props.firstName} username={props.username} />
       <div css={containerStyles}>{props.children}</div>
     </>
   );

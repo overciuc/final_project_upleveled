@@ -635,3 +635,38 @@ export async function deleteReviewById(id?: number) {
   `;
   return reviews.map((review: any) => camelcaseKeys(review))[0];
 }
+
+export async function getAllPosts() {
+  const posts = await sql<Review[]>`
+    SELECT
+      user_id,
+      district,
+      safety_score,
+      safety_comment,
+      parks_score,
+      parks_comment,
+      shopping_score,
+      shopping_comment,
+      kids_friendly_score,
+      kids_friendly_comment,
+      public_transport_score,
+      public_transport_comment,
+      dining_score,
+      dining_comment,
+      entertainment_score,
+      entertainment_comment,
+      noise_level_score,
+      noise_level_comment,
+      street_name,
+      house_number,
+      id,
+      district_name,
+      (safety_score + parks_score + shopping_score + kids_friendly_score + public_transport_score +
+        dining_score + entertainment_score + noise_level_score) / 8 as average_score,
+      to_char(date, 'dd.mm.yyyy') as date_string
+    FROM
+      reviews inner join districts on reviews.district = districts.zip
+
+  `;
+  return posts.map((review: any) => camelcaseKeys(review));
+}

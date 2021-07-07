@@ -49,3 +49,8 @@ export type Review = {
   district_name: string;
   average_score: number;
 };
+
+export type Coordinates = {
+  latitude: number;
+  longitude: number;
+};

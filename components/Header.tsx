@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 
+type Props = {
+  firstName?: string;
+  username?: string;
+};
+
 const headerStyles = css`
   display: flex;
   padding: 5px 15px;
@@ -73,7 +78,7 @@ const logoStyles = css`
   height: 100px;
 `;
 
-export default function Header() {
+export default function Header(props: Props) {
   return (
     <header css={headerStyles}>
       <span>
@@ -92,14 +97,30 @@ export default function Header() {
         <Link href="/contact">
           <a>Contact</a>
         </Link>
+        {props.username ? (
+          <Link href={`/profiles/${props.username}/?view=user`}>
+            <a>
+              <span>
+                Hello,
+                <span>&nbsp;{props.firstName}</span>
+              </span>
+            </a>
+          </Link>
+        ) : (
+          <Link href="/login">
+            <a>Login</a>
+          </Link>
+        )}
 
-        <Link href="/login">
-          <a>Login</a>
-        </Link>
-
-        <Link href="/signUp">
-          <a>Sign Up</a>
-        </Link>
+        {props.username ? (
+          <Link href="/logout">
+            <a>Logout</a>
+          </Link>
+        ) : (
+          <Link href="/signUp">
+            <a>Sign Up</a>
+          </Link>
+        )}
       </div>
     </header>
   );

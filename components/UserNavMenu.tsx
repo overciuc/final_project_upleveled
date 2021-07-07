@@ -1,13 +1,9 @@
 import { css } from '@emotion/react';
 import Link from 'next/link';
 
-// import { useRouter } from 'next/router';
-// import { User } from '../util/types';
-
 type Props = {
   firstName?: string;
-  // username?: string;
-  // user?: User;
+  username?: string;
 };
 
 const headerStyles = css`
@@ -71,7 +67,6 @@ const headerStyles = css`
     text-align: center;
     cursor: pointer;
     color: #583dfd;
-    //font-weight: bold;
     font-size: 20px;
     margin-left: 10px;
     :hover {
@@ -101,7 +96,6 @@ const headerStyles = css`
       color: #583dfd;
       font-weight: bold;
       font-size: 20px;
-      //margin-left: 10px;
       text-decoration: none;
       :hover {
         background-color: #f309df;
@@ -116,8 +110,6 @@ const logoStyles = css`
 `;
 
 export default function UserNavMenu(props: Props) {
-  // const router = useRouter();
-
   return (
     <header css={headerStyles}>
       <span>
@@ -136,21 +128,14 @@ export default function UserNavMenu(props: Props) {
         <Link href="/contact">
           <a>Contact</a>
         </Link>
-        {/*
-        <button
-          onClick={async () => {
-            router.push(`/profiles/${props.user}`);
-          }}
-        >
-          <a>*/}
-        <span>
-          Hello,
-          <span>&nbsp;{props.firstName}</span>
-        </span>
-        {/*
+        <Link href={`/profiles/${props.username}/?view=user`}>
+          <a>
+            <span>
+              Hello,
+              <span>&nbsp;{props.firstName}</span>
+            </span>
           </a>
-        </button>
-        */}
+        </Link>
         <span>
           <Link href="/logout">
             <a>Logout</a>

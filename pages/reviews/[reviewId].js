@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Footer from '../../components/Footer';
 import Horizontal from '../../components/RangeSlider';
-import UserLayout from '../../components/UserLayout';
+import Layout from '../../components/UserLayout';
 import {
   getDistricts,
   getUserById,
@@ -12,31 +12,6 @@ import {
   getValidSessionByToken,
 } from '../../util/database';
 
-/*
-const backgroundColor = css`
-  background: hsla(238, 100%, 71%, 1);
-  background: linear-gradient(
-    90deg,
-    hsla(238, 100%, 71%, 1) 0%,
-    hsla(295, 100%, 84%, 1) 100%
-  );
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(238, 100%, 71%, 1) 0%,
-    hsla(295, 100%, 84%, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    90deg,
-    hsla(238, 100%, 71%, 1) 0%,
-    hsla(295, 100%, 84%, 1) 100%
-  );
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696EFF", endColorstr="#F8ACFF", GradientType=1 );
-  background-size: cover;
-  z-index: -100;
-  position: relative;
-  content: '';
-`;
-*/
 const formStyle = css`
   margin-left: 20px;
   max-width: 1500px;
@@ -288,7 +263,7 @@ export default function NewReviewPost(props) {
     setNoiseLevelComment(event.currentTarget.value);
 
   return (
-    <UserLayout firstName={props.user.firstName}>
+    <Layout firstName={props.user.firstName} username={props.user.username}>
       <Head>
         <title>
           {props.user.firstName} {props.user.lastName}
@@ -519,7 +494,7 @@ export default function NewReviewPost(props) {
                   },
                 );
                 await response.json();
-                router.push(`/profiles/${props.user.username}`);
+                router.push(`/profiles/${props.user.username}/?view=posts`);
               }}
             >
               Save Changes
@@ -528,7 +503,7 @@ export default function NewReviewPost(props) {
         </form>
       </div>
       <Footer />
-    </UserLayout>
+    </Layout>
   );
 }
 

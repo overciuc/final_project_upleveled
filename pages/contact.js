@@ -3,13 +3,20 @@ import Head from 'next/head';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 
-const contactUsPage = css`
-  margin-top: 20px;
-  margin-bottom: 100px;
-  max-width: 1300px;
+const backgroundColor = css`
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: #0bc6d2;
+  justify-content: center;
   width: 100%;
-  padding: 20px 30px;
-  margin: auto;
+  min-height: auto;
+  min-height: 950px;
+  margin-top: -100px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -10;
+  content: '';
 `;
 
 const contactPageGrid = css`
@@ -19,11 +26,11 @@ const contactPageGrid = css`
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
-  grid-gap: 1rem;
   text-align: center;
   list-style-type: none;
   margin-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 100px;
+  padding-top: 100px;
 
   > div > button {
     background-color: #fed648;
@@ -34,7 +41,6 @@ const contactPageGrid = css`
     border: none;
     font-size: 24px;
     cursor: pointer;
-    margin-left: 10px;
     font-weight: bold;
     :hover {
       background-color: #f309df;
@@ -57,10 +63,9 @@ const contactPageGrid = css`
 const contactImage = css`
   max-width: 600px;
   max-height: 650px;
-  justify-content: center;
+  text-align: right;
   padding: 20px;
-  padding-right: 20px;
-  margin-right: 40px;
+  margin-right: 10px;
   margin: auto;
 `;
 
@@ -69,15 +74,13 @@ const formContainer = css`
   max-width: 650px;
   width: 100%;
   justify-content: center;
-  margin: auto;
   text-align: left;
 
   > div {
     width: 100%;
-    margin: auto;
     margin-top: 20px;
-
     display: block;
+    margin-left: 0;
   }
 
   > div > input {
@@ -111,6 +114,7 @@ const formContainer = css`
     height: 120px;
     display: block;
     margin: 25px 0;
+    margin-left: 0;
     outline: none;
     font-family: inherit;
     padding-left: 20px;
@@ -139,20 +143,23 @@ const titleStyles = css`
   margin-top: 10px;
 `;
 
-export default function ContactUs() {
+export default function ContactUs(props) {
   return (
-    <Layout>
+    <Layout
+      firstName={props.firstNameFromFetch}
+      username={props.usernameFromFetch}
+    >
       <Head>
         <title>Contact</title>
       </Head>
 
-      <section css={contactUsPage}>
+      <section css={backgroundColor}>
         <div css={contactPageGrid}>
           <div>
             <img
-              src="/images/cuteCat.jpg"
+              src="/images/dog_image.jpeg"
               css={contactImage}
-              alt="A cat with balloons"
+              alt="A dog with a book"
             />
           </div>
           <div>
@@ -191,3 +198,19 @@ export default function ContactUs() {
     </Layout>
   );
 }
+/*
+export async function getServerSideProps(context) {
+  const sessionToken = context.req.cookies.sessionToken;
+
+  const session = await getValidSessionByToken(sessionToken);
+
+  if (session) {
+    const user = await getUserById(session.userId);
+    return {
+      props: { user: user },
+    };
+  } else {
+    return { props: {} };
+  }
+}
+*/

@@ -2,10 +2,9 @@ import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
-// import { useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 import UserDataSection from '../../components/UserDataSection';
-import UserLayout from '../../components/UserLayout';
 import UserPostsSection from '../../components/UserPostsSection';
 import { getUserPosts } from '../../util/database';
 import { ApplicationError, Review, User } from '../../util/types';
@@ -16,6 +15,7 @@ type Props = {
   firstName?: string;
   errors?: ApplicationError[];
   posts?: Review[];
+  view?: 'posts' | 'user';
 };
 
 const backgroundColor = css`
@@ -113,35 +113,35 @@ const userTabButton = css`
 `;
 
 export default function SingleUserProfile(props: Props) {
-  const [showSection, setShowSection] = useState(false);
+  const [showSection, setShowSection] = useState(props.view === 'posts');
 
   // Show message if user not allowed
   const errors = props.errors;
   if (errors) {
     return (
-      <UserLayout firstName={props.firstName}>
+      <Layout>
         <Head>
           <title>Error</title>
         </Head>
         Error: {errors[0].message}
-      </UserLayout>
+      </Layout>
     );
   }
 
   // Show message if user does not exist
   if (!props.user) {
     return (
-      <UserLayout firstName={props.firstName}>
+      <Layout>
         <Head>
           <title>User not found!</title>
         </Head>
         User not found
-      </UserLayout>
+      </Layout>
     );
   }
 
   return (
-    <UserLayout firstName={props.user.firstName}>
+    <Layout firstName={props.user.firstName} username={props.user.username}>
       <Head>
         <title>
           {props.user.firstName} {props.user.lastName}
@@ -182,7 +182,7 @@ export default function SingleUserProfile(props: Props) {
         </div>
       </div>
       <Footer />
-    </UserLayout>
+    </Layout>
   );
 }
 
@@ -219,6 +219,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: {
       posts: posts,
+      view: context.query.view || 'user',
       ...json,
     },
   };
