@@ -3,7 +3,6 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 // eslint-disable-next-line import/no-unresolved
 import 'leaflet-defaulticon-compatibility';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { Coordinates } from '../util/types';
 
 const Map = (props: any) => {
   return (
@@ -24,7 +23,7 @@ const Map = (props: any) => {
         </Popup>
       </Marker>*/}
       {props.allReviews.map((review: any) => {
-        //console.log(review);
+        // console.log(review);
         return (
           <Marker key={`review-${review.id}`} position={review.coordinates}>
             <Popup>{review.district}</Popup>

@@ -6,7 +6,6 @@ import Head from 'next/head';
 import React from 'react';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
-import { Coordinates } from '../util/types';
 
 const landingPageContainer = css`
   width: 100%;
@@ -85,7 +84,7 @@ export async function getServerSideProps() {
       return;
     }),
   );
-  //console.log(enrichedReviews);
+  // console.log(enrichedReviews);
   return {
     props: { allReviews: enrichedReviews },
   };

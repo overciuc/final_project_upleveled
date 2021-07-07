@@ -29,7 +29,7 @@ export default function ContactUs(props) {
         <title>Contact</title>
       </Head>
 
-      <section css={backgroundColor}></section>
+      <section css={backgroundColor} />
 
       <Footer />
     </Layout>
