@@ -24,7 +24,7 @@ const backgroundColor = css`
   background: #0bc6d2;
   width: 100%;
   min-height: auto;
-  min-height: 950px;
+  min-height: 100px;
   margin-top: -100px;
   bottom: 0;
   right: 0;

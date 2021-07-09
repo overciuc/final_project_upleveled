@@ -11,16 +11,17 @@ const footerStyles = css`
   z-index: 1;
   height: 65px;
   width: 100%;
-  border-top: 1px solid #069099;
+  border-top: 1px solid #0bc6d2;
   justify-content: center;
   margin-top: auto 0;
+  position: absolute;
 `;
 
 const copyrightStyles = css`
   color: #fff;
   font-size: 16px;
   text-align: center;
-  //margin-top: 20px;
+  //padding-top: 20px;
 `;
 
 export default function Footer() {

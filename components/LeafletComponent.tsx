@@ -3,6 +3,7 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 // eslint-disable-next-line import/no-unresolved
 import 'leaflet-defaulticon-compatibility';
 import { css } from '@emotion/react';
+import * as L from 'leaflet';
 import Link from 'next/link';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
@@ -45,12 +46,19 @@ const popUpStyles = css`
 `;
 
 const Map = (props: any) => {
+  const leafIcon = L.Icon.extend({
+    options: {},
+  });
+
+  const blueIcon = new leafIcon();
+  blueIcon.options.iconUrl = '/mappinrender.svg?color=blue';
+
   return (
     <MapContainer
       center={[48.2042154830387, 16.368015018501982]}
       zoom={13}
       scrollWheelZoom={false}
-      style={{ height: 900, width: '100%' }}
+      style={{ height: 898, width: '100%' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -77,7 +85,11 @@ const Map = (props: any) => {
         }
 
         return (
-          <Marker key={`review-${review.id}`} position={review.coordinates}>
+          <Marker
+            key={`review-${review.id}`}
+            position={review.coordinates}
+            icon={blueIcon}
+          >
             <Popup>
               <section css={popUpStyles}>
                 <div>

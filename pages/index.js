@@ -101,29 +101,44 @@ const radioButtonContainer = css`
 
 const infoTextStyle = css`
   float: left;
-  margin-right: 20px;
   margin: auto;
+  margin-right: 20px;
+  margin-top: 30px;
   display: grid;
   grid-auto-columns: 20% 80%;
-  column-gap: 10px;
+  column-gap: 40px;
+  justify-content: center;
 
-  > div > span {
+  > div {
+    display: flex;
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  > div > div > span {
     width: 50px;
     height: 50px;
     color: #0bc6d2;
+    margin: auto;
+    margin-right: 20px;
+
+    > i {
+      font-size: 30px;
+      margin: auto;
+    }
   }
-  > div > p {
+  > div > div > p {
     text-align: left;
     font-size: 24px;
     color: gray;
     width: 600px;
+    margin-top: 0px;
   }
 `;
 
 const frontPageMap = css`
   width: 1200px;
-  height: 900px;
-  border: 1px solid black;
+  height: 880px;
   float: right;
   margin-left: auto;
 `;
@@ -300,14 +315,18 @@ export default function Home(props) {
           </div>
           <div css={infoTextStyle}>
             <div>
-              <span>
-                <i class="bi bi-info-square" />
-              </span>
-              <p>
-                If you click on a marker a popup window will appear with
-                information on average rating of the chosen category, district
-                and a link to the review itself.
-              </p>
+              <div>
+                <span>
+                  <i className="bi bi-info-square" />
+                </span>
+              </div>
+              <div>
+                <p>
+                  If you click on a marker a popup window will appear with
+                  information on average rating of the chosen category, district
+                  and a link to the review itself.
+                </p>
+              </div>
             </div>
           </div>
         </div>
