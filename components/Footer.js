@@ -14,7 +14,6 @@ const footerStyles = css`
   border-top: 1px solid #0bc6d2;
   justify-content: center;
   margin-top: auto 0;
-  position: absolute;
 `;
 
 const copyrightStyles = css`

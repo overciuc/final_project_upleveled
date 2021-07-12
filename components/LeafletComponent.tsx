@@ -50,9 +50,48 @@ const Map = (props: any) => {
     options: {},
   });
 
-  const blueIcon = new leafIcon();
-  blueIcon.options.iconUrl = '/mappinrender.svg?color=blue';
+  const oneIcon = new leafIcon();
+  oneIcon.options.iconUrl = '/images/pin1.svg';
 
+  const twoIcon = new leafIcon();
+  twoIcon.options.iconUrl = '/images/pin2.svg';
+
+  const threeIcon = new leafIcon();
+  threeIcon.options.iconUrl = '/images/pin3.svg';
+
+  const fourIcon = new leafIcon();
+  fourIcon.options.iconUrl = '/images/pin4.svg';
+
+  const fiveIcon = new leafIcon();
+  fiveIcon.options.iconUrl = '/images/pin5.svg';
+
+  const sixIcon = new leafIcon();
+  sixIcon.options.iconUrl = '/images/pin6.svg';
+
+  const sevenIcon = new leafIcon();
+  sevenIcon.options.iconUrl = '/images/pin7.svg';
+
+  const eightIcon = new leafIcon();
+  eightIcon.options.iconUrl = '/images/pin8.svg';
+
+  const nineIcon = new leafIcon();
+  nineIcon.options.iconUrl = '/images/pin9.svg';
+
+  const tenIcon = new leafIcon();
+  tenIcon.options.iconUrl = '/images/pin10.svg';
+
+  const icons = [
+    oneIcon,
+    twoIcon,
+    threeIcon,
+    fourIcon,
+    fiveIcon,
+    sixIcon,
+    sevenIcon,
+    eightIcon,
+    nineIcon,
+    tenIcon,
+  ];
   return (
     <MapContainer
       center={[48.2042154830387, 16.368015018501982]}
@@ -88,7 +127,7 @@ const Map = (props: any) => {
           <Marker
             key={`review-${review.id}`}
             position={review.coordinates}
-            icon={blueIcon}
+            icon={icons[Math.ceil(score) - 1]}
           >
             <Popup>
               <section css={popUpStyles}>
@@ -100,7 +139,7 @@ const Map = (props: any) => {
                 </div>
                 <div>
                   <span>Rating:</span>
-                  <span>&nbsp;{score}</span>
+                  <span>&nbsp;{Math.ceil(score)}</span>
                 </div>
                 <div>
                   <span>

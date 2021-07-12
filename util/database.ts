@@ -276,6 +276,8 @@ export async function getUserPosts(userId: number) {
       reviews inner join districts on reviews.district = districts.zip
     WHERE
       user_id = ${userId}
+    ORDER BY
+        date DESC
   `;
   return posts.map((review: any) => camelcaseKeys(review));
 }
@@ -639,33 +641,26 @@ export async function deleteReviewById(id?: number) {
 export async function getAllPosts() {
   const posts = await sql<Review[]>`
     SELECT
-      user_id,
       district,
-      safety_score,
-      safety_comment,
-      parks_score,
-      parks_comment,
-      shopping_score,
-      shopping_comment,
-      kids_friendly_score,
-      kids_friendly_comment,
-      public_transport_score,
-      public_transport_comment,
-      dining_score,
-      dining_comment,
-      entertainment_score,
-      entertainment_comment,
-      noise_level_score,
-      noise_level_comment,
-      street_name,
-      house_number,
-      id,
-      district_name,
-      (safety_score + parks_score + shopping_score + kids_friendly_score + public_transport_score +
-        dining_score + entertainment_score + noise_level_score) / 8 as average_score,
-      to_char(date, 'dd.mm.yyyy') as date_string
+      avg(safety_score) as safety_score,
+      avg(parks_score) as parks_score,
+      avg(shopping_score) as shopping_score,
+      avg(kids_friendly_score) as kids_friendly_score,
+      avg(public_transport_score) as public_transport_score,
+      avg(dining_score) as dining_score,
+      avg(entertainment_score) as entertainment_score,
+      avg(noise_level_score) as noise_level_score,
+      trim(street_name) as street_name,
+      trim(house_number) as house_number,
+      count(*) as total_number_of_reviews,
+      district_name
     FROM
       reviews inner join districts on reviews.district = districts.zip
+    GROUP BY
+      trim(street_name),
+      trim(house_number),
+      district,
+      district_name
 
   `;
   return posts.map((review: any) => camelcaseKeys(review));

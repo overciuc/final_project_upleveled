@@ -23,8 +23,8 @@ const backgroundColor = css`
   background-size: cover;
   background: #0bc6d2;
   width: 100%;
-  min-height: auto;
-  min-height: 100px;
+
+  min-height: 997px;
   margin-top: -100px;
   bottom: 0;
   right: 0;
@@ -43,7 +43,8 @@ const containerBox = css`
   margin-right: auto;
   margin-left: 80px;
   margin-bottom: 100px;
-  margin-top: 100px;
+  margin-top: 150px;
+  height: 800px;
   z-index: 10;
 `;
 

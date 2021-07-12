@@ -151,9 +151,9 @@ const submitButton = css`
   margin: auto;
   margin-top: 20px;
   margin-bottom: 50px;
+  text-align: right;
 
   > button {
-    float: right;
     width: 200px;
     height: 50px;
     padding: 15px 15px;
@@ -165,10 +165,30 @@ const submitButton = css`
     font-size: 20px;
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
+    margin-left: auto;
 
     :hover {
       background-color: #fed648;
       color: #583dfd;
+    }
+  }
+
+  > button + button {
+    width: 200px;
+    height: 50px;
+    padding: 15px 15px;
+    text-align: center;
+    background-color: #ddd;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    box-shadow: 0px 2px 2px gray;
+    margin-right: 20px;
+
+    :hover {
+      background-color: gray;
+      color: #fff;
     }
   }
 `;
@@ -246,18 +266,18 @@ export default function NewReviewPost(props) {
         <div css={formStyle}>
           <div css={firstDiv}>
             <label>
-              Street name <span>*</span>:
+              Street name
               <input
                 placeholder="Street Name"
                 onChange={handleStreetNameChange}
               />
             </label>
             <label>
-              House # <span>*</span>:
+              House number
               <input placeholder="House #" onChange={handleHouseNumberChange} />
             </label>
             <label>
-              District <span>*</span>:
+              District <span>*</span>
               <select onChange={handleDistrictChange}>
                 <option value="">Please select district</option>
                 {props.districts.map((districtInstance) => (
@@ -276,10 +296,10 @@ export default function NewReviewPost(props) {
         <div css={categorySection}>
           <div>
             <span>
-              <h2>Rating:</h2>
+              <h2>Rate your hood below</h2>
             </span>
             <span>
-              <h2>Review:</h2>
+              <h2>Write a comment for each category</h2>
             </span>
           </div>
           <div>
@@ -451,6 +471,14 @@ export default function NewReviewPost(props) {
             }}
           >
             Submit Review
+          </button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              router.push(`/profiles/${props.user.username}/?view=posts`);
+            }}
+          >
+            Cancel
           </button>
         </div>
       </form>

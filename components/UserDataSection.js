@@ -182,8 +182,6 @@ export default function UserDataSection(props) {
                 />
               </span>
             </div>
-            <br />
-            <h2>Security details</h2>
             <div>
               Username:
               <span css={usernameStyles}>{props.user.username}</span>

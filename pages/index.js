@@ -18,19 +18,22 @@ const landingPageContainer = css`
 
 const radioButtonContainer = css`
   margin-left: 100px;
-  margin-top: 50px;
+  margin-top: 30px;
   justify-content: center;
+  width: 600px;
 
   > p {
     text-align: left;
     font-size: 24px;
     color: gray;
-    width: 600px;
+    width: 100%;
   }
 
   > h3 {
     color: gray;
     font-size: 30px;
+    margin-top: 20px;
+    width: 100%;
   }
   > div {
     display: grid;
@@ -132,7 +135,142 @@ const infoTextStyle = css`
     font-size: 24px;
     color: gray;
     width: 600px;
-    margin-top: 0px;
+    margin-top: 5px;
+    > span {
+      font-weight: bold;
+    }
+  }
+`;
+
+const mapLegendTable = css`
+  float: left;
+  margin: auto;
+  margin-right: auto;
+  margin-left: 30px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  > table {
+    border-collapse: collapse;
+  }
+`;
+
+const mapTableStyles = css`
+  width: 100%;
+  > tr {
+    width: 600px;
+    > th > h4 {
+      font-size: 20px;
+      color: gray;
+    }
+  }
+  > tr {
+    width: 600px;
+    > td {
+      width: 60px;
+      height: 20px;
+      background-color: #ff0000;
+    }
+    > td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #fc3800;
+    }
+    > td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #f86f00;
+    }
+    > td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #f5a500;
+    }
+    > td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #f2d900;
+    }
+    > td + td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #d1ee00;
+    }
+    > td + td + td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #9aeb00;
+    }
+    > td + td + td + td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #64e800;
+    }
+    > td + td + td + td + td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #2fe400;
+    }
+    > td + td + td + td + td + td + td + td + td + td {
+      width: 60px;
+      height: 20px;
+      background-color: #04db08;
+    }
+  }
+  > tr + tr + tr {
+    width: 600px;
+    color: gray;
+    > th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #ff0000;
+    }
+    > th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #fc3800;
+    }
+    > th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #f86f00;
+    }
+    > th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #f5a500;
+    }
+    > th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #f2d900;
+    }
+    > th + th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #d1ee00;
+    }
+    > th + th + th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #9aeb00;
+    }
+    > th + th + th + th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #64e800;
+    }
+    > th + th + th + th + th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #2fe400;
+    }
+    > th + th + th + th + th + th + th + th + th + th {
+      width: 60px;
+      height: 20px;
+      border-left: 1px solid #04db08;
+    }
   }
 `;
 
@@ -218,7 +356,7 @@ export default function Home(props) {
             This map service will show you ratings in certain categories in
             every district, left by people that actually leave there.
           </p>
-          <h3>Select the category you are interested in</h3>
+          <h3>Visualize your hood based on ...</h3>
           <div>
             <div>
               <label>
@@ -322,14 +460,47 @@ export default function Home(props) {
               </div>
               <div>
                 <p>
-                  If you click on a marker a popup window will appear with
-                  information on average rating of the chosen category, district
-                  and a link to the review itself.
+                  <span>Tip:</span> Click on a marker for more info.
                 </p>
               </div>
             </div>
           </div>
+
+          <div css={mapLegendTable}>
+            <table css={mapTableStyles}>
+              <tr>
+                <th colspan="10">
+                  <h4>Color legend</h4>
+                </th>
+              </tr>
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+                <td />
+              </tr>
+              <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+            </table>
+          </div>
         </div>
+
         <div css={frontPageMap}>
           <Map
             allReviews={props.allReviews}
@@ -343,6 +514,7 @@ export default function Home(props) {
 }
 
 export async function getGeocode(query) {
+  return [0, 0];
   const geocodeApiKey = '7ba25a8e345e54f9332bb62f813d4c45';
   const geocodeResponse = await fetch(
     `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${query}`,
@@ -351,7 +523,11 @@ export async function getGeocode(query) {
     },
   );
   const geocodeJson = await geocodeResponse.json();
-  return [geocodeJson.data[0].latitude, geocodeJson.data[0].longitude];
+  if ('errors' in geocodeJson) {
+    return [0, 0];
+  } else {
+    return [geocodeJson.data[0].latitude, geocodeJson.data[0].longitude];
+  }
 }
 
 export async function getServerSideProps() {
@@ -366,16 +542,38 @@ export async function getServerSideProps() {
 
   await Promise.all(
     allReviews.reviews.map(async (review) => {
-      const coordinates = await getGeocode(
-        `${encodeURIComponent(review.districtName)} Vienna`,
-      );
+      let address = '';
+      if (
+        review.streetName &&
+        review.streetName !== undefined &&
+        review.streetName !== '' &&
+        review.streetName !== null
+      ) {
+        address = review.streetName;
+        if (
+          review.houseNumber &&
+          review.houseNumber !== undefined &&
+          review.houseNumber !== '' &&
+          review.houseNumber !== null
+        ) {
+          address = `${address} ${review.houseNumber}`;
+        }
+      }
+      if (address !== '') {
+        address = `${address} ${review.district} Vienna`;
+      } else {
+        address = `${review.districtName} Vienna`;
+      }
+
+      console.log(address);
+      const coordinates = await getGeocode(encodeURIComponent(address));
       review = { ...review, coordinates };
       enrichedReviews.push(review);
 
       return;
     }),
   );
-  console.log(enrichedReviews);
+  // console.log(enrichedReviews);
   return {
     props: { allReviews: enrichedReviews },
   };

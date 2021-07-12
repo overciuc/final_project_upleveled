@@ -10,7 +10,7 @@ const userPostsPageGrid = css`
   grid-column-gap: 30px;
   list-style-type: none;
   margin-top: 50px;
-  height: 650px;
+  height: 600px;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -152,7 +152,7 @@ export default function UserPostsSection(props) {
               </h6>
               <h3>
                 {review.district}&nbsp;
-                {review.districtName}{' '}
+                {review.districtName}
               </h3>
               <div>
                 <div>
