@@ -515,7 +515,7 @@ export default function Home(props) {
 
 export async function getGeocode(query) {
   return [0, 0];
-  const geocodeApiKey = '7ba25a8e345e54f9332bb62f813d4c45';
+  const geocodeApiKey = process.env.GEOCODE_API_KEY;
   const geocodeResponse = await fetch(
     `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${query}`,
     {
@@ -530,7 +530,7 @@ export async function getGeocode(query) {
   }
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   // Redirect from HTTP to HTTPS on Heroku
   if (
     context.req.headers.host &&

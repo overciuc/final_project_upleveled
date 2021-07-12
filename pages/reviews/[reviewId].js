@@ -452,7 +452,7 @@ export default function NewReviewPost(props) {
             </div>
             <div>
               <span>
-                <h4>Noise Level</h4>
+                <h4>Noise Comfort</h4>
                 <Horizontal
                   onChangeComplete={setNoiseLevelScore}
                   initial={noiseLevelScore}
