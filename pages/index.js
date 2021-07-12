@@ -531,6 +531,20 @@ export async function getGeocode(query) {
 }
 
 export async function getServerSideProps() {
+  // Redirect from HTTP to HTTPS on Heroku
+  if (
+    context.req.headers.host &&
+    context.req.headers['x-forwarded-proto'] &&
+    context.req.headers['x-forwarded-proto'] !== 'https'
+  ) {
+    return {
+      redirect: {
+        destination: `https://${context.req.headers.host}/index`,
+        permanent: true,
+      },
+    };
+  }
+
   const response = await fetch(
     `${process.env.API_BASE_URL}/reviews/all_reviews`,
     {

@@ -188,6 +188,20 @@ export default function SingleUserProfile(props: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  // Redirect from HTTP to HTTPS on Heroku
+  if (
+    context.req.headers.host &&
+    context.req.headers['x-forwarded-proto'] &&
+    context.req.headers['x-forwarded-proto'] !== 'https'
+  ) {
+    return {
+      redirect: {
+        destination: `https://${context.req.headers.host}/username`,
+        permanent: true,
+      },
+    };
+  }
+
   const response = await fetch(
     `${process.env.API_BASE_URL}/users-by-username/${context.query.username}`,
     {
