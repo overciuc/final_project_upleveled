@@ -1,6 +1,4 @@
 import { css } from '@emotion/react';
-import { getRouteRegex } from 'next/dist/next-server/lib/router/utils';
-import { route } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 

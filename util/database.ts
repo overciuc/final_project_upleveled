@@ -1,5 +1,6 @@
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
+import setPostgresDefaultsOnHeroku from './setPostgresDefaultsOnHeroku';
 import {
   ApplicationError,
   District,
@@ -9,7 +10,7 @@ import {
   UserWithPasswordHash,
 } from './types';
 
-// import postgres from 'postgres';
+setPostgresDefaultsOnHeroku();
 
 const postgres = require('postgres');
 
