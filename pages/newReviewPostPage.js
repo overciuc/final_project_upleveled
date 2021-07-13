@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Footer from '../components/Footer';
 import Horizontal from '../components/RangeSlider';
 import UserLayout from '../components/UserLayout';
@@ -74,6 +75,23 @@ const firstDiv = css`
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
+    }
+    :required {
+      border: 1px solid #0bc6d2;
+      transition: 0.3s ease-in-out;
+      color: gray;
+    }
+
+    :valid:required {
+      border: 1px solid #0bc6d2;
+      transition: 0.3s ease-in-out;
+      color: gray;
+    }
+    :invalid {
+      box-shadow: 1px solid #0bc6d2;
+      :required {
+        box-shadow: 0 0 10px red;
+      }
     }
   }
 `;
@@ -194,6 +212,9 @@ const submitButton = css`
 `;
 
 export default function NewReviewPost(props) {
+  const { register, formState } = useForm();
+  const errors = formState;
+
   const router = useRouter();
 
   const [streetName, setStreetName] = useState('');
@@ -277,9 +298,13 @@ export default function NewReviewPost(props) {
               <input placeholder="House #" onChange={handleHouseNumberChange} />
             </label>
             <label>
-              District <span>*</span>
-              <select onChange={handleDistrictChange}>
-                <option value="">Please select district</option>
+              District <span>*</span> (required)
+              <select
+                name="func"
+                onChange={handleDistrictChange}
+                {...register('func', { required: true })}
+              >
+                <option value={null}>Please select district</option>
                 {props.districts.map((districtInstance) => (
                   <option
                     key={districtInstance.zip}
@@ -290,6 +315,7 @@ export default function NewReviewPost(props) {
                 ))}
               </select>
             </label>
+            {errors.func && 'District is required!'}
           </div>
         </div>
 

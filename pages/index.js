@@ -276,7 +276,7 @@ const mapTableStyles = css`
 
 const frontPageMap = css`
   width: 1200px;
-  height: 880px;
+  height: 900px;
   float: right;
   margin-left: auto;
 `;
@@ -469,7 +469,7 @@ export default function Home(props) {
           <div css={mapLegendTable}>
             <table css={mapTableStyles}>
               <tr>
-                <th colspan="10">
+                <th colSpan="10">
                   <h4>Color legend</h4>
                 </th>
               </tr>
@@ -514,7 +514,7 @@ export default function Home(props) {
 }
 
 export async function getGeocode(query) {
-  return [0, 0];
+  return [48.15 + 0.1 * Math.random(), 16.3 + 0.1 * Math.random()];
   const geocodeApiKey = process.env.GEOCODE_API_KEY;
   const geocodeResponse = await fetch(
     `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${query}`,
