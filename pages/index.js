@@ -158,118 +158,120 @@ const mapLegendTable = css`
 
 const mapTableStyles = css`
   width: 100%;
-  > tr {
-    width: 600px;
-    > th > h4 {
-      font-size: 20px;
+  > tbody {
+    > tr {
+      width: 600px;
+      > th > h4 {
+        font-size: 20px;
+        color: gray;
+      }
+    }
+    > tr {
+      width: 600px;
+      > td {
+        width: 60px;
+        height: 20px;
+        background-color: #ff0000;
+      }
+      > td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #fc3800;
+      }
+      > td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #f86f00;
+      }
+      > td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #f5a500;
+      }
+      > td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #f2d900;
+      }
+      > td + td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #d1ee00;
+      }
+      > td + td + td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #9aeb00;
+      }
+      > td + td + td + td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #64e800;
+      }
+      > td + td + td + td + td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #2fe400;
+      }
+      > td + td + td + td + td + td + td + td + td + td {
+        width: 60px;
+        height: 20px;
+        background-color: #04db08;
+      }
+    }
+    > tr + tr + tr {
+      width: 600px;
       color: gray;
-    }
-  }
-  > tr {
-    width: 600px;
-    > td {
-      width: 60px;
-      height: 20px;
-      background-color: #ff0000;
-    }
-    > td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #fc3800;
-    }
-    > td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #f86f00;
-    }
-    > td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #f5a500;
-    }
-    > td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #f2d900;
-    }
-    > td + td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #d1ee00;
-    }
-    > td + td + td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #9aeb00;
-    }
-    > td + td + td + td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #64e800;
-    }
-    > td + td + td + td + td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #2fe400;
-    }
-    > td + td + td + td + td + td + td + td + td + td {
-      width: 60px;
-      height: 20px;
-      background-color: #04db08;
-    }
-  }
-  > tr + tr + tr {
-    width: 600px;
-    color: gray;
-    > th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #ff0000;
-    }
-    > th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #fc3800;
-    }
-    > th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #f86f00;
-    }
-    > th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #f5a500;
-    }
-    > th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #f2d900;
-    }
-    > th + th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #d1ee00;
-    }
-    > th + th + th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #9aeb00;
-    }
-    > th + th + th + th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #64e800;
-    }
-    > th + th + th + th + th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #2fe400;
-    }
-    > th + th + th + th + th + th + th + th + th + th {
-      width: 60px;
-      height: 20px;
-      border-left: 1px solid #04db08;
+      > th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #ff0000;
+      }
+      > th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #fc3800;
+      }
+      > th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #f86f00;
+      }
+      > th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #f5a500;
+      }
+      > th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #f2d900;
+      }
+      > th + th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #d1ee00;
+      }
+      > th + th + th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #9aeb00;
+      }
+      > th + th + th + th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #64e800;
+      }
+      > th + th + th + th + th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #2fe400;
+      }
+      > th + th + th + th + th + th + th + th + th + th {
+        width: 60px;
+        height: 20px;
+        border-left: 1px solid #04db08;
+      }
     }
   }
 `;
@@ -468,35 +470,37 @@ export default function Home(props) {
 
           <div css={mapLegendTable}>
             <table css={mapTableStyles}>
-              <tr>
-                <th colSpan="10">
-                  <h4>Color legend</h4>
-                </th>
-              </tr>
-              <tr>
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-              </tr>
-              <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-              </tr>
+              <tbody>
+                <tr>
+                  <th colSpan="10">
+                    <h4>Color legend</h4>
+                  </th>
+                </tr>
+                <tr>
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                  <td />
+                </tr>
+                <tr>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>

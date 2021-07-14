@@ -1,4 +1,4 @@
-import { LatLngExpression } from 'leaflet';
+import { LatLngTuple } from 'leaflet';
 
 export type User = {
   id: number;
@@ -59,7 +59,7 @@ export type Coordinates = {
 
 type DistrictShape = {
   district_zip: number;
-  coordinates: LatLngExpression[][][];
+  coordinates: LatLngTuple[][];
 };
 
 export type DistrictShapes = DistrictShape[];

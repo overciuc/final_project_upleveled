@@ -642,6 +642,7 @@ export async function deleteReviewById(id?: number) {
 export async function getAggregatedScoresPerLocation() {
   const posts = await sql<Review[]>`
     SELECT
+      row_number() OVER () AS id,
       district,
       avg(safety_score) as safety_score,
       avg(parks_score) as parks_score,
