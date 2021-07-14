@@ -57,7 +57,11 @@ export type Coordinates = {
   longitude: number;
 };
 
-export type DistrictShapes = {
-  district_zip: string;
-  coordinates: LatLngExpression[][][];
-};
+
+type DistrictShape =
+  {
+    district_zip: string;
+    coordinates: LatLngExpression[][][];
+  };
+
+export type DistrictShapes = DistrictShape[];
