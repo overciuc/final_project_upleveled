@@ -6,12 +6,23 @@ import { css } from '@emotion/react';
 import * as L from 'leaflet';
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet';
 import { districtShapes } from '../util/districts';
+import getRatingColor from '../util/helpers';
 
 const popUpStyles = css`
-  min-width: 600px;
-  height: 400px;
+  width: 590px;
+  height: 490px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 20px;
+  margin-top: 30px;
+
+  > h5 {
+    font-size: 20px;
+    margin-top: 15px;
+    color: gray;
+  }
   > div {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   > div > span {
@@ -27,6 +38,9 @@ const popUpStyles = css`
       color: gray;
       font-weight: normal;
     }
+  }
+  > div + div {
+    margin-bottom: 40px;
   }
   > div + div > span + span {
     font-weight: bold;
@@ -53,19 +67,51 @@ const popUpStyles = css`
     color: red;
     font-size: 18px;
   }
+`;
 
-  > div + div + div > span {
-    color: gray;
-    font-size: 20px;
-    font-style: italic;
+const commentSectionStyle = css`
+  display: flex;
+  font-size: 20px;
+  margin-top: 20px;
+  > p {
+    margin: auto 0;
+    width: 40px;
   }
-  > div + div + div > div > span {
-    color: #0bc6d2;
-    font-size: 16px;
+  > span {
     font-style: italic;
-    > span {
-      color: gray;
-    }
+    color: gray;
+    margin-left: 20px;
+    text-align: left;
+  }
+`;
+
+const commentSectionUserDetails = css`
+  display: flex;
+  font-size: 16px;
+  color: #0bc6d2;
+  margin-top: 10px;
+  margin-left: 50px;
+
+  > span {
+    font-style: italic;
+    color: gray;
+    text-align: left;
+  }
+`;
+
+const lineSeparator = css`
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, transparent, #ccc, transparent);
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const polygonTransitionStyles = css`
+  transition: transform 0.3s ease;
+  :hover {
+    transform: translate(0, -10px);
+    box-shadow: 0px 9px 15px 5px black;
   }
 `;
 
@@ -336,6 +382,7 @@ const Map = (props: any) => {
       <Polygon
         pathOptions={ninteenthDistrict}
         positions={ninteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={twentiethDistrict}
@@ -356,6 +403,7 @@ const Map = (props: any) => {
 
       {props.allReviews.map((review: any) => {
         let score;
+
         if (props.showSelectionOnMap === 'safety') {
           score = review.safetyScore;
         } else if (props.showSelectionOnMap === 'parks') {
@@ -380,7 +428,7 @@ const Map = (props: any) => {
             position={review.coordinates}
             icon={icons[Math.ceil(score) - 1]}
           >
-            <Popup minWidth={500}>
+            <Popup maxWidth={600} minWidth={600} maxHeight={500}>
               <section css={popUpStyles}>
                 <div>
                   <span>District:</span>
@@ -396,25 +444,65 @@ const Map = (props: any) => {
                     <span>/10</span>
                   </span>
                   <span>
-                    &nbsp;&nbsp;from {review.totalNumberOfReviews} users
+                    &nbsp;&nbsp;from {review.totalNumberOfReviews} reviews
                   </span>
                 </div>
-                <div>
-                  <span>"This hood is so awesome."</span>
-                  <div>
-                    <span>
-                      review by <span>Jackfrost</span>
-                    </span>
-                  </div>
-                </div>
-                <div>
-                  <span>"This hood is so awesome."</span>
-                  <div>
-                    <span>
-                      review by <span>Jackfrost</span>
-                    </span>
-                  </div>
-                </div>
+
+                {review.comments.map((comment: any) => {
+                  let commentText;
+                  let commentScore;
+
+                  if (props.showSelectionOnMap === 'safety') {
+                    commentText = comment.safetyComment;
+                    commentScore = comment.safetyScore;
+                  } else if (props.showSelectionOnMap === 'parks') {
+                    commentText = comment.parksComment;
+                    commentScore = comment.parksScore;
+                  } else if (props.showSelectionOnMap === 'shopping') {
+                    commentText = comment.shoppingComment;
+                    commentScore = comment.shoppingScore;
+                  } else if (props.showSelectionOnMap === 'kids_friendly') {
+                    commentText = comment.kidsFriendlyComment;
+                    commentScore = comment.kidsFriendlyScore;
+                  } else if (props.showSelectionOnMap === 'public_transport') {
+                    commentText = comment.publicTransportComment;
+                    commentScore = comment.publicTransportScore;
+                  } else if (props.showSelectionOnMap === 'dining') {
+                    commentText = comment.diningComment;
+                    commentScore = comment.diningScore;
+                  } else if (props.showSelectionOnMap === 'entertainment') {
+                    commentText = comment.entertainmentComment;
+                    commentScore = comment.entertainmentScore;
+                  } else if (props.showSelectionOnMap === 'noise_level') {
+                    commentText = comment.noiseLevelComment;
+                    commentScore = comment.noiseLevelScore;
+                  }
+                  const fillColor = getRatingColor(commentScore);
+                  return (
+                    <div key={`comment-${comment.id}`}>
+                      <div css={commentSectionStyle}>
+                        <p>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="30"
+                            height="30"
+                            fill={fillColor}
+                            className="bi bi-star-fill"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                          </svg>
+                        </p>
+                        <span> "{commentText}"</span>
+                      </div>
+                      <div css={commentSectionUserDetails}>
+                        review by <span>&nbsp;{comment.username}&nbsp;</span> on
+                        <span>&nbsp;{comment.dateString}</span>
+                      </div>
+                      <hr css={lineSeparator} />
+                    </div>
+                  );
+                })}
               </section>
             </Popup>
           </Marker>

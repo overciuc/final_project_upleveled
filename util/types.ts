@@ -1,3 +1,5 @@
+import { LatLngExpression } from 'leaflet';
+
 export type User = {
   id: number;
   firstName: string;
@@ -53,4 +55,9 @@ export type Review = {
 export type Coordinates = {
   latitude: number;
   longitude: number;
+};
+
+export type DistrictShapes = {
+  district_zip: string;
+  coordinates: LatLngExpression[][][];
 };

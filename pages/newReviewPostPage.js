@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
+import Error from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import Footer from '../components/Footer';
+import Layout from '../components/Layout';
 import Horizontal from '../components/RangeSlider';
-import UserLayout from '../components/UserLayout';
 import {
   getDistricts,
   getUserById,
@@ -189,6 +189,10 @@ const submitButton = css`
       background-color: #fed648;
       color: #583dfd;
     }
+    :disabled {
+      background-color: #ddd;
+      color: #fff;
+    }
   }
 
   > button + button {
@@ -212,43 +216,41 @@ const submitButton = css`
 `;
 
 export default function NewReviewPost(props) {
-  const { register, formState } = useForm();
-  const errors = formState;
-
   const router = useRouter();
 
   const [streetName, setStreetName] = useState('');
-  const [houseNumber, setHouseNumber] = useState(1);
+  const [houseNumber, setHouseNumber] = useState(5);
   const [district, setDistrict] = useState('');
 
-  const [safetyScore, setSafetyScore] = useState(1);
+  const [safetyScore, setSafetyScore] = useState(5);
   const [safetyComment, setSafetyComment] = useState('');
 
-  const [parksScore, setParksScore] = useState(1);
+  const [parksScore, setParksScore] = useState(5);
   const [parksComment, setParksComment] = useState('');
 
-  const [shoppingScore, setShoppingScore] = useState(1);
+  const [shoppingScore, setShoppingScore] = useState(5);
   const [shoppingComment, setShoppingComment] = useState('');
 
-  const [kidsFriendlyScore, setKidsFriendlyScore] = useState(1);
+  const [kidsFriendlyScore, setKidsFriendlyScore] = useState(5);
   const [kidsFriendlyComment, setKidsFriendlyComment] = useState('');
 
-  const [publicTransportScore, setPublicTransportScore] = useState(1);
+  const [publicTransportScore, setPublicTransportScore] = useState(5);
   const [publicTransportComment, setPublicTransportComment] = useState('');
 
-  const [diningScore, setDiningScore] = useState(1);
+  const [diningScore, setDiningScore] = useState(5);
   const [diningComment, setDiningComment] = useState('');
 
-  const [entertainmentScore, setEntertainmentScore] = useState(1);
+  const [entertainmentScore, setEntertainmentScore] = useState(5);
   const [entertainmentComment, setEntertainmentComment] = useState('');
 
-  const [noiseLevelScore, setNoiseLevelScore] = useState(1);
+  const [noiseLevelScore, setNoiseLevelScore] = useState(5);
   const [noiseLevelComment, setNoiseLevelComment] = useState('');
 
   const handleStreetNameChange = (event) =>
     setStreetName(event.currentTarget.value);
   const handleHouseNumberChange = (event) =>
     setHouseNumber(event.currentTarget.value);
+
   const handleDistrictChange = (event) =>
     setDistrict(event.currentTarget.value);
 
@@ -276,8 +278,16 @@ export default function NewReviewPost(props) {
   const handleNoiseLevelCommentChange = (event) =>
     setNoiseLevelComment(event.currentTarget.value);
 
+  if (props.errors) {
+    return (
+      <Layout>
+        <Error statusCode={404} />
+      </Layout>
+    );
+  }
+
   return (
-    <UserLayout firstName={props.user.firstName} username={props.user.username}>
+    <Layout firstName={props.user.firstName} username={props.user.username}>
       <Head>
         <title>
           {props.user.firstName} {props.user.lastName}
@@ -299,12 +309,8 @@ export default function NewReviewPost(props) {
             </label>
             <label>
               District <span>*</span> (required)
-              <select
-                name="func"
-                onChange={handleDistrictChange}
-                {...register('func', { required: true })}
-              >
-                <option value={null}>Please select district</option>
+              <select name="func" onChange={handleDistrictChange} required>
+                <option value="">Please select district</option>
                 {props.districts.map((districtInstance) => (
                   <option
                     key={districtInstance.zip}
@@ -315,7 +321,6 @@ export default function NewReviewPost(props) {
                 ))}
               </select>
             </label>
-            {errors.func && 'District is required!'}
           </div>
         </div>
 
@@ -338,7 +343,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="What is your take on safety in your neighborhood?"
                 onChange={handleSafetyCommentChange}
               />
             </span>
@@ -353,7 +358,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Are there enough parks around your neighborhood?"
                 onChnge={handleParksCommentChange}
               />
             </span>
@@ -368,7 +373,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="How far are the shops (eg. groceries, clothing, etc)?"
                 onChange={handleShoppingCommentChange}
               />
             </span>
@@ -383,7 +388,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Are there enough playgrounds, schools and kindergartens in the area?"
                 onChange={handleKidsFriendlyCommentChange}
               />
             </span>
@@ -398,7 +403,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Are you well connected to public transport?"
                 onChange={handlePublicTransportCommentChange}
               />
             </span>
@@ -413,7 +418,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Does the foodie in you feel well fed in the neighborhood?"
                 onChange={handleDiningCommentChange}
               />
             </span>
@@ -428,7 +433,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Are there fun things to do in your neighborhood (eg. cinemas, pubs, clubs, etc.)?"
                 onChange={handleEntertainmentCommentChange}
               />
             </span>
@@ -443,7 +448,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
-                placeholder="Write your review here"
+                placeholder="Is your neighborhood quiet?"
                 onChange={handleNoiseLevelCommentChange}
               />
             </span>
@@ -451,8 +456,10 @@ export default function NewReviewPost(props) {
         </div>
         <div css={submitButton}>
           <button
+            disabled={district === '' ? 'disabled' : ''}
             onClick={async (event) => {
               event.preventDefault();
+
               const response = await fetch(`/api/reviews`, {
                 method: 'POST',
                 headers: {
@@ -509,7 +516,7 @@ export default function NewReviewPost(props) {
         </div>
       </form>
       <Footer />
-    </UserLayout>
+    </Layout>
   );
 }
 
@@ -539,6 +546,6 @@ export async function getServerSideProps(context) {
       props: { user: user, districts: districts },
     };
   } else {
-    return { props: {} };
+    return { props: { errors: 'no session', districts: districts } };
   }
 }

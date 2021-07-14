@@ -639,7 +639,7 @@ export async function deleteReviewById(id?: number) {
   return reviews.map((review: any) => camelcaseKeys(review))[0];
 }
 
-export async function getAllPosts() {
+export async function getAggregatedScoresPerLocation() {
   const posts = await sql<Review[]>`
     SELECT
       district,
@@ -663,6 +663,42 @@ export async function getAllPosts() {
       district,
       district_name
 
+  `;
+  return posts.map((review: any) => camelcaseKeys(review));
+}
+
+export async function getReviewComments() {
+  const posts = await sql<Review[]>`
+    SELECT
+      username,
+      district,
+      safety_score,
+      safety_comment,
+      parks_score,
+      parks_comment,
+      shopping_score,
+      shopping_comment,
+      kids_friendly_score,
+      kids_friendly_comment,
+      public_transport_score,
+      public_transport_comment,
+      dining_score,
+      dining_comment,
+      entertainment_score,
+      entertainment_comment,
+      noise_level_score,
+      noise_level_comment,
+      street_name,
+      house_number,
+      reviews.id,
+      district_name,
+      to_char(date, 'dd.mm.yyyy') as date_string
+    FROM
+      reviews
+      inner join districts on reviews.district = districts.zip
+      inner join users on reviews.user_id = users.id
+    ORDER BY
+        date DESC
   `;
   return posts.map((review: any) => camelcaseKeys(review));
 }

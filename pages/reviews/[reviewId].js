@@ -1,10 +1,11 @@
 import { css } from '@emotion/react';
+import Error from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 import Horizontal from '../../components/RangeSlider';
-import Layout from '../../components/UserLayout';
 import {
   getDistricts,
   getUserById,
@@ -195,7 +196,7 @@ const submitButton = css`
 
 export default function NewReviewPost(props) {
   const router = useRouter();
-  console.log(props.review);
+
   const [streetName, setStreetName] = useState(props.review[0].streetName);
   const [houseNumber, setHouseNumber] = useState(props.review[0].houseNumber);
   const [district, setDistrict] = useState(props.review[0].district);
@@ -281,6 +282,14 @@ export default function NewReviewPost(props) {
   const handleNoiseLevelCommentChange = (event) =>
     setNoiseLevelComment(event.currentTarget.value);
 
+  if (props.errors) {
+    return (
+      <Layout>
+        <Error statusCode={404} />
+      </Layout>
+    );
+  }
+
   return (
     <Layout firstName={props.user.firstName} username={props.user.username}>
       <Head>
@@ -311,7 +320,6 @@ export default function NewReviewPost(props) {
               <label>
                 District
                 <select onChange={handleDistrictChange}>
-                  <option value="">Please select district</option>
                   {props.districts.map((districtInstance) => (
                     <option
                       key={districtInstance.zip}
@@ -561,6 +569,14 @@ export async function getServerSideProps(context) {
     const user = await getUserById(session.userId);
     return {
       props: { user: user, districts: districts, review: review },
+    };
+  } else {
+    return {
+      props: {
+        errors: 'no session',
+        districts: districts,
+        review: review,
+      },
     };
   }
 }

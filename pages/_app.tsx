@@ -77,6 +77,10 @@ export default function App({ Component, pageProps }: AppProps) {
           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
           crossOrigin=""
         />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
+        />
       </Head>
 
       <Component
