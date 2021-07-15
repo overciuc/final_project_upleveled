@@ -14,24 +14,17 @@ export default async function allReviewsHandler(req, res) {
     const comments = await getReviewComments();
     // enrich the reviews with comments
     const enrichedReviews = reviews.map((review) => {
-      const streetName = review.streetName;
-      const houseNumber = review.houseNumber;
-      const district = review.district;
-
       function MatchComment(comment) {
         if (
-          comment.streetName === streetName &&
-          comment.houseNumber === houseNumber &&
-          comment.district === district
+          comment.latitude === review.latitude &&
+          comment.longitude === review.longitude
         ) {
           return true;
         } else {
           return false;
         }
       }
-
       review.comments = comments.filter(MatchComment);
-
       return review;
     });
 

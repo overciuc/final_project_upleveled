@@ -299,7 +299,6 @@ export default function Home(props) {
   };
 
   const handleChangeShopping = (event) => {
-    console.log(event.currentTarget.value);
     if (event.currentTarget.value === 'on') {
       setShowSelection('shopping');
     }
@@ -517,23 +516,6 @@ export default function Home(props) {
   );
 }
 
-export async function getGeocode(query) {
-  return [48.15 + 0.1 * Math.random(), 16.3 + 0.1 * Math.random()];
-  const geocodeApiKey = process.env.GEOCODE_API_KEY;
-  const geocodeResponse = await fetch(
-    `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${query}`,
-    {
-      method: 'GET',
-    },
-  );
-  const geocodeJson = await geocodeResponse.json();
-  if ('errors' in geocodeJson) {
-    return [0, 0];
-  } else {
-    return [geocodeJson.data[0].latitude, geocodeJson.data[0].longitude];
-  }
-}
-
 export async function getServerSideProps(context) {
   // Redirect from HTTP to HTTPS on Heroku
   if (
@@ -555,44 +537,10 @@ export async function getServerSideProps(context) {
       method: 'GET',
     },
   );
-  const allReviews = await response.json();
-  const enrichedReviews = [];
 
-  await Promise.all(
-    allReviews.reviews.map(async (review) => {
-      let address = '';
-      if (
-        review.streetName &&
-        review.streetName !== undefined &&
-        review.streetName !== '' &&
-        review.streetName !== null
-      ) {
-        address = review.streetName;
-        if (
-          review.houseNumber &&
-          review.houseNumber !== undefined &&
-          review.houseNumber !== '' &&
-          review.houseNumber !== null
-        ) {
-          address = `${address} ${review.houseNumber}`;
-        }
-      }
-      if (address !== '') {
-        address = `${address} ${review.district} Vienna`;
-      } else {
-        address = `${review.districtName} Vienna`;
-      }
+  const aggregatedReviews = await response.json();
 
-      console.log(address);
-      const coordinates = await getGeocode(encodeURIComponent(address));
-      review = { ...review, coordinates };
-      enrichedReviews.push(review);
-
-      return;
-    }),
-  );
-  // console.log(enrichedReviews);
   return {
-    props: { allReviews: enrichedReviews },
+    props: { allReviews: aggregatedReviews },
   };
 }

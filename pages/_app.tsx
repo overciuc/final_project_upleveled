@@ -60,7 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
       />
 
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/EyeFavicon2.png" type="image/gif" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           rel="stylesheet"

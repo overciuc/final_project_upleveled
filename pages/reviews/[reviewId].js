@@ -323,7 +323,6 @@ export default function NewReviewPost(props) {
                   {props.districts.map((districtInstance) => (
                     <option
                       key={districtInstance.zip}
-                      value={districtInstance.zip}
                       selected={
                         district === districtInstance.zip ? 'selected' : ''
                       }
@@ -373,7 +372,7 @@ export default function NewReviewPost(props) {
               <span>
                 <textarea
                   placeholder="Write your review here"
-                  onChnge={handleParksCommentChange}
+                  onChange={handleParksCommentChange}
                   defaultValue={parksComment}
                 />
               </span>
@@ -479,7 +478,6 @@ export default function NewReviewPost(props) {
             <button
               onClick={async (event) => {
                 event.preventDefault();
-                console.log(props);
                 const response = await fetch(
                   `/api/reviews/${props.review[0].id}`,
                   {

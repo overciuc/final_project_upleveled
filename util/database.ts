@@ -245,6 +245,19 @@ export async function getDistricts() {
   return districts.map((district: any) => camelcaseKeys(district));
 }
 
+export async function getDistrictByZip(zip: number | string) {
+  const districts = await sql<District[]>`
+    SELECT
+      zip,
+      district_name
+    FROM
+      districts
+    WHERE
+      zip = ${zip}
+  `;
+  return districts.map((district: any) => camelcaseKeys(district))[0];
+}
+
 export async function getUserPosts(userId: number) {
   const posts = await sql<Review[]>`
     SELECT
@@ -402,6 +415,9 @@ export async function insertReview(
 
   noiseLevelScore: number,
   noiseLevelComment: string,
+
+  latitude: number,
+  longitude: number,
 ) {
   const reviews = await sql`
     INSERT INTO reviews
@@ -433,7 +449,10 @@ export async function insertReview(
       entertainment_comment,
 
       noise_level_score,
-      noise_level_comment
+      noise_level_comment,
+
+      latitude,
+      longitude
       )
     VALUES
       (${userId},
@@ -464,7 +483,11 @@ export async function insertReview(
       ${entertainmentComment},
 
       ${noiseLevelScore},
-      ${noiseLevelComment})
+      ${noiseLevelComment},
+
+      ${latitude},
+      ${longitude}
+      )
     RETURNING
     user_id,
     street_name,
@@ -493,7 +516,10 @@ export async function insertReview(
       entertainment_comment,
 
       noise_level_score,
-      noise_level_comment
+      noise_level_comment,
+
+      latitude,
+      longitude
   `;
   return reviews.map((review: any) => camelcaseKeys(review))[0];
 }
@@ -528,6 +554,9 @@ export async function updateReviewById(
 
   noiseLevelScore: number,
   noiseLevelComment: string,
+
+  latitude: number,
+  longitude: number,
 ) {
   if (!reviewId) return undefined;
   const reviews = await sql<[Review]>`
@@ -560,7 +589,10 @@ export async function updateReviewById(
       entertainment_comment = ${entertainmentComment},
 
       noise_level_score = ${noiseLevelScore},
-      noise_level_comment = ${noiseLevelComment}
+      noise_level_comment = ${noiseLevelComment},
+
+      latitude = ${latitude},
+      longitude = ${longitude}
     WHERE
       id = ${reviewId}
     RETURNING
@@ -592,7 +624,10 @@ export async function updateReviewById(
       entertainment_comment,
 
       noise_level_score,
-      noise_level_comment
+      noise_level_comment,
+
+      latitude,
+      longitude
   `;
   return reviews.map((review: any) => camelcaseKeys(review))[0];
 }
@@ -643,7 +678,8 @@ export async function getAggregatedScoresPerLocation() {
   const posts = await sql<Review[]>`
     SELECT
       row_number() OVER () AS id,
-      district,
+      latitude,
+      longitude,
       avg(safety_score) as safety_score,
       avg(parks_score) as parks_score,
       avg(shopping_score) as shopping_score,
@@ -652,18 +688,12 @@ export async function getAggregatedScoresPerLocation() {
       avg(dining_score) as dining_score,
       avg(entertainment_score) as entertainment_score,
       avg(noise_level_score) as noise_level_score,
-      trim(street_name) as street_name,
-      trim(house_number) as house_number,
-      count(*) as total_number_of_reviews,
-      district_name
+      count(*) as total_number_of_reviews
     FROM
-      reviews inner join districts on reviews.district = districts.zip
+      reviews
     GROUP BY
-      trim(street_name),
-      trim(house_number),
-      district,
-      district_name
-
+      latitude,
+      longitude
   `;
   return posts.map((review: any) => camelcaseKeys(review));
 }
@@ -693,7 +723,9 @@ export async function getReviewComments() {
       house_number,
       reviews.id,
       district_name,
-      to_char(date, 'dd.mm.yyyy') as date_string
+      to_char(date, 'dd.mm.yyyy') as date_string,
+      latitude,
+      longitude
     FROM
       reviews
       inner join districts on reviews.district = districts.zip
