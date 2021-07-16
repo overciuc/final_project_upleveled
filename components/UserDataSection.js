@@ -83,6 +83,7 @@ const usernameStyles = css`
   color: gray;
   font-size: 24px;
   font-weight: normal;
+  padding-left: 25px;
 `;
 
 const buttonSection = css`

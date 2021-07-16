@@ -4,14 +4,14 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet-defaulticon-compatibility';
 import { css } from '@emotion/react';
 import * as L from 'leaflet';
+import { useState } from 'react';
 import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet';
 import { districtShapes } from '../util/districts';
+import MapLegend from './MapLegend';
 
 const popUpStyles = css`
   width: 590px;
   height: 490px;
-  overflow-x: hidden;
-  overflow-y: auto;
   margin-left: 20px;
   margin-top: 30px;
 
@@ -53,6 +53,13 @@ const averageRatingLineStyles = css`
       font-weight: normal;
     }
   }
+`;
+
+const scrollableContainer = css`
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 550px;
+  height: 400px;
 `;
 
 const commentSectionStyle = css`
@@ -97,7 +104,6 @@ const polygonTransitionStyles = css`
   transition: transform 0.3s ease;
   :hover {
     transform: translate(0, -10px);
-    box-shadow: 0px 9px 15px 5px black;
   }
 `;
 
@@ -118,6 +124,8 @@ export function getRatingColor(rating: number) {
 }
 
 const Map = (props: any) => {
+  const [map, setMap] = useState<L.Map>();
+
   const leafIcon = L.Icon.extend({
     options: {},
   });
@@ -334,52 +342,102 @@ const Map = (props: any) => {
       zoom={13}
       scrollWheelZoom={true}
       style={{ height: 900, width: '100%' }}
+      whenCreated={setMap}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Polygon pathOptions={firstDistrict} positions={firstDistrictPolygon} />
-      <Polygon pathOptions={secondDistrict} positions={secondDistrictPolygon} />
-      <Polygon pathOptions={thirdDistrict} positions={thirdDistrictPolygon} />
-      <Polygon pathOptions={fourthDistrict} positions={fourthDistrictPolygon} />
-      <Polygon pathOptions={fifthDistrict} positions={fifthDistrictPolygon} />
-      <Polygon pathOptions={sixthDistrict} positions={sixthDistrictPolygon} />
+      <MapLegend map={map} />
+      <Polygon
+        pathOptions={firstDistrict}
+        positions={firstDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={secondDistrict}
+        positions={secondDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={thirdDistrict}
+        positions={thirdDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={fourthDistrict}
+        positions={fourthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={fifthDistrict}
+        positions={fifthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={sixthDistrict}
+        positions={sixthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
       <Polygon
         pathOptions={seventhDistrict}
         positions={seventhDistrictPolygon}
+        css={polygonTransitionStyles}
       />
-      <Polygon pathOptions={eigthDistrict} positions={eigthDistrictPolygon} />
-      <Polygon pathOptions={ninthDistrict} positions={ninthDistrictPolygon} />
-      <Polygon pathOptions={tenthDistrict} positions={tenthDistrictPolygon} />
+      <Polygon
+        pathOptions={eigthDistrict}
+        positions={eigthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={ninthDistrict}
+        positions={ninthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
+      <Polygon
+        pathOptions={tenthDistrict}
+        positions={tenthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
       <Polygon
         pathOptions={eleventhDistrict}
         positions={eleventhDistrictPolygon}
+        css={polygonTransitionStyles}
       />
-      <Polygon pathOptions={twelthDistrict} positions={twelthDistrictPolygon} />
+      <Polygon
+        pathOptions={twelthDistrict}
+        positions={twelthDistrictPolygon}
+        css={polygonTransitionStyles}
+      />
       <Polygon
         pathOptions={thirteenthDistrict}
         positions={thirteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={fourteenthDistrict}
         positions={fourteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={fifteenthDistrict}
         positions={fifteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={sixteenthDistrict}
         positions={sixteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={seventeenthDistrict}
         positions={seventeenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={eigteenthDistrict}
         positions={eigteenthDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={ninteenthDistrict}
@@ -389,18 +447,22 @@ const Map = (props: any) => {
       <Polygon
         pathOptions={twentiethDistrict}
         positions={twentiethDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={twentyFirstDistrict}
         positions={twentyFirstDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={twentySecondDistrict}
         positions={twentySecondDistrictPolygon}
+        css={polygonTransitionStyles}
       />
       <Polygon
         pathOptions={twentyThirdDistrict}
         positions={twentyThirdDistrictPolygon}
+        css={polygonTransitionStyles}
       />
 
       {props.allReviews.reviews.map((review: any) => {
@@ -452,66 +514,71 @@ const Map = (props: any) => {
                       </span>
                     </div>
                   </div>
-                  {review.comments.map((comment: any) => {
-                    let commentText;
-                    let commentScore;
+                  <div css={scrollableContainer}>
+                    {review.comments.map((comment: any) => {
+                      let commentText;
+                      let commentScore;
 
-                    if (props.showSelectionOnMap === 'safety') {
-                      commentText = comment.safetyComment;
-                      commentScore = comment.safetyScore;
-                    } else if (props.showSelectionOnMap === 'parks') {
-                      commentText = comment.parksComment;
-                      commentScore = comment.parksScore;
-                    } else if (props.showSelectionOnMap === 'shopping') {
-                      commentText = comment.shoppingComment;
-                      commentScore = comment.shoppingScore;
-                    } else if (props.showSelectionOnMap === 'kids_friendly') {
-                      commentText = comment.kidsFriendlyComment;
-                      commentScore = comment.kidsFriendlyScore;
-                    } else if (
-                      props.showSelectionOnMap === 'public_transport'
-                    ) {
-                      commentText = comment.publicTransportComment;
-                      commentScore = comment.publicTransportScore;
-                    } else if (props.showSelectionOnMap === 'dining') {
-                      commentText = comment.diningComment;
-                      commentScore = comment.diningScore;
-                    } else if (props.showSelectionOnMap === 'entertainment') {
-                      commentText = comment.entertainmentComment;
-                      commentScore = comment.entertainmentScore;
-                    } else if (props.showSelectionOnMap === 'noise_level') {
-                      commentText = comment.noiseLevelComment;
-                      commentScore = comment.noiseLevelScore;
-                    }
+                      if (props.showSelectionOnMap === 'safety') {
+                        commentText = comment.safetyComment;
+                        commentScore = comment.safetyScore;
+                      } else if (props.showSelectionOnMap === 'parks') {
+                        commentText = comment.parksComment;
+                        commentScore = comment.parksScore;
+                      } else if (props.showSelectionOnMap === 'shopping') {
+                        commentText = comment.shoppingComment;
+                        commentScore = comment.shoppingScore;
+                      } else if (props.showSelectionOnMap === 'kids_friendly') {
+                        commentText = comment.kidsFriendlyComment;
+                        commentScore = comment.kidsFriendlyScore;
+                      } else if (
+                        props.showSelectionOnMap === 'public_transport'
+                      ) {
+                        commentText = comment.publicTransportComment;
+                        commentScore = comment.publicTransportScore;
+                      } else if (props.showSelectionOnMap === 'dining') {
+                        commentText = comment.diningComment;
+                        commentScore = comment.diningScore;
+                      } else if (props.showSelectionOnMap === 'entertainment') {
+                        commentText = comment.entertainmentComment;
+                        commentScore = comment.entertainmentScore;
+                      } else if (props.showSelectionOnMap === 'noise_level') {
+                        commentText = comment.noiseLevelComment;
+                        commentScore = comment.noiseLevelScore;
+                      }
 
-                    const fillColor = getRatingColor(commentScore);
-                    return (
-                      <div key={`comment-${comment.id}`}>
-                        <div css={commentSectionStyle}>
-                          <p>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="30"
-                              height="30"
-                              fill={fillColor}
-                              className="bi bi-star-fill"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                            </svg>
-                          </p>
+                      const fillColor = getRatingColor(commentScore);
+                      return (
+                        <div key={`comment-${comment.id}`}>
+                          <div css={commentSectionStyle}>
+                            <p>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="30"
+                                height="30"
+                                fill={fillColor}
+                                className="bi bi-star-fill"
+                                viewBox="0 0 16 16"
+                              >
+                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                              </svg>
+                            </p>
 
-                          <span> {commentText ? `"${commentText}"` : ''}</span>
+                            <span>
+                              {' '}
+                              {commentText ? `"${commentText}"` : ''}
+                            </span>
+                          </div>
+                          <div css={commentSectionUserDetails}>
+                            review by{' '}
+                            <span>&nbsp;{comment.username}&nbsp;</span> on
+                            <span>&nbsp;{comment.dateString}</span>
+                          </div>
+                          <hr css={lineSeparator} />
                         </div>
-                        <div css={commentSectionUserDetails}>
-                          review by <span>&nbsp;{comment.username}&nbsp;</span>{' '}
-                          on
-                          <span>&nbsp;{comment.dateString}</span>
-                        </div>
-                        <hr css={lineSeparator} />
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </section>
               </Popup>
             </Marker>

@@ -101,7 +101,7 @@ const categorySection = css`
   max-width: 1500px;
   margin: auto;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 
   > div {
     display: flex;
@@ -211,6 +211,48 @@ const submitButton = css`
     :hover {
       background-color: gray;
       color: #fff;
+    }
+  }
+`;
+
+const infoTextStyle = css`
+  float: left;
+  margin: auto;
+  margin-right: 20px;
+  display: grid;
+  grid-auto-columns: 20% 80%;
+  column-gap: 40px;
+  justify-content: center;
+
+  > div {
+    display: flex;
+    width: 100%;
+    margin-left: 60px;
+    margin-top: -20px;
+  }
+
+  > div > div > span {
+    width: 30px;
+    height: 30px;
+    color: #0bc6d2;
+    margin: auto;
+    margin-right: 10px;
+
+    > i {
+      font-size: 20px;
+      margin: auto;
+      margin-left: 18px;
+    }
+  }
+  > div > div > p {
+    text-align: left;
+    font-size: 16px;
+    color: gray;
+    width: 400px;
+    margin-top: 2px;
+    > span {
+      font-weight: bold;
+      margin-right: 5px;
     }
   }
 `;
@@ -332,6 +374,21 @@ export default function NewReviewPost(props) {
             <span>
               <h2>Write a comment for each category</h2>
             </span>
+          </div>
+          <div css={infoTextStyle}>
+            <div>
+              <div>
+                <span>
+                  <i className="bi bi-info-square" />
+                </span>
+              </div>
+              <div>
+                <p>
+                  <span>Tip:</span> move the slider to set the rating between
+                  1-10. Where 1 is very bad and 10 is very good.
+                </p>
+              </div>
+            </div>
           </div>
           <div>
             <span>

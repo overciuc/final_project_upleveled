@@ -88,29 +88,25 @@ const userTabButton = css`
     height: 50px;
     border: none;
     border-radius: 10px 0px 0px 0px;
-    background-color: #ddd;
-    color: #8b1c1c;
     font-size: 20px;
-    :active,
-    :focus {
-      background-color: gray;
-      color: #fff;
-    }
   }
 
   > button + button {
     border-radius: 0px 10px 0px 0px;
     margin-left: 1px;
     margin-right: 1px;
-    background-color: #ddd;
-    color: #8b1c1c;
     font-size: 20px;
-    :active,
-    :focus {
-      background-color: gray;
-      color: #fff;
-    }
   }
+`;
+
+const activeButton = css`
+  background-color: gray;
+  color: #fff;
+`;
+
+const inactiveButton = css`
+  background-color: #ddd;
+  color: #8b1c1c;
 `;
 
 export default function SingleUserProfile(props: Props) {
@@ -160,10 +156,18 @@ export default function SingleUserProfile(props: Props) {
             </div>
 
             <div css={userTabButton}>
-              <button onClick={() => setShowSection(false)}>
+              <button
+                onClick={() => setShowSection(false)}
+                css={!showSection ? activeButton : inactiveButton}
+              >
                 Your Details
               </button>
-              <button onClick={() => setShowSection(true)}>Your Posts</button>
+              <button
+                onClick={() => setShowSection(true)}
+                css={showSection ? activeButton : inactiveButton}
+              >
+                Your Posts
+              </button>
             </div>
           </div>
 

@@ -3,7 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import { css } from '@emotion/react';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 
@@ -142,140 +142,6 @@ const infoTextStyle = css`
   }
 `;
 
-const mapLegendTable = css`
-  float: left;
-  margin: auto;
-  margin-right: auto;
-  margin-left: 30px;
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  width: 600px;
-  > table {
-    border-collapse: collapse;
-  }
-`;
-
-const mapTableStyles = css`
-  width: 100%;
-  > tbody {
-    > tr {
-      width: 600px;
-      > th > h4 {
-        font-size: 20px;
-        color: gray;
-      }
-    }
-    > tr {
-      width: 600px;
-      > td {
-        width: 60px;
-        height: 20px;
-        background-color: #ff0000;
-      }
-      > td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #fc3800;
-      }
-      > td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #f86f00;
-      }
-      > td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #f5a500;
-      }
-      > td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #f2d900;
-      }
-      > td + td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #d1ee00;
-      }
-      > td + td + td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #9aeb00;
-      }
-      > td + td + td + td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #64e800;
-      }
-      > td + td + td + td + td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #2fe400;
-      }
-      > td + td + td + td + td + td + td + td + td + td {
-        width: 60px;
-        height: 20px;
-        background-color: #04db08;
-      }
-    }
-    > tr + tr + tr {
-      width: 600px;
-      color: gray;
-      > th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #ff0000;
-      }
-      > th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #fc3800;
-      }
-      > th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #f86f00;
-      }
-      > th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #f5a500;
-      }
-      > th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #f2d900;
-      }
-      > th + th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #d1ee00;
-      }
-      > th + th + th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #9aeb00;
-      }
-      > th + th + th + th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #64e800;
-      }
-      > th + th + th + th + th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #2fe400;
-      }
-      > th + th + th + th + th + th + th + th + th + th {
-        width: 60px;
-        height: 20px;
-        border-left: 1px solid #04db08;
-      }
-    }
-  }
-`;
-
 const frontPageMap = css`
   width: 1200px;
   height: 900px;
@@ -283,7 +149,55 @@ const frontPageMap = css`
   margin-left: auto;
 `;
 
+const criteriaIconStyle = css`
+  width: 600px;
+  height: 300px;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  margin-left: 120px;
+  > i {
+    font-size: 200px;
+    margin: auto;
+    color: #0bc6d2;
+    opacity: 0.5;
+  }
+`;
+
+const diningIconSVG = css`
+  background-image: url('/images/dining.svg');
+  width: 200px;
+  height: 200px;
+`;
+
+const playgroundIconSVG = css`
+  background-image: url('/images/playground.svg');
+  width: 200px;
+  height: 200px;
+`;
+
+const attributionStyle = css`
+  width: 600px;
+  margin: auto;
+  float: right;
+  margin-right: 0px;
+  //margin-left: 120px;
+  > p {
+    width: 100%;
+    font-size: 10px;
+    color: gray;
+    //text-align: right;
+    margin-left: 150px;
+    > a {
+      text-decoration: none;
+      color: gray;
+    }
+  }
+`;
+
 export default function Home(props) {
+  useEffect(() => props.refreshUserinfo(), [props]);
+
   const [showSelection, setShowSelection] = useState('safety');
 
   const handleChangeSafety = (event) => {
@@ -343,6 +257,30 @@ export default function Home(props) {
       ssr: false,
     },
   );
+
+  function getIconDisplayFromCriteria(criteria) {
+    let icon = '';
+
+    if (criteria === 'safety') {
+      icon = <i className="bi bi-shield-fill-check" />;
+    } else if (criteria === 'parks') {
+      icon = <i className="bi bi-tree-fill" />;
+    } else if (criteria === 'noise_level') {
+      icon = <i className="bi bi-megaphone-fill" />;
+    } else if (criteria === 'shopping') {
+      icon = <i className="bi bi-cart-fill" />;
+    } else if (criteria === 'entertainment') {
+      icon = <i className="bi bi-camera-reels-fill" />;
+    } else if (criteria === 'dining') {
+      icon = <i css={diningIconSVG} />;
+    } else if (criteria === 'kids_friendly') {
+      icon = <i css={playgroundIconSVG} />;
+    } else if (criteria === 'public_transport') {
+      icon = <i className="bi bi-stoplights-fill" />;
+    }
+    return icon;
+  }
+
   return (
     <Layout
       firstName={props.firstNameFromFetch}
@@ -467,40 +405,20 @@ export default function Home(props) {
             </div>
           </div>
 
-          <div css={mapLegendTable}>
-            <table css={mapTableStyles}>
-              <tbody>
-                <tr>
-                  <th colSpan="10">
-                    <h4>Color legend</h4>
-                  </th>
-                </tr>
-                <tr>
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                  <td />
-                </tr>
-                <tr>
-                  <th>1</th>
-                  <th>2</th>
-                  <th>3</th>
-                  <th>4</th>
-                  <th>5</th>
-                  <th>6</th>
-                  <th>7</th>
-                  <th>8</th>
-                  <th>9</th>
-                  <th>10</th>
-                </tr>
-              </tbody>
-            </table>
+          <div css={criteriaIconStyle}>
+            {getIconDisplayFromCriteria(showSelection)}
+          </div>
+          <div css={attributionStyle}>
+            <p>
+              Icons made by&nbsp;
+              <a href="https://www.freepik.com" title="Freepik">
+                Freepik
+              </a>
+              &nbsp; from &nbsp;
+              <a href="https://www.flaticon.com/" title="Flaticon">
+                www.flaticon.com
+              </a>
+            </p>
           </div>
         </div>
 
