@@ -144,6 +144,9 @@ const titleStyles = css`
 `;
 
 export default function ContactUs(props) {
+  /* const handleChange = (event) => {
+    event.currentTarget.value;
+  };*/
   return (
     <Layout
       firstName={props.firstNameFromFetch}
@@ -198,19 +201,3 @@ export default function ContactUs(props) {
     </Layout>
   );
 }
-/*
-export async function getServerSideProps(context) {
-  const sessionToken = context.req.cookies.sessionToken;
-
-  const session = await getValidSessionByToken(sessionToken);
-
-  if (session) {
-    const user = await getUserById(session.userId);
-    return {
-      props: { user: user },
-    };
-  } else {
-    return { props: {} };
-  }
-}
-*/

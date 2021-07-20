@@ -118,7 +118,7 @@ export default function Header(props: Props) {
           </Link>
         ) : (
           <Link href="/signUp">
-            <a>Sign Up</a>
+            <a data-cy="header-sign-up-link">Sign Up</a>
           </Link>
         )}
       </div>

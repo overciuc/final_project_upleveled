@@ -8,11 +8,11 @@ function MapLegend({ map }) {
 
       legend.onAdd = () => {
         const div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = `<div style="width: 450px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.7); justify-content: center;">
+        div.innerHTML = `<div style="width: 520px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.7); justify-content: center;">
                 <table style="margin: auto; padding-bottom: 10px; ">
                   <tbody>
                     <tr>
-                      <th colSpan="10">
+                      <th colSpan="12">
                         <h4>Color legend</h4>
                       </th>
                     </tr>
@@ -49,6 +49,11 @@ function MapLegend({ map }) {
                       <td style="width: 40px;
                       height: 20px;
                       background-color: #04db08;"/>
+                      <td style="width: 40px;
+                      height: 20px;"/>
+                      <td style="width: 40px; height: 20px;
+                      background-color: rgb(51, 136, 255);"/>
+
                     </tr>
                     <tr style="margin-bottom: 10px;">
                       <th style="width: 40px;
@@ -81,6 +86,12 @@ function MapLegend({ map }) {
                       <th style="width: 40px;
                       height: 20px;
                       ">10</th>
+                      <th style="width: 40px;
+                      height: 20px;
+                      "/>
+                      <th style="width: 40px;
+                      height: 20px;
+                      ">district outline</th>
                     </tr>
                   </tbody>
                 </table>

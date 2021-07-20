@@ -11,7 +11,8 @@
     "start": "next start",
     "lint": "next lint",
     "migrate": "dotenv ley",
-    "heroku-postbuild": "yarn migrate up && yarn build"
+    "heroku-postbuild": "yarn migrate up && yarn build",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",
@@ -25,6 +26,7 @@
     "crypto": "^1.0.1",
     "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
+    "emailjs-com": "^3.2.0",
     "js-cookies": "^1.0.4",
     "leaflet": "^1.7.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",
@@ -36,7 +38,8 @@
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.0",
     "react-rangeslider": "^2.2.0",
-    "react-slideshow-image": "^3.4.7"
+    "react-slideshow-image": "^3.4.7",
+    "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "10.2.2",
@@ -50,6 +53,7 @@
     "@typescript-eslint/parser": "4.21.0",
     "@upleveled/eslint-config-upleveled": "1.14.5",
     "babel-eslint": "10.1.0",
+    "cypress": "^7.7.0",
     "eslint": "7.23.0",
     "eslint-config-next": "11.0.0",
     "eslint-config-react-app": "6.0.0",

@@ -155,6 +155,7 @@ export default function UserDataSection(props) {
               First Name:
               <span>
                 <input
+                  data-cy="user-edit-first-name"
                   onChange={handleFirstNameChange}
                   value={firstName}
                   disabled={showEdit ? 'disabled' : ''}
@@ -190,6 +191,7 @@ export default function UserDataSection(props) {
       </div>
       <div css={buttonSection}>
         <button
+          data-cy="user-edit-details-button"
           css={editButton}
           onClick={async () => {
             if (showEdit) {

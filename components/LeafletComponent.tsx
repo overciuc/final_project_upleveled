@@ -5,7 +5,14 @@ import 'leaflet-defaulticon-compatibility';
 import { css } from '@emotion/react';
 import * as L from 'leaflet';
 import { useState } from 'react';
-import { MapContainer, Marker, Polygon, Popup, TileLayer } from 'react-leaflet';
+import {
+  LayersControl,
+  MapContainer,
+  Marker,
+  Polygon,
+  Popup,
+  TileLayer,
+} from 'react-leaflet';
 import { districtShapes } from '../util/districts';
 import MapLegend from './MapLegend';
 
@@ -174,142 +181,142 @@ const Map = (props: any) => {
   ];
 
   const firstDistrict = {
-    color: 'hotPink',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'hotPink',
+    // color: 'hotPink',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'hotPink',
   };
   const secondDistrict = {
-    color: 'indigo',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'indigo',
+    // color: 'indigo',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'indigo',
   };
   const thirdDistrict = {
-    color: 'lawnGreen',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'lawnGreen',
+    // color: 'lawnGreen',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'lawnGreen',
   };
   const fourthDistrict = {
-    color: 'dodgerBlue',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'dodgerBlue',
+    // color: 'dodgerBlue',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'dodgerBlue',
   };
   const fifthDistrict = {
-    color: 'fireBrick',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'fireBrick',
+    // color: 'fireBrick',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'fireBrick',
   };
   const sixthDistrict = {
-    color: 'darkOrange',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'darkOrange',
+    // color: 'darkOrange',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'darkOrange',
   };
   const seventhDistrict = {
-    color: 'darkTurquoise',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'darkTurquoise',
+    // color: 'darkTurquoise',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'darkTurquoise',
   };
   const eigthDistrict = {
-    color: 'green',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'green',
+    // color: 'green',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'green',
   };
   const ninthDistrict = {
-    color: 'blue',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'blue',
+    // color: 'blue',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'blue',
   };
   const tenthDistrict = {
-    color: 'coral',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'coral',
+    // color: 'coral',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'coral',
   };
   const eleventhDistrict = {
-    color: 'cornFlowerBlue',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'cornFlowerBlue',
+    // color: 'cornFlowerBlue',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'cornFlowerBlue',
   };
   const twelthDistrict = {
-    color: 'chocolate',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'chocolate',
+    // color: 'chocolate',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'chocolate',
   };
   const thirteenthDistrict = {
-    color: 'aqua',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'aqua',
+    // color: 'aqua',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'aqua',
   };
   const fourteenthDistrict = {
-    color: 'darkOrchid',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'darkOrchid',
+    // color: 'darkOrchid',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'darkOrchid',
   };
   const fifteenthDistrict = {
-    color: 'mediumSlateBlue',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'mediumSlateBlue',
+    // color: 'mediumSlateBlue',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'mediumSlateBlue',
   };
   const sixteenthDistrict = {
-    color: 'mediumSeaGreen',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'mediumSeaGreen',
+    // color: 'mediumSeaGreen',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'mediumSeaGreen',
   };
   const seventeenthDistrict = {
-    color: 'mediumBlue',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'mediumBlue',
+    // color: 'mediumBlue',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'mediumBlue',
   };
   const eigteenthDistrict = {
-    color: 'mediumVioletRed',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'mediumVioletRed',
+    // color: 'mediumVioletRed',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'mediumVioletRed',
   };
   const ninteenthDistrict = {
-    color: 'paleVioletRed',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'paleVioletRed',
+    // color: 'paleVioletRed',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'paleVioletRed',
   };
   const twentiethDistrict = {
-    color: 'rebeccaPurple',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'rebeccaPurple',
+    // color: 'rebeccaPurple',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'rebeccaPurple',
   };
   const twentyFirstDistrict = {
-    color: 'sandyBrown',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'sandyBrown',
+    // color: 'sandyBrown',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'sandyBrown',
   };
   const twentySecondDistrict = {
-    color: 'salmon',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'salmon',
+    // color: 'salmon',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'salmon',
   };
   const twentyThirdDistrict = {
-    color: 'seaGreen',
-    opacity: 0.3,
-    fillOpacity: 0.2,
-    fillColor: 'seaGreen',
+    // color: 'seaGreen',
+    // opacity: 0.3,
+    fillOpacity: 0,
+    // fillColor: 'seaGreen',
   };
 
   const firstDistrictPolygon = districtShapes[3].coordinates;
@@ -344,247 +351,262 @@ const Map = (props: any) => {
       style={{ height: 900, width: '100%' }}
       whenCreated={setMap}
     >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <MapLegend map={map} />
-      <Polygon
-        pathOptions={firstDistrict}
-        positions={firstDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={secondDistrict}
-        positions={secondDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={thirdDistrict}
-        positions={thirdDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={fourthDistrict}
-        positions={fourthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={fifthDistrict}
-        positions={fifthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={sixthDistrict}
-        positions={sixthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={seventhDistrict}
-        positions={seventhDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={eigthDistrict}
-        positions={eigthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={ninthDistrict}
-        positions={ninthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={tenthDistrict}
-        positions={tenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={eleventhDistrict}
-        positions={eleventhDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={twelthDistrict}
-        positions={twelthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={thirteenthDistrict}
-        positions={thirteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={fourteenthDistrict}
-        positions={fourteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={fifteenthDistrict}
-        positions={fifteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={sixteenthDistrict}
-        positions={sixteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={seventeenthDistrict}
-        positions={seventeenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={eigteenthDistrict}
-        positions={eigteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={ninteenthDistrict}
-        positions={ninteenthDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={twentiethDistrict}
-        positions={twentiethDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={twentyFirstDistrict}
-        positions={twentyFirstDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={twentySecondDistrict}
-        positions={twentySecondDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
-      <Polygon
-        pathOptions={twentyThirdDistrict}
-        positions={twentyThirdDistrictPolygon}
-        css={polygonTransitionStyles}
-      />
+      <LayersControl position="topright">
+        <LayersControl.BaseLayer checked name="With color">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Black and White">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
 
-      {props.allReviews.reviews.map((review: any) => {
-        let score;
+        <MapLegend map={map} />
+        <Polygon
+          pathOptions={firstDistrict}
+          positions={firstDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={secondDistrict}
+          positions={secondDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={thirdDistrict}
+          positions={thirdDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={fourthDistrict}
+          positions={fourthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={fifthDistrict}
+          positions={fifthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={sixthDistrict}
+          positions={sixthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={seventhDistrict}
+          positions={seventhDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={eigthDistrict}
+          positions={eigthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={ninthDistrict}
+          positions={ninthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={tenthDistrict}
+          positions={tenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={eleventhDistrict}
+          positions={eleventhDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={twelthDistrict}
+          positions={twelthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={thirteenthDistrict}
+          positions={thirteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={fourteenthDistrict}
+          positions={fourteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={fifteenthDistrict}
+          positions={fifteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={sixteenthDistrict}
+          positions={sixteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={seventeenthDistrict}
+          positions={seventeenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={eigteenthDistrict}
+          positions={eigteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={ninteenthDistrict}
+          positions={ninteenthDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={twentiethDistrict}
+          positions={twentiethDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={twentyFirstDistrict}
+          positions={twentyFirstDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={twentySecondDistrict}
+          positions={twentySecondDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
+        <Polygon
+          pathOptions={twentyThirdDistrict}
+          positions={twentyThirdDistrictPolygon}
+          css={polygonTransitionStyles}
+        />
 
-        if (props.showSelectionOnMap === 'safety') {
-          score = review.safetyScore;
-        } else if (props.showSelectionOnMap === 'parks') {
-          score = review.parksScore;
-        } else if (props.showSelectionOnMap === 'shopping') {
-          score = review.shoppingScore;
-        } else if (props.showSelectionOnMap === 'kids_friendly') {
-          score = review.kidsFriendlyScore;
-        } else if (props.showSelectionOnMap === 'public_transport') {
-          score = review.publicTransportScore;
-        } else if (props.showSelectionOnMap === 'dining') {
-          score = review.diningScore;
-        } else if (props.showSelectionOnMap === 'entertainment') {
-          score = review.entertainmentScore;
-        } else if (props.showSelectionOnMap === 'noise_level') {
-          score = review.noiseLevelScore;
-        }
-        if (review.latitude && review.longitude) {
-          return (
-            <Marker
-              key={`review-${review.id}`}
-              position={[review.latitude, review.longitude]}
-              icon={icons[Math.ceil(score) - 1]}
-            >
-              <Popup maxWidth={600} minWidth={600} maxHeight={500}>
-                <section css={popUpStyles}>
-                  <div>
-                    <div css={districtLineStyles}>
-                      <span>District:</span>
-                      <span>
-                        &nbsp;{review.comments[0].district}&nbsp;
-                        {review.comments[0].districtName}
-                      </span>
+        {props.allReviews.reviews.map((review: any) => {
+          let score;
+
+          if (props.showSelectionOnMap === 'safety') {
+            score = review.safetyScore;
+          } else if (props.showSelectionOnMap === 'parks') {
+            score = review.parksScore;
+          } else if (props.showSelectionOnMap === 'shopping') {
+            score = review.shoppingScore;
+          } else if (props.showSelectionOnMap === 'kids_friendly') {
+            score = review.kidsFriendlyScore;
+          } else if (props.showSelectionOnMap === 'public_transport') {
+            score = review.publicTransportScore;
+          } else if (props.showSelectionOnMap === 'dining') {
+            score = review.diningScore;
+          } else if (props.showSelectionOnMap === 'entertainment') {
+            score = review.entertainmentScore;
+          } else if (props.showSelectionOnMap === 'noise_level') {
+            score = review.noiseLevelScore;
+          }
+          if (review.latitude && review.longitude) {
+            return (
+              <Marker
+                key={`review-${review.id}`}
+                position={[review.latitude, review.longitude]}
+                icon={icons[Math.ceil(score) - 1]}
+              >
+                <Popup maxWidth={600} minWidth={600} maxHeight={500}>
+                  <section css={popUpStyles}>
+                    <div>
+                      <div css={districtLineStyles}>
+                        <span>District:</span>
+                        <span>
+                          &nbsp;{review.comments[0].district}&nbsp;
+                          {review.comments[0].districtName}
+                        </span>
+                      </div>
+
+                      <div css={averageRatingLineStyles}>
+                        <span>Average rating:</span>
+                        <span>
+                          &nbsp;{Math.ceil(score)}
+                          <span>/10</span>
+                        </span>
+                        <span>
+                          &nbsp;&nbsp;from {review.totalNumberOfReviews} reviews
+                        </span>
+                      </div>
                     </div>
+                    <div css={scrollableContainer}>
+                      {review.comments.map((comment: any) => {
+                        let commentText;
+                        let commentScore;
 
-                    <div css={averageRatingLineStyles}>
-                      <span>Average rating:</span>
-                      <span>
-                        &nbsp;{Math.ceil(score)}
-                        <span>/10</span>
-                      </span>
-                      <span>
-                        &nbsp;&nbsp;from {review.totalNumberOfReviews} reviews
-                      </span>
+                        if (props.showSelectionOnMap === 'safety') {
+                          commentText = comment.safetyComment;
+                          commentScore = comment.safetyScore;
+                        } else if (props.showSelectionOnMap === 'parks') {
+                          commentText = comment.parksComment;
+                          commentScore = comment.parksScore;
+                        } else if (props.showSelectionOnMap === 'shopping') {
+                          commentText = comment.shoppingComment;
+                          commentScore = comment.shoppingScore;
+                        } else if (
+                          props.showSelectionOnMap === 'kids_friendly'
+                        ) {
+                          commentText = comment.kidsFriendlyComment;
+                          commentScore = comment.kidsFriendlyScore;
+                        } else if (
+                          props.showSelectionOnMap === 'public_transport'
+                        ) {
+                          commentText = comment.publicTransportComment;
+                          commentScore = comment.publicTransportScore;
+                        } else if (props.showSelectionOnMap === 'dining') {
+                          commentText = comment.diningComment;
+                          commentScore = comment.diningScore;
+                        } else if (
+                          props.showSelectionOnMap === 'entertainment'
+                        ) {
+                          commentText = comment.entertainmentComment;
+                          commentScore = comment.entertainmentScore;
+                        } else if (props.showSelectionOnMap === 'noise_level') {
+                          commentText = comment.noiseLevelComment;
+                          commentScore = comment.noiseLevelScore;
+                        }
+
+                        const fillColor = getRatingColor(commentScore);
+                        return (
+                          <div key={`comment-${comment.id}`}>
+                            <div css={commentSectionStyle}>
+                              <p>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="30"
+                                  height="30"
+                                  fill={fillColor}
+                                  className="bi bi-star-fill"
+                                  viewBox="0 0 16 16"
+                                >
+                                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>
+                              </p>
+
+                              <span>
+                                {' '}
+                                {commentText ? `"${commentText}"` : ''}
+                              </span>
+                            </div>
+                            <div css={commentSectionUserDetails}>
+                              review by{' '}
+                              <span>&nbsp;{comment.username}&nbsp;</span> on
+                              <span>&nbsp;{comment.dateString}</span>
+                            </div>
+                            <hr css={lineSeparator} />
+                          </div>
+                        );
+                      })}
                     </div>
-                  </div>
-                  <div css={scrollableContainer}>
-                    {review.comments.map((comment: any) => {
-                      let commentText;
-                      let commentScore;
-
-                      if (props.showSelectionOnMap === 'safety') {
-                        commentText = comment.safetyComment;
-                        commentScore = comment.safetyScore;
-                      } else if (props.showSelectionOnMap === 'parks') {
-                        commentText = comment.parksComment;
-                        commentScore = comment.parksScore;
-                      } else if (props.showSelectionOnMap === 'shopping') {
-                        commentText = comment.shoppingComment;
-                        commentScore = comment.shoppingScore;
-                      } else if (props.showSelectionOnMap === 'kids_friendly') {
-                        commentText = comment.kidsFriendlyComment;
-                        commentScore = comment.kidsFriendlyScore;
-                      } else if (
-                        props.showSelectionOnMap === 'public_transport'
-                      ) {
-                        commentText = comment.publicTransportComment;
-                        commentScore = comment.publicTransportScore;
-                      } else if (props.showSelectionOnMap === 'dining') {
-                        commentText = comment.diningComment;
-                        commentScore = comment.diningScore;
-                      } else if (props.showSelectionOnMap === 'entertainment') {
-                        commentText = comment.entertainmentComment;
-                        commentScore = comment.entertainmentScore;
-                      } else if (props.showSelectionOnMap === 'noise_level') {
-                        commentText = comment.noiseLevelComment;
-                        commentScore = comment.noiseLevelScore;
-                      }
-
-                      const fillColor = getRatingColor(commentScore);
-                      return (
-                        <div key={`comment-${comment.id}`}>
-                          <div css={commentSectionStyle}>
-                            <p>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="30"
-                                height="30"
-                                fill={fillColor}
-                                className="bi bi-star-fill"
-                                viewBox="0 0 16 16"
-                              >
-                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                              </svg>
-                            </p>
-
-                            <span>
-                              {' '}
-                              {commentText ? `"${commentText}"` : ''}
-                            </span>
-                          </div>
-                          <div css={commentSectionUserDetails}>
-                            review by{' '}
-                            <span>&nbsp;{comment.username}&nbsp;</span> on
-                            <span>&nbsp;{comment.dateString}</span>
-                          </div>
-                          <hr css={lineSeparator} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </section>
-              </Popup>
-            </Marker>
-          );
-        }
-      })}
+                  </section>
+                </Popup>
+              </Marker>
+            );
+          }
+        })}
+      </LayersControl>
     </MapContainer>
   );
 };

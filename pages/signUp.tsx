@@ -179,7 +179,7 @@ export default function CreateSingleUser(props: Props) {
               <div>
                 <input
                   placeholder="First Name"
-                  data-cy="users-management-create-first-name"
+                  data-cy="signup-page-first-name"
                   value={firstName}
                   onChange={(event) => {
                     setFirstName(event.currentTarget.value);
@@ -187,7 +187,7 @@ export default function CreateSingleUser(props: Props) {
                 />
                 <input
                   placeholder="Last Name"
-                  data-cy="users-management-create-last-name"
+                  data-cy="signup-page-last-name"
                   value={lastName}
                   onChange={(event) => {
                     setLastName(event.currentTarget.value);
@@ -197,7 +197,7 @@ export default function CreateSingleUser(props: Props) {
               <div>
                 <input
                   placeholder="Email"
-                  data-cy="users-management-create-email"
+                  data-cy="signup-page-email"
                   value={email}
                   onChange={(event) => {
                     setEmail(event.currentTarget.value);
@@ -207,7 +207,7 @@ export default function CreateSingleUser(props: Props) {
               <div>
                 <input
                   placeholder="Username"
-                  data-cy="users-management-create-username"
+                  data-cy="signup-page-username"
                   value={username}
                   onChange={(event) => {
                     setUsername(event.currentTarget.value);
@@ -217,7 +217,7 @@ export default function CreateSingleUser(props: Props) {
               <div>
                 <input
                   placeholder="Password"
-                  data-cy="users-management-create-password"
+                  data-cy="signup-page-password"
                   value={password}
                   type="password"
                   onChange={(event) => {
@@ -227,7 +227,7 @@ export default function CreateSingleUser(props: Props) {
               </div>
 
               <div>
-                <button>Sign Up</button>
+                <button data-cy="signup-page-signup-button">Sign Up</button>
               </div>
             </div>
           </div>

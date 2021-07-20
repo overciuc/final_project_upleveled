@@ -1,4 +1,5 @@
 import { css, Global } from '@emotion/react';
+// import emailjs from 'emailjs-com';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
@@ -6,41 +7,21 @@ import { useCallback, useEffect, useState } from 'react';
 export default function App({ Component, pageProps }: AppProps) {
   const [username, setUsername] = useState<string>();
   const [firstName, setFirstName] = useState<string>();
-  // Declare a function that we will use in any page or
-  // component (via passing props) to refresh the
-  // username (if it has gotten out of date)
-  const refreshUserinfo =
-    // useCallback: Prevent this function from getting
-    // a different reference on every rerender
-    //
-    // We do this to prevent calls to the API on
-    // every page navigation
-    useCallback(async () => {
-      // Call the API to retrieve the user information
-      // by automatically passing along the sessionToken cookie
-      const response = await fetch('/api/users');
-      const json = await response.json();
 
-      // If there are errors, return early
-      if ('errors' in json) {
-        // TODO: Handle errors - show to the user
-        return;
-      }
-      // console.log(json);
+  const refreshUserinfo = useCallback(async () => {
+    const response = await fetch('/api/users');
+    const json = await response.json();
 
-      // Set the username state variable which we can use
-      // in other components via passing props
-      setUsername(json.user?.username);
-      setFirstName(json.user?.firstName);
-      // console.log(json.user);
-    }, []);
+    if ('errors' in json) {
+      return;
+    }
+    setUsername(json.user?.username);
+    setFirstName(json.user?.firstName);
+  }, []);
 
-  // Retrieve username information ONCE the first time
-  // that a user loads the page
   useEffect(() => {
     refreshUserinfo();
   }, [refreshUserinfo]);
-  // console.log(username);
 
   return (
     <>
@@ -81,6 +62,14 @@ export default function App({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
         />
+        {/*
+        <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js" />
+        <script>
+          (function(){emailjs.init('user_WZDlVHCO12ar658ckM6In')} {// Obtain
+          your user ID at the dashboard
+          https://dashboard.emailjs.com/integration &rbrace;)();}
+        </script>
+          */}
       </Head>
 
       <Component

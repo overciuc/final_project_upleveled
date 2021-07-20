@@ -341,17 +341,27 @@ export default function NewReviewPost(props) {
             <label>
               Street name
               <input
+                data-cy="review-type-street-name"
                 placeholder="Street Name"
                 onChange={handleStreetNameChange}
               />
             </label>
             <label>
               House number
-              <input placeholder="House #" onChange={handleHouseNumberChange} />
+              <input
+                data-cy="review-type-house-number"
+                placeholder="House #"
+                onChange={handleHouseNumberChange}
+              />
             </label>
             <label>
               District <span>*</span> (required)
-              <select name="func" onChange={handleDistrictChange} required>
+              <select
+                name="func"
+                onChange={handleDistrictChange}
+                required
+                data-cy="review-select-district-from-dropdown"
+              >
                 <option value="">Please select district</option>
                 {props.districts.map((districtInstance) => (
                   <option
@@ -394,12 +404,14 @@ export default function NewReviewPost(props) {
             <span>
               <h4>Safety</h4>
               <Horizontal
+                data-cy="review-safety-slider"
                 onChangeComplete={setSafetyScore}
                 initial={safetyScore}
               />
             </span>
             <span>
               <textarea
+                data-cy="review-safety-comment"
                 placeholder="What is your take on safety in your neighborhood?"
                 onChange={handleSafetyCommentChange}
               />
@@ -415,6 +427,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-parks-comment"
                 placeholder="Are there enough parks around your neighborhood?"
                 onChnge={handleParksCommentChange}
               />
@@ -430,6 +443,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-shopping-comment"
                 placeholder="How far are the shops (eg. groceries, clothing, etc)?"
                 onChange={handleShoppingCommentChange}
               />
@@ -445,6 +459,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-kids-comment"
                 placeholder="Are there enough playgrounds, schools and kindergartens in the area?"
                 onChange={handleKidsFriendlyCommentChange}
               />
@@ -460,6 +475,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-transport-comment"
                 placeholder="Are you well connected to public transport?"
                 onChange={handlePublicTransportCommentChange}
               />
@@ -475,6 +491,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-dining-comment"
                 placeholder="Does the foodie in you feel well fed in the neighborhood?"
                 onChange={handleDiningCommentChange}
               />
@@ -490,6 +507,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-entertainment-comment"
                 placeholder="Are there fun things to do in your neighborhood (eg. cinemas, pubs, clubs, etc.)?"
                 onChange={handleEntertainmentCommentChange}
               />
@@ -505,6 +523,7 @@ export default function NewReviewPost(props) {
             </span>
             <span>
               <textarea
+                data-cy="review-noise-comment"
                 placeholder="Is your neighborhood quiet?"
                 onChange={handleNoiseLevelCommentChange}
               />
@@ -513,6 +532,7 @@ export default function NewReviewPost(props) {
         </div>
         <div css={submitButton}>
           <button
+            data-cy="review-submit-new-review-button"
             disabled={district === '' ? 'disabled' : ''}
             onClick={async (event) => {
               event.preventDefault();

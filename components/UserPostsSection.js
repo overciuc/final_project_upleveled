@@ -145,12 +145,13 @@ export default function UserPostsSection(props) {
           {reviews.map((review) => (
             <li key={`review-${review.id}`}>
               <h2>
-                Rating: &nbsp; <span>{review.averageScore}</span>
+                Rating: &nbsp;
+                <span data-cy="user-review-rating">{review.averageScore}</span>
               </h2>
               <h6>
                 Date published:&nbsp;<span>{review.dateString}</span>
               </h6>
-              <h3>
+              <h3 data-cy="user-review-district">
                 {review.district}&nbsp;
                 {review.districtName}
               </h3>
@@ -202,7 +203,7 @@ export default function UserPostsSection(props) {
       </div>
       <div>
         <Link href="/newReviewPostPage">
-          <a>Write new review</a>
+          <a data-cy="write-new-review-button">Write new review</a>
         </Link>
       </div>
     </div>

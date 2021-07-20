@@ -150,7 +150,7 @@ export default function SingleUserProfile(props: Props) {
           <div css={userTabStyles}>
             <div css={avatarStyles}>
               <div />
-              <h1>
+              <h1 data-cy="user-page-first-name">
                 {props.user.firstName} {props.user.lastName}
               </h1>
             </div>
@@ -163,6 +163,7 @@ export default function SingleUserProfile(props: Props) {
                 Your Details
               </button>
               <button
+                data-cy="user-posts-button"
                 onClick={() => setShowSection(true)}
                 css={showSection ? activeButton : inactiveButton}
               >
