@@ -14,7 +14,7 @@ import {
   TileLayer,
 } from 'react-leaflet';
 import { districtShapes } from '../util/districts';
-import { getRatingColor } from '../util/helpers';
+import { getRatingColor } from '../util/misc';
 import MapLegend from './MapLegend';
 
 const popUpStyles = css`
