@@ -414,6 +414,7 @@ const Map = (props: any) => {
           css={polygonTransitionStyles}
         />
 
+        {/* eslint-disable-next-line array-callback-return*/}
         {props.allReviews.reviews.map((review: any) => {
           let score;
 

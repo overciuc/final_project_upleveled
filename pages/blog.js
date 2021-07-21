@@ -1,8 +1,15 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
-import Link from 'next/link';
+import { useState } from 'react';
+import DaycarePopup from '../components/BlogPopups/Daycare';
+import FunActivitiesPopup from '../components/BlogPopups/FunActivities';
+import Lobau from '../components/BlogPopups/Lobau';
+import LocalProducePopup from '../components/BlogPopups/LocalProduce';
+import PlaygroundsPopup from '../components/BlogPopups/Playgrounds';
+import WherePartyPopup from '../components/BlogPopups/WhereParty';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
+import Popup from '../components/Popup';
 
 const checkoutPage = css`
   margin-top: 20px;
@@ -10,24 +17,11 @@ const checkoutPage = css`
   max-width: 1300px;
   width: 100%;
   margin: auto;
-
-  > div > a {
-    width: 100%;
-    font-size: 16px;
-    color: black;
-    text-decoration: none;
-    padding-bottom: 20px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  > div > span {
-    color: red;
-  }
 `;
 
 const ourTeamSection = css`
   margin-top: 100px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   > h1 {
     display: flex;
@@ -58,13 +52,13 @@ const blogPostGrid = css`
   max-width: 1300px;
   justify-content: center;
   margin: auto;
-  margin-top: 100px;
-  margin-bottom: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-template-rows: repeat(1, 400px);
   align-items: center;
-  row-gap: 30px;
+  row-gap: 10px;
   column-gap: 50px;
   padding: 20px 40px;
   text-align: center;
@@ -107,6 +101,8 @@ const blogLink = css`
   width: 350px;
   margin-left: 10px;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 `;
 
 const teamMemebersText = css`
@@ -143,6 +139,14 @@ const ourTeamImageStyle = css`
 `;
 
 export default function Blog(props) {
+  const [lobauButtonPopup, setLobauButtonPopup] = useState(false);
+  const [funActivitiesButtonPopup, setFunActivitiesButtonPopup] =
+    useState(false);
+  const [playgroundsButtonPopup, setPlaygroundsButtonPopup] = useState(false);
+  const [wherePartyButtonPopup, setWherePartyButtonPopup] = useState(false);
+  const [daycareButtonPopup, setDaycareButtonPopup] = useState(false);
+  const [produceButtonPopup, setProduceButtonPopup] = useState(false);
+
   return (
     <Layout
       firstName={props.firstNameFromFetch}
@@ -159,7 +163,7 @@ export default function Blog(props) {
             <div>
               <div>
                 <img
-                  src="/images/boat.png"
+                  src="/images/lobau.jpg"
                   alt="about"
                   css={ourTeamImageStyle}
                 />
@@ -169,18 +173,22 @@ export default function Blog(props) {
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
 
-                <button css={blogLink}>Read More...</button>
+                <button
+                  css={blogLink}
+                  onClick={() => setLobauButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
             <div>
               <div>
                 <img
-                  src="/images/bridge.png"
+                  src="/images/prater.png"
                   alt="about"
                   css={ourTeamImageStyle}
                 />
@@ -190,19 +198,21 @@ export default function Blog(props) {
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
-                <Link href="#1">
-                  <a css={blogLink}>Read More...</a>
-                </Link>
+                <button
+                  css={blogLink}
+                  onClick={() => setFunActivitiesButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
             <div>
               <div>
                 <img
-                  src="/images/palace.png"
+                  src="/images/playground_bg.png"
                   alt="about"
                   css={ourTeamImageStyle}
                 />
@@ -212,13 +222,15 @@ export default function Blog(props) {
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
-                <Link href="#1">
-                  <a css={blogLink}>Read More...</a>
-                </Link>
+                <button
+                  css={blogLink}
+                  onClick={() => setPlaygroundsButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
             <div>
@@ -235,19 +247,21 @@ export default function Blog(props) {
 
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
-                <Link href="#1">
-                  <a css={blogLink}>Read More...</a>
-                </Link>
+                <button
+                  css={blogLink}
+                  onClick={() => setWherePartyButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
             <div>
               <div>
                 <img
-                  src="/images/prater.png"
+                  src="/images/Daycare.jpg"
                   alt="about"
                   css={ourTeamImageStyle}
                 />
@@ -257,19 +271,21 @@ export default function Blog(props) {
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
-                <Link href="#1">
-                  <a css={blogLink}>Read More...</a>
-                </Link>
+                <button
+                  css={blogLink}
+                  onClick={() => setDaycareButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
             <div>
               <div>
                 <img
-                  src="/images/playground_bg.png"
+                  src="/images/local_produce.jpg"
                   alt="about"
                   css={ourTeamImageStyle}
                 />
@@ -279,36 +295,54 @@ export default function Blog(props) {
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
-                  Lobau Park is a huge Nature Reserve that starts in the 2nd
-                  district of Vienna. <br />A great day trip for the whole
-                  family.
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry.
                 </p>
-                <Link href="#1">
-                  <a css={blogLink}>Read More...</a>
-                </Link>
+                <button
+                  css={blogLink}
+                  onClick={() => setProduceButtonPopup(true)}
+                >
+                  Read More...
+                </button>
               </div>
             </div>
           </div>
         </section>
-      </section>
 
+        <Popup trigger={lobauButtonPopup} setTrigger={setLobauButtonPopup}>
+          <Lobau />
+        </Popup>
+
+        <Popup
+          trigger={funActivitiesButtonPopup}
+          setTrigger={setFunActivitiesButtonPopup}
+        >
+          <FunActivitiesPopup />
+        </Popup>
+
+        <Popup
+          trigger={playgroundsButtonPopup}
+          setTrigger={setPlaygroundsButtonPopup}
+        >
+          <PlaygroundsPopup />
+        </Popup>
+
+        <Popup
+          trigger={wherePartyButtonPopup}
+          setTrigger={setWherePartyButtonPopup}
+        >
+          <WherePartyPopup />
+        </Popup>
+
+        <Popup trigger={daycareButtonPopup} setTrigger={setDaycareButtonPopup}>
+          <DaycarePopup />
+        </Popup>
+
+        <Popup trigger={produceButtonPopup} setTrigger={setProduceButtonPopup}>
+          <LocalProducePopup />
+        </Popup>
+      </section>
       <Footer />
     </Layout>
   );
 }
-/*
-export async function getServerSideProps(context) {
-  const sessionToken = context.req.cookies.sessionToken;
-
-  const session = await getValidSessionByToken(sessionToken);
-
-  if (session) {
-    const user = await getUserById(session.userId);
-    return {
-      props: { user: user },
-    };
-  } else {
-    return { props: {} };
-  }
-}
-*/
