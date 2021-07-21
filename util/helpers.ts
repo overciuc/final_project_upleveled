@@ -1,7 +1,6 @@
 import { getDistrictByZip } from './database';
 
 export async function getGeocode(query: string) {
-  // return [48.15 + 0.1 * Math.random(), 16.3 + 0.1 * Math.random()];
   const geocodeApiKey = process.env.GEOCODE_API_KEY;
   const geocodeResponse = await fetch(
     `http://api.positionstack.com/v1/forward?access_key=${geocodeApiKey}&query=${encodeURIComponent(
@@ -46,4 +45,20 @@ export async function formAddressFromInput(
     address = `${districtName} Vienna Austria`;
   }
   return address;
+}
+
+export function getRatingColor(rating: number) {
+  const colors: string[] = [
+    '#ff0000',
+    '#fc3800',
+    '#f86f00',
+    '#f5a500',
+    '#f2d900',
+    '#d1ee00',
+    '#9aeb00',
+    '#64e800',
+    '#2fe400',
+    '#04db08',
+  ];
+  return colors[rating - 1];
 }

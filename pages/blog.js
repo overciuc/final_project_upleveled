@@ -1,10 +1,8 @@
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { ModalProvider } from 'react-simple-modal-provider';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
-import modals from '../components/Modal';
 
 const checkoutPage = css`
   margin-top: 20px;
@@ -151,7 +149,7 @@ export default function Blog(props) {
       username={props.usernameFromFetch}
     >
       <Head>
-        <title>Contact</title>
+        <title>Articles</title>
       </Head>
 
       <section css={checkoutPage}>
@@ -175,9 +173,8 @@ export default function Blog(props) {
                   district of Vienna. <br />A great day trip for the whole
                   family.
                 </p>
-                <ModalProvider value={modals}>
-                  <button css={blogLink}>Read More...</button>
-                </ModalProvider>
+
+                <button css={blogLink}>Read More...</button>
               </div>
             </div>
             <div>

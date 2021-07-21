@@ -14,6 +14,7 @@ import {
   TileLayer,
 } from 'react-leaflet';
 import { districtShapes } from '../util/districts';
+import { getRatingColor } from '../util/helpers';
 import MapLegend from './MapLegend';
 
 const popUpStyles = css`
@@ -113,7 +114,7 @@ const polygonTransitionStyles = css`
     transform: translate(0, -10px);
   }
 `;
-
+/*
 export function getRatingColor(rating: number) {
   const colors: string[] = [
     '#ff0000',
@@ -129,7 +130,7 @@ export function getRatingColor(rating: number) {
   ];
   return colors[rating - 1];
 }
-
+*/
 const Map = (props: any) => {
   const [map, setMap] = useState<L.Map>();
 
@@ -181,142 +182,73 @@ const Map = (props: any) => {
   ];
 
   const firstDistrict = {
-    // color: 'hotPink',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'hotPink',
   };
   const secondDistrict = {
-    // color: 'indigo',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'indigo',
   };
   const thirdDistrict = {
-    // color: 'lawnGreen',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'lawnGreen',
   };
   const fourthDistrict = {
-    // color: 'dodgerBlue',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'dodgerBlue',
   };
   const fifthDistrict = {
-    // color: 'fireBrick',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'fireBrick',
   };
   const sixthDistrict = {
-    // color: 'darkOrange',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'darkOrange',
   };
   const seventhDistrict = {
-    // color: 'darkTurquoise',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'darkTurquoise',
   };
   const eigthDistrict = {
-    // color: 'green',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'green',
   };
   const ninthDistrict = {
-    // color: 'blue',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'blue',
   };
   const tenthDistrict = {
-    // color: 'coral',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'coral',
   };
   const eleventhDistrict = {
-    // color: 'cornFlowerBlue',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'cornFlowerBlue',
   };
   const twelthDistrict = {
-    // color: 'chocolate',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'chocolate',
   };
   const thirteenthDistrict = {
-    // color: 'aqua',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'aqua',
   };
   const fourteenthDistrict = {
-    // color: 'darkOrchid',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'darkOrchid',
   };
   const fifteenthDistrict = {
-    // color: 'mediumSlateBlue',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'mediumSlateBlue',
   };
   const sixteenthDistrict = {
-    // color: 'mediumSeaGreen',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'mediumSeaGreen',
   };
   const seventeenthDistrict = {
-    // color: 'mediumBlue',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'mediumBlue',
   };
   const eigteenthDistrict = {
-    // color: 'mediumVioletRed',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'mediumVioletRed',
   };
   const ninteenthDistrict = {
-    // color: 'paleVioletRed',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'paleVioletRed',
   };
   const twentiethDistrict = {
-    // color: 'rebeccaPurple',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'rebeccaPurple',
   };
   const twentyFirstDistrict = {
-    // color: 'sandyBrown',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'sandyBrown',
   };
   const twentySecondDistrict = {
-    // color: 'salmon',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'salmon',
   };
   const twentyThirdDistrict = {
-    // color: 'seaGreen',
-    // opacity: 0.3,
     fillOpacity: 0,
-    // fillColor: 'seaGreen',
   };
 
   const firstDistrictPolygon = districtShapes[3].coordinates;
@@ -587,12 +519,11 @@ const Map = (props: any) => {
                               </p>
 
                               <span>
-                                {' '}
                                 {commentText ? `"${commentText}"` : ''}
                               </span>
                             </div>
                             <div css={commentSectionUserDetails}>
-                              review by{' '}
+                              review by
                               <span>&nbsp;{comment.username}&nbsp;</span> on
                               <span>&nbsp;{comment.dateString}</span>
                             </div>
