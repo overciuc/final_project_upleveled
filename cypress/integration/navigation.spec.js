@@ -36,6 +36,9 @@ describe('Can navigate around pages', () => {
     cy.get('[data-cy="write-new-review-button"]').should('be.visible');
     cy.get('[data-cy="write-new-review-button"]').click();
 
+    // Check if the button is disabled
+    cy.get('[data-cy="review-submit-new-review-button"]').should('be.disabled');
+
     // What to write in the input fields (for the review)
     const streetName = `Herrengasse`;
     const houseNumber = `11`;
@@ -52,12 +55,24 @@ describe('Can navigate around pages', () => {
     cy.get('[data-cy="review-type-street-name"]').type(streetName);
     cy.get('[data-cy="review-type-house-number"]').type(houseNumber);
     cy.get('[data-cy="review-select-district-from-dropdown"]').select('1010');
-    /* cy.get('[data-cy="review-safety-slider"]')
-      .trigger('mousedown', { which: 1 }, { force: true })
-      .trigger('mousemove', 8, { force: true })
-      .trigger('mouseup');
-      */
 
+    /*
+    // Move the slider to set new value
+    const currentValue = 5;
+    const targetValue = 8;
+    const increment = 1;
+    const steps = (targetValue - currentValue) / increment;
+    const arrows = '{rightarrow}'.repeat(steps);
+    cy.get('[data-cy="review-safety-slider"]')
+      .children()
+      .first()
+      .should('have.attr', 'aria-valuenow', 5)
+      .trigger('mousedown').trigger('mousemove', {which: 1, pageX: });
+    cy.get('[data-cy="review-safety-slider"]')
+      .children()
+      .first()
+      .should('have.attr', 'aria-valuenow', 8);
+*/
     // Write the comments using the values from the variables defined above
     cy.get('[data-cy="review-safety-comment"]').type(safetyComment);
     cy.get('[data-cy="review-parks-comment"]').type(parksComment);
@@ -72,7 +87,46 @@ describe('Can navigate around pages', () => {
     // Press on the submit button to create the new review
     cy.get('[data-cy="review-submit-new-review-button"]').click();
 
-    // cy.get('[data-cy="user-review-rating"]').should('eq', '5');
     cy.get('[data-cy="user-review-district"]').should('contain', '1010');
+    // Edit review
+    cy.get('[data-cy="edite-review-button"]').click();
+    cy.get('[data-cy="check-slider-value"]')
+      .children()
+      .first()
+      .should('have.attr', 'aria-valuenow', 8);
+    cy.get('[data-cy="review-edit-safety-comment"]').type(
+      " And I wouldn't live anywhere else.",
+    );
+    cy.get('[data-cy="review-save-changes-button"]').click();
+
+    // Cancel button pressed
+    cy.get('[data-cy="write-new-review-button"]').click();
+    cy.get('[data-cy="cancel-writting-review-button"]').click();
+    // Should go back to the all reviews page
+    cy.get('[data-cy="user-review-district"]').should('contain', '1010');
+
+    // Delete review
+    cy.get('[data-cy="delete-review-button-pressed"]').click();
+    cy.on('window:confirm', () => true);
+
+    // Delete user account
+    cy.get('[data-cy="navigate-to-user-page"]').click();
+    cy.get('[data-cy="delete-user-account"]').click();
+    cy.on('window:confirm', () => true);
+    cy.on('window:alert', () => true);
+
+    /*
+    //Check the markers on map on homepage
+    cy.get('[data-cy="navigate-to-home-page"]').click();
+
+    cy.get('[data-cy="find-marker-on-map"]').trigger('pointerdown', {
+      clientX: 48.209681,
+      clientY: 16.365558,
+    });
+    cy.get('[data-cy="find-marker-on-map"]').trigger('pointerup', {
+      clientX: 48.209681,
+      clientY: 16.365558,
+    });
+    */
   });
 });

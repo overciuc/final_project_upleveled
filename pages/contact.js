@@ -32,26 +32,6 @@ const contactPageGrid = css`
   margin-top: 100px;
   padding-top: 100px;
 
-  > div > button {
-    background-color: #fed648;
-    color: #0f41c1;
-    padding: 15px 20px;
-    float: left;
-    border-radius: 10px;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    font-weight: bold;
-    :hover {
-      background-color: #f309df;
-      color: #fff;
-    }
-    :active {
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-  }
-
   > div > p {
     text-align: left;
     font-family: 'Baloo Tammudu 2', cursive;
@@ -130,6 +110,25 @@ const formContainer = css`
       outline: none !important;
     }
   }
+  > button {
+    background-color: #fed648;
+    color: #0f41c1;
+    padding: 15px 20px;
+    float: left;
+    border-radius: 10px;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    :hover {
+      background-color: #f309df;
+      color: #fff;
+    }
+    :active {
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+  }
 `;
 
 const titleStyles = css`
@@ -144,9 +143,23 @@ const titleStyles = css`
 `;
 
 export default function ContactUs(props) {
-  /* const handleChange = (event) => {
-    event.currentTarget.value;
-  };*/
+  async function handleOnSubmit(e) {
+    e.preventDefault();
+
+    const formData = {};
+
+    Array.from(e.currentTarget.elements).forEach((field) => {
+      if (!field.name) return;
+      formData[field.name] = field.value;
+    });
+
+    await fetch('/api/mail', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    });
+    e.target.reset();
+  }
+
   return (
     <Layout
       firstName={props.firstNameFromFetch}
@@ -172,27 +185,28 @@ export default function ContactUs(props) {
               out the best option for you or your company
             </p>
 
-            <form css={formContainer}>
+            <form css={formContainer} onSubmit={handleOnSubmit}>
+              <div>
+                <input id="name" placeholder="Name" type="text" name="name" />
+              </div>
               <div>
                 <input
-                  id="firstName"
-                  placeholder="First Name"
+                  placeholder="Email address"
+                  id="email"
                   type="text"
-                  name="firstName"
+                  name="email"
                 />
-
-                <input placeholder="Last Name" id="lastName" name="lastName" />
               </div>
 
               <div>
                 <textarea
                   placeholder="Your message here"
-                  id="messageArea"
-                  name="messageArea"
+                  id="message"
+                  name="message"
                 />
               </div>
+              <button>Send Message</button>
             </form>
-            <button>Send Message</button>
           </div>
         </div>
       </section>

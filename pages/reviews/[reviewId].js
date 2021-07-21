@@ -406,12 +406,14 @@ export default function NewReviewPost(props) {
               <span>
                 <h4>Safety</h4>
                 <Horizontal
+                  data_cy="check-slider-value"
                   onChangeComplete={setSafetyScore}
                   initial={safetyScore}
                 />
               </span>
               <span>
                 <textarea
+                  data-cy="review-edit-safety-comment"
                   placeholder="Write your review here"
                   onChange={handleSafetyCommentChange}
                   defaultValue={safetyComment}
@@ -533,6 +535,7 @@ export default function NewReviewPost(props) {
           </div>
           <div css={submitButton}>
             <button
+              data-cy="review-save-changes-button"
               onClick={async (event) => {
                 event.preventDefault();
                 const response = await fetch(

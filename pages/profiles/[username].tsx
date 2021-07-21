@@ -157,6 +157,7 @@ export default function SingleUserProfile(props: Props) {
 
             <div css={userTabButton}>
               <button
+              data-cy="navigate-to-user-page"
                 onClick={() => setShowSection(false)}
                 css={!showSection ? activeButton : inactiveButton}
               >

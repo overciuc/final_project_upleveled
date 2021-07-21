@@ -508,6 +508,7 @@ const Map = (props: any) => {
                 key={`review-${review.id}`}
                 position={[review.latitude, review.longitude]}
                 icon={icons[Math.ceil(score) - 1]}
+                data-cy="find-marker-on-map"
               >
                 <Popup maxWidth={600} minWidth={600} maxHeight={500}>
                   <section css={popUpStyles}>

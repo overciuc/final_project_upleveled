@@ -8,6 +8,7 @@ class Horizontal extends Component {
     this.state = {
       value: props.initial === undefined ? 1 : props.initial,
     };
+    this.data_cy = props.data_cy;
   }
 
   handleChangeStart = () => {
@@ -27,7 +28,7 @@ class Horizontal extends Component {
   render() {
     const { value } = this.state;
     return (
-      <div className="slider">
+      <div className="slider" data-cy={this.data_cy}>
         <Slider
           min={1}
           max={10}

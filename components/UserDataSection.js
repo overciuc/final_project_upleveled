@@ -221,6 +221,7 @@ export default function UserDataSection(props) {
           {showEdit ? 'Edit Details' : 'Save Changes'}
         </button>
         <button
+          data-cy="delete-user-account"
           css={deleteButton}
           onClick={async () => {
             if (

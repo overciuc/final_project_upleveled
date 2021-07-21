@@ -12,11 +12,13 @@
     "lint": "next lint",
     "migrate": "dotenv ley",
     "heroku-postbuild": "yarn migrate up && yarn build",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/react": "^11.4.0",
+    "@sendgrid/mail": "^7.4.5",
     "@types/dotenv-safe": "^8.1.1",
     "@types/pg": "^8.6.0",
     "argon2": "^0.28.2",
@@ -38,7 +40,9 @@
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.0",
     "react-rangeslider": "^2.2.0",
+    "react-simple-modal-provider": "^1.7.1",
     "react-slideshow-image": "^3.4.7",
+    "reactjs-popup": "^2.0.5",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
@@ -67,6 +71,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-testing-library": "4.0.1",
     "eslint-plugin-unicorn": "33.0.0",
+    "jest": "^27.0.6",
     "typescript": "^4.3.4"
   },
   "resolutions": {
@@ -75,5 +80,10 @@
   },
   "cacheDirectories": [
     ".next/cache"
-  ]
+  ],
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  }
 }

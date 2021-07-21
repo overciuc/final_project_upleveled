@@ -424,6 +424,7 @@ export default function Home(props) {
 
         <div css={frontPageMap}>
           <Map
+            // data-cy="find-marker-on-map"
             allReviews={props.allReviews}
             showSelectionOnMap={showSelection}
           />

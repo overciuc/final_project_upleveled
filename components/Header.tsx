@@ -86,7 +86,7 @@ export default function Header(props: Props) {
       </span>
       <div>
         <Link href="/">
-          <a>Home</a>
+          <a data-cy="navigate-to-home-page">Home</a>
         </Link>
         <Link href="/blog">
           <a>Blog</a>

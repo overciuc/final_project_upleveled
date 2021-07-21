@@ -404,7 +404,7 @@ export default function NewReviewPost(props) {
             <span>
               <h4>Safety</h4>
               <Horizontal
-                data-cy="review-safety-slider"
+                data_cy="review-safety-slider"
                 onChangeComplete={setSafetyScore}
                 initial={safetyScore}
               />
@@ -429,7 +429,7 @@ export default function NewReviewPost(props) {
               <textarea
                 data-cy="review-parks-comment"
                 placeholder="Are there enough parks around your neighborhood?"
-                onChnge={handleParksCommentChange}
+                onChange={handleParksCommentChange}
               />
             </span>
           </div>
@@ -583,6 +583,7 @@ export default function NewReviewPost(props) {
             Submit Review
           </button>
           <button
+            data-cy="cancel-writting-review-button"
             onClick={(event) => {
               event.preventDefault();
               router.push(`/profiles/${props.user.username}/?view=posts`);

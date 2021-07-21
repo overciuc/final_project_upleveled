@@ -158,11 +158,15 @@ export default function UserPostsSection(props) {
               <div>
                 <div>
                   <a href={`/reviews/${review.id}`}>
-                    <i class="bi bi-pencil-square" />
+                    <i
+                      class="bi bi-pencil-square"
+                      data-cy="edite-review-button"
+                    />
                   </a>
                 </div>
                 <div>
                   <button
+                    data-cy="delete-review-button-pressed"
                     onClick={async (event) => {
                       event.preventDefault();
 
