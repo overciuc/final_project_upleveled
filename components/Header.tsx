@@ -1,5 +1,8 @@
 import { css } from '@emotion/react';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { useState } from 'react';
+import Burger from './Burger';
+import RightNav from './RightNav';
 
 type Props = {
   firstName?: string;
@@ -12,8 +15,11 @@ const headerStyles = css`
   background-color: #0bc6d2;
   color: #fff;
   min-height: 80px;
-
-  > div {
+  @media (max-width: 1125px) {
+    padding: 32px 24px;
+  }
+  /*
+  > li {
     padding: 20px 10px;
     float: right;
     margin-right: 0;
@@ -21,7 +27,7 @@ const headerStyles = css`
     margin-top: 20px;
   }
 
-  > div > a {
+  > li > a {
     color: #fff;
     text-decoration: none;
     margin-left: 15px;
@@ -32,7 +38,7 @@ const headerStyles = css`
       color: greenyellow;
     }
   }
-  > div > a + a {
+  > li > a + a {
     margin-left: 15px;
     color: #fff;
     text-decoration: none;
@@ -72,6 +78,15 @@ const headerStyles = css`
       color: #fff;
     }
   }
+  */
+`;
+
+const floatRightNavMenu = css`
+  padding: 5px 10px;
+  float: right;
+  margin-right: 0;
+  margin-left: auto;
+  //margin-top: 20px;
 `;
 
 const logoStyles = css`
@@ -79,12 +94,14 @@ const logoStyles = css`
 `;
 
 export default function Header(props: Props) {
+  const [open, setOpen] = useState(false);
   return (
     <header css={headerStyles}>
       <span>
         <img src="/images/Logo2.gif" alt="Hood Review Logo" css={logoStyles} />
       </span>
-      <div>
+      <div css={floatRightNavMenu}>
+        {/*
         <Link href="/">
           <a data-cy="navigate-to-home-page">Home</a>
         </Link>
@@ -121,6 +138,13 @@ export default function Header(props: Props) {
             <a data-cy="header-sign-up-link">Sign Up</a>
           </Link>
         )}
+        */}
+        <RightNav
+          username={props.username}
+          firstName={props.firstName}
+          open={open}
+        />
+        <Burger open={open} setOpen={setOpen} />
       </div>
     </header>
   );

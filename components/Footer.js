@@ -14,6 +14,9 @@ const footerStyles = css`
   border-top: 1px solid #0bc6d2;
   justify-content: center;
   margin-top: auto 0;
+  @media (max-width: 1125px) {
+    display: none;
+  }
 `;
 
 const copyrightStyles = css`

@@ -15,6 +15,14 @@ const landingPageContainer = css`
   margin: auto;
   justify-content: center;
   height: 900px;
+  @media screen and (max-width: 1125px) {
+    flex-direction: column;
+    margin-top: 170px;
+    padding-right: 10px;
+    width: 100%;
+    margin-left: -60px;
+    margin-bottom: 100px;
+  }
 `;
 
 const radioButtonContainer = css`
@@ -22,12 +30,27 @@ const radioButtonContainer = css`
   margin-top: 30px;
   justify-content: center;
   width: 600px;
+  @media (max-width: 1125px) {
+    width: 100%;
+    float: left;
+    padding-left: -50px;
+    font-size: 20px;
+    padding-right: 10px;
+    justify-content: left;
+  }
 
   > p {
     text-align: left;
     font-size: 24px;
     color: gray;
     width: 100%;
+    @media (max-width: 1125px) {
+      font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: left;
+    }
   }
 
   > h3 {
@@ -35,12 +58,25 @@ const radioButtonContainer = css`
     font-size: 30px;
     margin-top: 20px;
     width: 100%;
+    @media (max-width: 1125px) {
+      font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
   > div {
     display: grid;
     grid-template-columns: 50% 50%;
     column-gap: 40px;
     grid-template-rows: 1;
+    @media (max-width: 1125px) {
+      font-size: 18px;
+      width: 100%;
+      padding-left: -20px;
+      padding-right: 10px;
+      column-gap: 20px;
+    }
   }
 
   > div > div {
@@ -112,6 +148,11 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
+  @media (max-width: 1125px) {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 20px;
+  }
 
   > div {
     display: flex;
@@ -148,6 +189,15 @@ const frontPageMap = css`
   height: 900px;
   float: right;
   margin-left: auto;
+  @media (max-width: 1125px) {
+    padding-left: 10px;
+    margin-left: 70px;
+    padding-right: 10px;
+    padding-top: 20px;
+    width: 100%;
+    max-height: 200px;
+    margin-bottom: auto;
+  }
 `;
 
 const criteriaIconStyle = css`
@@ -157,6 +207,12 @@ const criteriaIconStyle = css`
   margin: auto;
   text-align: center;
   margin-left: 120px;
+  @media (max-width: 1125px) {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   > i {
     font-size: 200px;
     margin: auto;
@@ -170,15 +226,36 @@ const attributionStyle = css`
   margin: auto;
   float: right;
   margin-right: 0px;
+  @media (max-width: 1125px) {
+    padding-top: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
   > p {
     width: 100%;
     font-size: 10px;
     color: gray;
     margin-left: 150px;
+    @media (max-width: 1125px) {
+      padding-right: 20px;
+      margin-left: 50px;
+    }
     > a {
       text-decoration: none;
       color: gray;
     }
+  }
+`;
+
+const bottomMargin = css`
+  height: 0px;
+  @media (max-width: 1125px) {
+    background-color: #0bc6d2;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 100px;
+    flex-direction: column;
+    position: fixed;
   }
 `;
 
@@ -394,6 +471,7 @@ export default function Home(props) {
           />
         </div>
       </section>
+      <div css={bottomMargin} />
       <Footer />
     </Layout>
   );
