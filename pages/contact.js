@@ -34,9 +34,8 @@ const contactPageGrid = css`
 
   > div > p {
     text-align: left;
-    font-family: 'Baloo Tammudu 2', cursive;
     line-height: 1.5;
-    color: gray;
+    color: #0f41c1;
   }
 `;
 
@@ -136,7 +135,7 @@ const titleStyles = css`
   justify-content: left;
   font-size: 40px;
   font-weight: bold;
-  color: gray;
+  color: #0f41c1;
   margin-bottom: 10px;
   font-family: 'Gorditas', cursive;
   margin-top: 10px;

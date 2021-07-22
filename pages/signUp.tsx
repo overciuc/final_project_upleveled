@@ -1,4 +1,3 @@
-// import 'react-slideshow-image/dist/styles.css';
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';

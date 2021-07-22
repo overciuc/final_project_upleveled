@@ -93,12 +93,12 @@ const line = css`
   opacity: 50%;
 `;
 
-const blogLink = css`
+const blogButton = css`
   display: block;
   text-align: left;
   color: #20a314;
   font-size: 16px;
-  width: 350px;
+  width: 150px;
   margin-left: 10px;
   cursor: pointer;
   border: none;
@@ -110,7 +110,7 @@ const teamMemebersText = css`
   color: gray;
   font-size: 16px;
   width: 340px;
-  margin-left: 10px;
+  margin-left: 15px;
 `;
 
 const floatLeft = css`
@@ -178,7 +178,7 @@ export default function Blog(props) {
                 </p>
 
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setLobauButtonPopup(true)}
                 >
                   Read More...
@@ -202,7 +202,7 @@ export default function Blog(props) {
                   typesetting industry.
                 </p>
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setFunActivitiesButtonPopup(true)}
                 >
                   Read More...
@@ -226,7 +226,7 @@ export default function Blog(props) {
                   typesetting industry.
                 </p>
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setPlaygroundsButtonPopup(true)}
                 >
                   Read More...
@@ -251,7 +251,7 @@ export default function Blog(props) {
                   typesetting industry.
                 </p>
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setWherePartyButtonPopup(true)}
                 >
                   Read More...
@@ -275,7 +275,7 @@ export default function Blog(props) {
                   typesetting industry.
                 </p>
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setDaycareButtonPopup(true)}
                 >
                   Read More...
@@ -299,7 +299,7 @@ export default function Blog(props) {
                   typesetting industry.
                 </p>
                 <button
-                  css={blogLink}
+                  css={blogButton}
                   onClick={() => setProduceButtonPopup(true)}
                 >
                   Read More...

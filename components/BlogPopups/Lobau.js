@@ -55,10 +55,12 @@ const line = css`
 const popupText = css`
   margin-left: 30px;
   width: 800px;
+
   > p {
+    margin-left: 25px;
+
     font-size: 18px;
     color: gray;
-    margin-left: 25px;
   }
 `;
 

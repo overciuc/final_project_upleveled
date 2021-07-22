@@ -114,23 +114,7 @@ const polygonTransitionStyles = css`
     transform: translate(0, -10px);
   }
 `;
-/*
-export function getRatingColor(rating: number) {
-  const colors: string[] = [
-    '#ff0000',
-    '#fc3800',
-    '#f86f00',
-    '#f5a500',
-    '#f2d900',
-    '#d1ee00',
-    '#9aeb00',
-    '#64e800',
-    '#2fe400',
-    '#04db08',
-  ];
-  return colors[rating - 1];
-}
-*/
+
 const Map = (props: any) => {
   const [map, setMap] = useState<L.Map>();
 
@@ -284,16 +268,16 @@ const Map = (props: any) => {
       whenCreated={setMap}
     >
       <LayersControl position="topright">
-        <LayersControl.BaseLayer checked name="With color">
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </LayersControl.BaseLayer>
         <LayersControl.BaseLayer name="Black and White">
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer checked name="With color">
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         </LayersControl.BaseLayer>
 

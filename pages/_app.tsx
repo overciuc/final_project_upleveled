@@ -1,5 +1,4 @@
 import { css, Global } from '@emotion/react';
-// import emailjs from 'emailjs-com';
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
@@ -62,14 +61,6 @@ export default function App({ Component, pageProps }: AppProps) {
           rel="stylesheet"
           href="https://unpkg.com/react-rangeslider/umd/rangeslider.min.css"
         />
-        {/*
-        <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js" />
-        <script>
-          (function(){emailjs.init('user_WZDlVHCO12ar658ckM6In')} {// Obtain
-          your user ID at the dashboard
-          https://dashboard.emailjs.com/integration &rbrace;)();}
-        </script>
-          */}
       </Head>
 
       <Component
