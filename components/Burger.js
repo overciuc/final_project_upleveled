@@ -3,14 +3,15 @@ import { css } from '@emotion/react';
 const burgerStyle = (open) => css`
   width: 2rem;
   height: 2rem;
-  position: fixed;
+  position: absolute;
   top: 30px;
   right: 24px;
   display: flex;
   justify-content: space-around;
   z-index: 1300;
   display: none;
-  @media (max-width: 1125px) {
+
+  @media only screen and (max-width: 1125px) {
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;

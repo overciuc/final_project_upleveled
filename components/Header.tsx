@@ -15,7 +15,7 @@ const headerStyles = css`
   background-color: #0bc6d2;
   color: #fff;
   min-height: 80px;
-  @media (max-width: 1125px) {
+  @media screen and (max-width: 1125px) {
     padding: 32px 24px;
   }
   /*

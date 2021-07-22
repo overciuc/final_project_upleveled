@@ -196,7 +196,7 @@ const frontPageMap = css`
     padding-top: 20px;
     width: 100%;
     max-height: 200px;
-    margin-bottom: auto;
+    margin-bottom: 20px;
   }
 `;
 
@@ -244,18 +244,6 @@ const attributionStyle = css`
       text-decoration: none;
       color: gray;
     }
-  }
-`;
-
-const bottomMargin = css`
-  height: 0px;
-  @media (max-width: 1125px) {
-    background-color: #0bc6d2;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 100px;
-    flex-direction: column;
-    position: fixed;
   }
 `;
 
@@ -471,7 +459,7 @@ export default function Home(props) {
           />
         </div>
       </section>
-      <div css={bottomMargin} />
+
       <Footer />
     </Layout>
   );

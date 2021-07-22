@@ -4,8 +4,7 @@ import Link from 'next/link';
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const navContainer = (open) => css`
   display: flex;
-
-  @media (max-width: 1125px) {
+  @media screen and (max-width: 1125px) {
   }
   ul {
     list-style: none;
@@ -13,11 +12,11 @@ const navContainer = (open) => css`
     flex-flow: row nowrap;
     align-items: center;
     padding: 0;
-    @media (max-width: 1125px) {
+    @media screen and (max-width: 1125px) {
       flex-flow: column nowrap;
       background-color: #0bc6d2;
       z-index: 1200;
-      position: absolute;
+      position: fixed;
       top: 0px;
       right: 0;
       height: 100vh;
