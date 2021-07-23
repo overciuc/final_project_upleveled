@@ -15,7 +15,7 @@ export default (req, res) => {
   mail
     .send({
       to: 'o.verciuc@gmail.com',
-      from: 'o.verciuc@gmail.com',
+      from: 'hello@hoodreview.me',
       subject: 'New Message!',
       text: message,
       html: message.replace(/\r\n/g, '<br>'),

@@ -14,7 +14,8 @@ const landingPageContainer = css`
   position: relative;
   margin: auto;
   justify-content: center;
-  height: 900px;
+  //height: 900px;
+  flex-direction: row;
   @media screen and (max-width: 1125px) {
     flex-direction: column;
     margin-top: 170px;
@@ -22,6 +23,8 @@ const landingPageContainer = css`
     width: 100%;
     margin-left: -60px;
     margin-bottom: 100px;
+    overflow: hidden;
+    //position: relative;
   }
 `;
 
@@ -178,6 +181,7 @@ const infoTextStyle = css`
     color: gray;
     width: 600px;
     margin-top: 5px;
+
     > span {
       font-weight: bold;
     }

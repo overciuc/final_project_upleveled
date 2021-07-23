@@ -16,7 +16,9 @@ const headerStyles = css`
   color: #fff;
   min-height: 80px;
   @media screen and (max-width: 1125px) {
-    padding: 32px 24px;
+    padding: 10px 24px;
+    width: 100%;
+    flex-direction: row;
   }
   /*
   > li {
@@ -91,6 +93,10 @@ const floatRightNavMenu = css`
 
 const logoStyles = css`
   height: 100px;
+  @media screen and (max-width: 1125px) {
+    width: 70%;
+    height: auto;
+  }
 `;
 
 export default function Header(props: Props) {
