@@ -1,6 +1,6 @@
 describe('Can navigate around pages', () => {
   it('can visit and load all page content', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3000/');
 
     // Create new user
     cy.get('[data-cy="header-sign-up-link"]').click();

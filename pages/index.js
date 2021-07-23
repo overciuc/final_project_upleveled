@@ -14,17 +14,15 @@ const landingPageContainer = css`
   position: relative;
   margin: auto;
   justify-content: center;
-  //height: 900px;
   flex-direction: row;
-  @media screen and (max-width: 1125px) {
+  @media screen and (max-width: 900px) {
     flex-direction: column;
-    margin-top: 170px;
+    //margin-top: 170px;
     padding-right: 10px;
     width: 100%;
     margin-left: -60px;
     margin-bottom: 100px;
     overflow: hidden;
-    //position: relative;
   }
 `;
 
@@ -33,11 +31,11 @@ const radioButtonContainer = css`
   margin-top: 30px;
   justify-content: center;
   width: 600px;
-  @media (max-width: 1125px) {
+  @media (max-width: 900px) {
     width: 100%;
     float: left;
     padding-left: -50px;
-    font-size: 20px;
+    font-size: 18px;
     padding-right: 10px;
     justify-content: left;
   }
@@ -47,7 +45,7 @@ const radioButtonContainer = css`
     font-size: 24px;
     color: gray;
     width: 100%;
-    @media (max-width: 1125px) {
+    @media (max-width: 900px) {
       font-size: 18px;
       width: 100%;
       padding-left: 10px;
@@ -61,7 +59,7 @@ const radioButtonContainer = css`
     font-size: 30px;
     margin-top: 20px;
     width: 100%;
-    @media (max-width: 1125px) {
+    @media (max-width: 900px) {
       font-size: 18px;
       width: 100%;
       padding-left: 10px;
@@ -73,12 +71,12 @@ const radioButtonContainer = css`
     grid-template-columns: 50% 50%;
     column-gap: 40px;
     grid-template-rows: 1;
-    @media (max-width: 1125px) {
-      font-size: 18px;
+    @media (max-width: 900px) {
+      font-size: 16px;
       width: 100%;
       padding-left: -20px;
       padding-right: 10px;
-      column-gap: 20px;
+      column-gap: 1rem;
     }
   }
 
@@ -105,6 +103,10 @@ const radioButtonContainer = css`
     margin-left: 20px;
     font-size: 24px;
     color: gray;
+    @media screen and (max-width: 900px) {
+      font-size: 18px;
+      margin-left: 10px;
+    }
   }
 
   > div > div > label > input {
@@ -151,10 +153,11 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
-  @media (max-width: 1125px) {
+  @media (max-width: 900px) {
     padding-left: 0px;
     padding-right: 10px;
     padding-top: 20px;
+    justify-content: center;
   }
 
   > div {
@@ -190,16 +193,14 @@ const infoTextStyle = css`
 
 const frontPageMap = css`
   width: 1200px;
-  height: 900px;
+  height: 90vh;
   float: right;
   margin-left: auto;
-  @media (max-width: 1125px) {
-    padding-left: 10px;
-    margin-left: 70px;
-    padding-right: 10px;
+  @media (max-width: 900px) {
+    margin-left: 80px;
     padding-top: 20px;
+    padding-left: 20px;
     width: 100%;
-    max-height: 200px;
     margin-bottom: 20px;
   }
 `;
@@ -211,10 +212,12 @@ const criteriaIconStyle = css`
   margin: auto;
   text-align: center;
   margin-left: 120px;
-  @media (max-width: 1125px) {
+  @media (max-width: 900px) {
     padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    justify-content: center;
+    //margin: auto;
   }
 
   > i {
@@ -224,23 +227,25 @@ const criteriaIconStyle = css`
     opacity: 0.5;
   }
 `;
-
+/*
 const attributionStyle = css`
   width: 600px;
   margin: auto;
   float: right;
   margin-right: 0px;
-  @media (max-width: 1125px) {
+  @media (max-width: 900px) {
     padding-top: 20px;
     padding-right: 10px;
     padding-left: 10px;
+    //margin: auto;
+    justify-content: center;
   }
   > p {
     width: 100%;
     font-size: 10px;
     color: gray;
     margin-left: 150px;
-    @media (max-width: 1125px) {
+    @media (max-width: 900px) {
       padding-right: 20px;
       margin-left: 50px;
     }
@@ -250,7 +255,7 @@ const attributionStyle = css`
     }
   }
 `;
-
+*/
 export default function Home(props) {
   useEffect(() => props.refreshUserinfo(), [props]);
 
@@ -441,6 +446,7 @@ export default function Home(props) {
           <div css={criteriaIconStyle}>
             {getIconDisplayFromCriteria(showSelection)}
           </div>
+          {/*
           <div css={attributionStyle}>
             <p>
               Icons made by&nbsp;
@@ -453,6 +459,7 @@ export default function Home(props) {
               </a>
             </p>
           </div>
+          */}
         </div>
 
         <div css={frontPageMap}>

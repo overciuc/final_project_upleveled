@@ -6,29 +6,28 @@ import Layout from '../components/Layout';
 const checkoutPage = css`
   margin-top: 20px;
   margin-bottom: 100px;
-  max-width: 1300px;
+  //max-width: 1700px;
   width: 100%;
   margin: auto;
 
-  > div > a {
+  @media screen and (max-width: 900px) {
     width: 100%;
-    font-size: 16px;
-    color: black;
-    text-decoration: none;
-    padding-bottom: 20px;
-    text-align: left;
-    margin-bottom: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  > div > span {
-    color: red;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
   }
 `;
 
 const aboutGridSection = css`
   margin-top: 50px;
   margin-bottom: 100px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 0;
+  }
 `;
 const aboutGrid = css`
   max-width: 1700px;
@@ -37,20 +36,17 @@ const aboutGrid = css`
   display: grid;
   grid-template-columns: 40% 60%;
   align-items: center;
-  grid-gap: 30px;
-  padding: 10px 40px;
+  grid-gap: 10px;
+  padding: 10px 10px;
   text-align: center;
   list-style-type: none;
   background-color: #fff;
-
-  > div > p {
-    text-align: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    line-height: 1.2;
+  @media screen and (max-width: 900px) {
     width: 100%;
-    color: #484848;
-    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 `;
 
@@ -60,18 +56,66 @@ const imageStyle = css`
   text-align: center;
   border: none;
   margin: auto;
+  width: 100%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+  }
 `;
 
 const leftColumnHeader = css`
   width: 100%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    margin-left: -70px;
+  }
   > h1 {
     text-align: left;
     font-size: 40px;
     color: gray;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
-    margin: 30px auto;
+    margin: auto;
+    margin-bottom: 10px;
     padding-left: 40px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      font-size: 28px;
+    }
+  }
+  > hr {
+    width: 100%;
+    border-top: 3px solid #0bc6d2;
+    opacity: 50%;
+    margin-left: 40px;
+    text-align: left;
+    margin-bottom: 20px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+  > p {
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    width: 100%;
+    color: #484848;
+    margin-left: 40px;
+    @media scree and (max-width: 900px) {
+      width: 100%;
+      margin-left: -40px;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 16px;
+    }
   }
 `;
 
@@ -82,50 +126,27 @@ const newsletterBackground = css`
   display: flex;
   justify-content: center;
   position: relative;
-  background-color: #15ff004d;
+  background-color: rgba(144, 224, 239, 0.5);
   align-items: center;
   padding-top: 20px;
-
-  ::before {
-    background-image: url('/random.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    opacity: 0.2;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    content: '';
-  }
-
-  > section {
-    max-width: 1300px;
-    justify-content: center;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    align-items: center;
-    grid-gap: 3rem;
-    padding: 20px 40px;
-    text-align: center;
-    list-style-type: none;
-    z-index: 20;
-    position: relative;
-
-    > div {
-      font-weight: bold;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 30px;
-      line-height: 1.2;
-      color: #32355d;
-    }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+    height: 100px;
   }
 `;
 
 const ourTeamSection = css`
   margin-top: 100px;
   margin-bottom: 100px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 
   > h1 {
     display: flex;
@@ -136,20 +157,14 @@ const ourTeamSection = css`
     margin-bottom: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 10px;
-  }
-  > h2 {
-    background-color: red;
-    background-size: 10% 10%;
-    transform: rotate(2deg);
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 10px;
-    padding: 10px 10px;
-    width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-size: 30px;
+      margin-top: -50px;
+      margin-bottom: 20px;
+    }
   }
 `;
 const ourTeamGrid = css`
@@ -164,21 +179,36 @@ const ourTeamGrid = css`
   padding: 20px 40px;
   text-align: center;
   list-style-type: none;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
 
   > div {
     width: 400px;
     height: 400px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-right: 10px;
+      padding-left: 10px;
+      margin-bottom: 50px;
+    }
   }
-
+  /*
   > div > p {
     text-align: left;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.2;
     width: 85%;
     color: #484848;
   }
+  */
 `;
+
 const floatLeft = css`
   float: left;
   margin-left: 30px;
@@ -186,6 +216,9 @@ const floatLeft = css`
   font-size: 20px;
   font-weight: bold;
   color: gray;
+  @media screen and (max-width: 900px) {
+    margin-left: 20px;
+  }
 `;
 
 const floatRight = css`
@@ -202,6 +235,11 @@ const teamMemebersText = css`
   font-size: 18px;
   width: 350px;
   margin-left: 30px;
+  @media screen and (max-width: 900px) {
+    width: 96%;
+    padding-right: 10px;
+    margin-left: 20px;
+  }
 `;
 
 const line = css`
@@ -209,6 +247,11 @@ const line = css`
   border-top: 1px solid gray;
   margin: auto;
   opacity: 50%;
+  @media screen and (max-width: 900px) {
+    width: 96%;
+    padding-right: 40px;
+    margin-left: 10px;
+  }
 `;
 
 const ourTeamImageStyle = css`
@@ -220,6 +263,12 @@ const ourTeamImageStyle = css`
   transition: transform 0.3s ease;
   :hover {
     transform: translate(0, -10px);
+  }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    max-height: 100vh;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 `;
 
@@ -244,91 +293,92 @@ export default function About(props) {
             </div>
             <div css={leftColumnHeader}>
               <h1>Who We Are, And What We Do</h1>
+              <hr />
               <p>
                 Hood Review is a service that allows users to leave reviews
-                about the ir districts.
+                about their district in the city of Vienna.
                 <br />
                 <br />
                 One of the important aspects of moving to a new house or
                 appartment is to know what kind of area it is. Are the schools
-                nearby? Are there hospitals or clinics in a lcose vicinity? How
+                nearby? Are there hospitals or clinics in a close vicinity? How
                 long will it take me in the morning to get to work? These are
                 just a few questions I was sking myself when looking for a new
                 place to live. And it is even more important when you have kids.
-                And that is the reason we decided to make this service, to help
+                <br />
+                <br />
+                That is the reason we decided to make this service, to help
                 people get a bit of feedback from real people that live in the
                 area that you might be intersted in moving to.
               </p>
             </div>
           </div>
         </div>
-      </section>
-      <div css={newsletterBackground}>
-        <section>
-          <div>100% Customer Satisfaction</div>
-          <div>Numerous local brands</div>
-          <div>Wide range of products</div>
-          <div>Fast delivery</div>
+
+        <div css={newsletterBackground} />
+        <section css={ourTeamSection}>
+          <h1>People Behind Hood Review</h1>
+          <div css={ourTeamGrid}>
+            <div>
+              <div>
+                <img
+                  src="/images/woman_magnifying_glass.jpeg"
+                  alt="about"
+                  css={ourTeamImageStyle}
+                />
+                <p>
+                  <span css={floatLeft}>Her</span>
+                  <span css={floatRight}>The Creator</span>
+                </p>
+                <hr css={line} />
+                <p css={teamMemebersText}>
+                  Designer and developer behind Hood Review.
+                  <br />
+                  Spends her free time outdoors with family and friends. Always
+                  looking for new things to inspire future projects.
+                </p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <img
+                  src="/images/man_magnifying_glass.jpeg"
+                  alt="about"
+                  css={ourTeamImageStyle}
+                />
+                <p>
+                  <span css={floatLeft}>Him</span>
+                  <span css={floatRight}>The Brains</span>
+                </p>
+                <hr css={line} />
+                <p css={teamMemebersText}>
+                  The Brains behind Hood Review. <br />
+                  Spends his free time outdoors with family and friends. Always
+                  looking for new things to inspire future projects.
+                </p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <img
+                  src="/images/kid_magnifying_glass.jpg"
+                  alt="about"
+                  css={ourTeamImageStyle}
+                />
+                <p>
+                  <span css={floatLeft}>Her</span>
+                  <span css={floatRight}>The Inspiration</span>
+                </p>
+                <hr css={line} />
+                <p css={teamMemebersText}>
+                  The Ispiration for Hood Review. <br />
+                  Spends her free time outdoors with family and friends. Always
+                  being a fun little rascal and looking for ways to misbehave.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
-      </div>
-      <section css={ourTeamSection}>
-        <h1>People Behind Sprinkle</h1>
-        <div css={ourTeamGrid}>
-          <div>
-            <div>
-              <img src="/images/olga.png" alt="about" css={ourTeamImageStyle} />
-              <p>
-                <span css={floatLeft}>Olga</span>
-                <span css={floatRight}>The Creator</span>
-              </p>
-              <hr css={line} />
-              <p css={teamMemebersText}>
-                The visual designer behind Sprinkle Online Shop for Kids.
-                <br />
-                Spends her free time outdoors with family and friends. Always
-                looking for new things to inspire future projects.
-              </p>
-            </div>
-          </div>
-          <div>
-            <div>
-              <img
-                src="/images/george.jpg"
-                alt="about"
-                css={ourTeamImageStyle}
-              />
-              <p>
-                <span css={floatLeft}>George</span>
-                <span css={floatRight}>The Brains</span>
-              </p>
-              <hr css={line} />
-              <p css={teamMemebersText}>
-                The Brains behind Sprinkle Online Shop for Kids. <br />
-                Spends his free time outdoors with family and friends. Always
-                looking for new things to inspire future projects.
-              </p>
-            </div>
-          </div>
-          <div>
-            <div>
-              <img
-                src="/images/nastja.png"
-                alt="about"
-                css={ourTeamImageStyle}
-              />
-              <p>
-                <span css={floatLeft}>Anastasia</span>
-                <span css={floatRight}>The Inspiration</span>
-              </p>
-              <hr css={line} />
-              <p css={teamMemebersText}>
-                The Ispiration for Sprinkle Online Shop for Kids. <br />
-                Spends her free time outdoors with family and friends. Always
-                being a fun little rascal and looking for ways to misbehave.
-              </p>
-            </div>
-          </div>
-        </div>
       </section>
       <Footer />
     </Layout>

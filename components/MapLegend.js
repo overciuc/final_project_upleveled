@@ -8,7 +8,7 @@ function MapLegend({ map }) {
 
       legend.onAdd = () => {
         const div = L.DomUtil.create('div', 'info legend');
-        div.innerHTML = `<div style="width: 520px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.7); justify-content: center; @media (max-width: 1125px;): width: 80%;">
+        div.innerHTML = `<div style="width: 520px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.7); justify-content: center;">
                 <table style="margin: auto; padding-bottom: 10px; ">
                   <tbody>
                     <tr>

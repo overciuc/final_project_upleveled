@@ -11,7 +11,7 @@ const burgerStyle = (open) => css`
   z-index: 1300;
   display: none;
 
-  @media only screen and (max-width: 1125px) {
+  @media only screen and (max-width: 900px) {
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;

@@ -194,7 +194,7 @@ export default function Blog(props) {
                 />
                 <p>
                   <span css={floatLeft}>Fun activities</span>
-                  <span css={floatRight}>12.10.2020</span>
+                  <span css={floatRight}>15.11.2020</span>
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
@@ -218,7 +218,7 @@ export default function Blog(props) {
                 />
                 <p>
                   <span css={floatLeft}>Playgrounds</span>
-                  <span css={floatRight}>12.10.2020</span>
+                  <span css={floatRight}>05.09.2020</span>
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
@@ -242,7 +242,7 @@ export default function Blog(props) {
                 />
                 <p>
                   <span css={floatLeft}>Where the Party at</span>
-                  <span css={floatRight}>12.10.2020</span>
+                  <span css={floatRight}>06.05.2021</span>
                 </p>
 
                 <hr css={line} />
@@ -267,7 +267,7 @@ export default function Blog(props) {
                 />
                 <p>
                   <span css={floatLeft}>All about daycare</span>
-                  <span css={floatRight}>12.10.2020</span>
+                  <span css={floatRight}>07.01.2021</span>
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
@@ -291,7 +291,7 @@ export default function Blog(props) {
                 />
                 <p>
                   <span css={floatLeft}>Local produce</span>
-                  <span css={floatRight}>12.10.2020</span>
+                  <span css={floatRight}>03.03.2021</span>
                 </p>
                 <hr css={line} />
                 <p css={teamMemebersText}>
