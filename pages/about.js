@@ -18,78 +18,60 @@ const checkoutPage = css`
     padding-bottom: 20px;
     text-align: left;
     margin-bottom: 50px;
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   > div > span {
     color: red;
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 `;
 
 const aboutGridSection = css`
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 100px;
 `;
 const aboutGrid = css`
-  max-width: 1300px;
+  max-width: 1700px;
   justify-content: center;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: repeat(1, 400px);
+  grid-template-columns: 40% 60%;
   align-items: center;
-  grid-gap: 1rem;
-  padding: 20px 40px;
+  grid-gap: 30px;
+  padding: 10px 40px;
   text-align: center;
   list-style-type: none;
   background-color: #fff;
 
-  > div {
-    width: 400px;
-    height: 400px;
-  }
-
   > div > p {
     text-align: left;
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.2;
-    width: 85%;
+    width: 100%;
     color: #484848;
+    padding-left: 40px;
   }
 `;
 
 const imageStyle = css`
-  width: 300px;
-  height: 400px;
+  max-width: 900px;
+  max-height: 900px;
   text-align: center;
-  border: 1px solid purple;
+  border: none;
   margin: auto;
 `;
 
 const leftColumnHeader = css`
-  > h2 {
-    background-color: red;
-    background-size: 10% 10%;
-    transform: rotate(-2deg);
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-    margin: auto;
-    border-radius: 10px;
-    padding: 10px 10px;
-    width: 80%;
-    margin-bottom: 40px;
-    margin-left: 0;
-  }
-
+  width: 100%;
   > h1 {
     text-align: left;
     font-size: 40px;
     color: gray;
-    font-family: 'Gorditas', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     margin: 30px auto;
+    padding-left: 40px;
   }
 `;
 
@@ -133,7 +115,7 @@ const newsletterBackground = css`
 
     > div {
       font-weight: bold;
-      font-family: 'Baloo Tammudu 2', cursive;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 30px;
       line-height: 1.2;
       color: #32355d;
@@ -152,7 +134,7 @@ const ourTeamSection = css`
     font-weight: bold;
     color: gray;
     margin-bottom: 50px;
-    font-family: 'Gorditas', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 10px;
   }
   > h2 {
@@ -190,7 +172,7 @@ const ourTeamGrid = css`
 
   > div > p {
     text-align: left;
-    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.2;
     width: 85%;
@@ -200,7 +182,7 @@ const ourTeamGrid = css`
 const floatLeft = css`
   float: left;
   margin-left: 30px;
-  font-family: 'Baloo Tammudu 2', cursive;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
   font-weight: bold;
   color: gray;
@@ -210,7 +192,7 @@ const floatRight = css`
   float: right;
   margin-right: 30px;
   color: red;
-  font-family: 'Baloo Tammudu 2', cursive;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 `;
 
@@ -255,25 +237,27 @@ export default function About(props) {
           <div css={aboutGrid}>
             <div>
               <img
-                src="/images/aboutUsPhoto.jpeg"
-                alt="about"
+                src="/images/scenery.jpeg"
+                alt="Man sittin gon a pier by the lake with a view on mountains"
                 css={imageStyle}
               />
             </div>
             <div css={leftColumnHeader}>
-              <h1>
-                Who We Are, <br /> And What We Do
-              </h1>
+              <h1>Who We Are, And What We Do</h1>
               <p>
-                Sprinkle is a small company who love anything related to
-                children. May it be toys, clothes, books, adventures, events and
-                so on.
+                Hood Review is a service that allows users to leave reviews
+                about the ir districts.
                 <br />
                 <br />
-                Anything is possible when you are a kid and our team here at
-                Sprinkle will do our best to provide you with interesting
-                products and information regarding events and activities for
-                kids in the city of Vienna, Austria and nearby surroundings.
+                One of the important aspects of moving to a new house or
+                appartment is to know what kind of area it is. Are the schools
+                nearby? Are there hospitals or clinics in a lcose vicinity? How
+                long will it take me in the morning to get to work? These are
+                just a few questions I was sking myself when looking for a new
+                place to live. And it is even more important when you have kids.
+                And that is the reason we decided to make this service, to help
+                people get a bit of feedback from real people that live in the
+                area that you might be intersted in moving to.
               </p>
             </div>
           </div>
