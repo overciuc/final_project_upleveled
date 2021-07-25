@@ -4,8 +4,12 @@ const blogPostStyle = css`
   width: 900px;
   min-height: 800px;
   justify-content: center;
-  //margin: auto;
   margin-bottom: 20px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 `;
 
 const popupTitleStyle = css`
@@ -13,6 +17,11 @@ const popupTitleStyle = css`
   margin-left: 40px;
   margin-right: 0px;
   margin-bottom: 0px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: -10px;
+    margin-right: 10px;
+  }
   > p {
     text-align: left;
     font-size: 16px;
@@ -43,6 +52,11 @@ const popupImage = css`
   width: 100%;
   max-height: 500px;
   border-radius: 10px 10px 0 0;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: -10px;
+    max-height: 250px;
+  }
 `;
 
 const line = css`
@@ -50,15 +64,33 @@ const line = css`
   border-top: 1px solid gray;
   margin: auto;
   opacity: 50%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: -10px;
+    margin-right: 10px;
+  }
 `;
 
 const popupText = css`
   margin-left: 30px;
   width: 800px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: -10px;
+    margin-right: 10px;
+    padding-right: 30px;
+    padding-left: 10px;
+    margin-bottom: -50px;
+  }
   > p {
     font-size: 18px;
     color: gray;
     margin-left: 25px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      font-size: 16px;
+      padding-right: 30px;
+    }
   }
 `;
 export default function FunActivitiesPopup() {

@@ -13,11 +13,12 @@ const landingPageContainer = css`
   display: flex;
   position: relative;
   margin: auto;
+  height: auto;
   justify-content: center;
   flex-direction: row;
+  background-color: #fff;
   @media screen and (max-width: 900px) {
     flex-direction: column;
-    //margin-top: 170px;
     padding-right: 10px;
     width: 100%;
     margin-left: -60px;
@@ -193,7 +194,7 @@ const infoTextStyle = css`
 
 const frontPageMap = css`
   width: 1200px;
-  height: 90vh;
+  height: 83vh;
   float: right;
   margin-left: auto;
   @media (max-width: 900px) {

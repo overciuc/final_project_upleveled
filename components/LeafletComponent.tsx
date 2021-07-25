@@ -264,7 +264,7 @@ const Map = (props: any) => {
       center={[48.2042154830387, 16.368015018501982]}
       zoom={13}
       scrollWheelZoom={true}
-      style={{ height: '90vh', width: '100%' }}
+      style={{ height: '83vh', width: '100%' }}
       whenCreated={setMap}
       animate={true}
     >

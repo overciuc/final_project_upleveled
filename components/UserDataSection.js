@@ -12,6 +12,11 @@ const userSectionGrid = css`
   list-style-type: none;
   margin-bottom: 50px;
   margin-top: 50px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const userDetailsStyles = css`
@@ -19,6 +24,11 @@ const userDetailsStyles = css`
   height: 600px;
   width: 100%;
   max-width: 900px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    margin-left: 0px;
+  }
 `;
 
 const detailsTableStyles = css`
@@ -26,9 +36,17 @@ const detailsTableStyles = css`
   width: 100%;
   padding: 20px 30px;
   margin-left: 20px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 40px;
+  }
   > h2 {
     font-size: 24px;
     color: gray;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
   }
 
   > div {
@@ -36,10 +54,19 @@ const detailsTableStyles = css`
     font-weight: bold;
     margin-bottom: 10px;
     color: #0bc6d2;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      display: flex;
+      font-size: 18px;
+      align-items: center;
+    }
   }
 
   > div > span {
     margin-left: 20px;
+    @media screen and (max-width: 900px) {
+      margin-left: 0px;
+    }
   }
 
   > div > span > input {
@@ -55,6 +82,13 @@ const detailsTableStyles = css`
     color: gray;
     font-size: 24px;
     font-weight: normal;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 10px;
+      font-size: 18px;
+      margin-left: 20px;
+    }
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -72,6 +106,12 @@ const detailsTableStyles = css`
     color: gray;
     font-size: 24px;
     font-weight: normal;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-left: 25px;
+      padding-right: 10px;
+      font-size: 18px;
+    }
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -84,6 +124,12 @@ const usernameStyles = css`
   font-size: 24px;
   font-weight: normal;
   padding-left: 25px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 45px;
+    padding-right: 10px;
+    font-size: 18px;
+  }
 `;
 
 const buttonSection = css`
@@ -91,6 +137,16 @@ const buttonSection = css`
   margin-top: 50px;
   float: right;
   text-align: center;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    float: right;
+    padding-right: 20px;
+    text-align: center;
+    margin-top: -250px;
+    position: relative;
+  }
 `;
 
 const deleteButton = css`
@@ -106,6 +162,11 @@ const deleteButton = css`
   font-size: 20px;
   margin-top: 20px;
   box-shadow: 0px 2px 2px gray;
+  @media screen and (max-width: 900px) {
+    width: 70%;
+    margin-left: 70px;
+    margin-right: 0;
+  }
   :hover {
     background-color: red;
     color: #fff;
@@ -124,6 +185,12 @@ const editButton = css`
   color: #fff;
   font-size: 20px;
   box-shadow: 0px 2px 2px gray;
+  @media screen and (max-width: 900px) {
+    width: 70%;
+    margin-left: 70px;
+    margin-right: 0;
+    //margin-top: 50px;
+  }
   :hover {
     background-color: #fed648;
     color: #583dfd;

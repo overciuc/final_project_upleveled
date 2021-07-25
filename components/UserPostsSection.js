@@ -13,16 +13,31 @@ const userPostsPageGrid = css`
   height: 600px;
   overflow-x: hidden;
   overflow-y: scroll;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 120px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
 
   > div {
     width: 900px;
     padding: 10px 20px;
+    @media screen and (max-width: 900) {
+      width: 100%;
+    }
   }
 
   > div + div {
     width: 300px;
     margin-top: 20px;
     text-align: center;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
 
     > a {
       width: 200px;
@@ -39,6 +54,9 @@ const userPostsPageGrid = css`
       box-shadow: 0px 2px 2px gray;
       float: right;
       text-decoration: none;
+      @media screen and (max-width: 900px) {
+        margin-right: 100px;
+      }
       :hover {
         background-color: #fed648;
         color: #583dfd;
@@ -58,6 +76,11 @@ const postsGrid = css`
   gap: 20px 20px;
   text-align: left;
   list-style-type: none;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: -25px;
+    height: auto;
+  }
 
   > li {
     box-shadow: 1px 0px 5px #a8a8a8;

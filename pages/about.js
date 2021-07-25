@@ -3,13 +3,26 @@ import Head from 'next/head';
 import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 
+const backgroundColor = css`
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -30000;
+  height: 100%;
+  width: 100%;
+  margin-top: -50px;
+  margin-bottom: -100px;
+`;
+
 const checkoutPage = css`
   margin-top: 20px;
   margin-bottom: 100px;
-  //max-width: 1700px;
   width: 100%;
   margin: auto;
-
   @media screen and (max-width: 900px) {
     width: 100%;
     padding-left: 10px;
@@ -21,6 +34,7 @@ const checkoutPage = css`
 const aboutGridSection = css`
   margin-top: 50px;
   margin-bottom: 100px;
+  padding-top: 50px;
   @media screen and (max-width: 900px) {
     width: 100%;
     flex-direction: column;
@@ -122,7 +136,7 @@ const leftColumnHeader = css`
 const newsletterBackground = css`
   width: 100%;
   height: 200px;
-  z-index: -1;
+  z-index: 1;
   display: flex;
   justify-content: center;
   position: relative;
@@ -135,6 +149,106 @@ const newsletterBackground = css`
     padding-right: 10px;
     margin-top: 20px;
     height: 100px;
+  }
+`;
+
+const aboutMeGridSection = css`
+  margin-top: -50px;
+  margin-bottom: 100px;
+  padding-bottom: 50px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 0;
+  }
+`;
+const aboutMeGrid = css`
+  max-width: 1700px;
+  justify-content: center;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  align-items: center;
+  grid-gap: 30px;
+  padding: 10px 10px;
+  text-align: center;
+  list-style-type: none;
+  background-color: #fff;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+`;
+
+const meImageStyle = css`
+  max-width: 900px;
+  max-height: 900px;
+  text-align: center;
+  border: none;
+  margin: auto;
+  width: 100%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+  }
+`;
+
+const meLeftColumnHeader = css`
+  width: 100%;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+  }
+  > h1 {
+    text-align: left;
+    font-size: 40px;
+    color: gray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-right: 40px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      font-size: 28px;
+    }
+  }
+  > hr {
+    width: 100%;
+    border-top: 3px solid #0bc6d2;
+    opacity: 50%;
+    margin-right: 40px;
+    text-align: left;
+    margin-bottom: 20px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+  > p {
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    width: 100%;
+    color: #484848;
+    margin-right: 40px;
+    @media scree and (max-width: 900px) {
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 10px;
+      font-size: 16px;
+    }
   }
 `;
 
@@ -167,6 +281,8 @@ const ourTeamSection = css`
     }
   }
 `;
+
+/*
 const ourTeamGrid = css`
   max-width: 1300px;
   justify-content: center;
@@ -197,16 +313,6 @@ const ourTeamGrid = css`
       margin-bottom: 50px;
     }
   }
-  /*
-  > div > p {
-    text-align: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    line-height: 1.2;
-    width: 85%;
-    color: #484848;
-  }
-  */
 `;
 
 const floatLeft = css`
@@ -271,7 +377,7 @@ const ourTeamImageStyle = css`
     padding-left: 10px;
   }
 `;
-
+*/
 export default function About(props) {
   return (
     <Layout
@@ -281,43 +387,80 @@ export default function About(props) {
       <Head>
         <title>About</title>
       </Head>
-      <section css={checkoutPage}>
-        <div css={aboutGridSection}>
-          <div css={aboutGrid}>
-            <div>
-              <img
-                src="/images/scenery.jpeg"
-                alt="Man sittin gon a pier by the lake with a view on mountains"
-                css={imageStyle}
-              />
-            </div>
-            <div css={leftColumnHeader}>
-              <h1>Who We Are, And What We Do</h1>
-              <hr />
-              <p>
-                Hood Review is a service that allows users to leave reviews
-                about their district in the city of Vienna.
-                <br />
-                <br />
-                One of the important aspects of moving to a new house or
-                appartment is to know what kind of area it is. Are the schools
-                nearby? Are there hospitals or clinics in a close vicinity? How
-                long will it take me in the morning to get to work? These are
-                just a few questions I was sking myself when looking for a new
-                place to live. And it is even more important when you have kids.
-                <br />
-                <br />
-                That is the reason we decided to make this service, to help
-                people get a bit of feedback from real people that live in the
-                area that you might be intersted in moving to.
-              </p>
+      <div css={backgroundColor}>
+        <section css={checkoutPage}>
+          <div css={aboutGridSection}>
+            <div css={aboutGrid}>
+              <div>
+                <img
+                  src="/images/scenery.jpeg"
+                  alt="Man sittin gon a pier by the lake with a view on mountains"
+                  css={imageStyle}
+                />
+              </div>
+              <div css={leftColumnHeader}>
+                <h1>Who We Are, And What We Do</h1>
+                <hr />
+                <p>
+                  Hood Review is a service that allows users to leave reviews
+                  about their district in the city of Vienna.
+                  <br />
+                  <br />
+                  One of the important aspects of moving to a new house or
+                  appartment is to know what kind of area it is. Are the schools
+                  nearby? Are there hospitals or clinics in a close vicinity?
+                  How long will it take me in the morning to get to work? These
+                  are just a few questions I was asking myself when looking for
+                  a new place to live. And it is even more important when you
+                  have kids.
+                  <br />
+                  <br />
+                  That is the reason behind making Hood Review, to help get a
+                  bit of feedback from real people who live in the area that you
+                  might be intersted in moving to.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div css={newsletterBackground} />
-        <section css={ourTeamSection}>
-          <h1>People Behind Hood Review</h1>
+          <div css={newsletterBackground} />
+          <section css={ourTeamSection}>
+            {/* <h1>Who is Behind Hood Review</h1> */}
+
+            <div css={aboutMeGridSection}>
+              <div css={aboutMeGrid}>
+                <div css={meLeftColumnHeader}>
+                  <h1>Who is Behind Hood Review</h1>
+                  <hr />
+                  <p>
+                    My name is Olga and I am the designer and developer behind
+                    Hood Review.
+                    <br />
+                    <br />
+                    The world has entered the digital era and everything is now
+                    online. My focus is to keep up, and make life easier by
+                    designing and developing apps that are helpful and
+                    entertaining to people around me.
+                    <br />
+                    <br />I first came up with the idea for such a service when
+                    I was looking for a new appartment. There are so many
+                    factors about the area where you want to live, especially if
+                    you have to travel to work, or when you have children. And
+                    it takes quite a bit of time to do all this research. Thus
+                    Hood Review.
+                  </p>
+                </div>
+                <div>
+                  <img
+                    src="/images/woman_magnifying_glass.jpeg"
+                    alt="Woman with binoculars behind a stack of books."
+                    css={meImageStyle}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/*
           <div css={ourTeamGrid}>
             <div>
               <div>
@@ -339,6 +482,7 @@ export default function About(props) {
                 </p>
               </div>
             </div>
+
             <div>
               <div>
                 <img
@@ -377,9 +521,12 @@ export default function About(props) {
                 </p>
               </div>
             </div>
+
           </div>
+           */}
+          </section>
         </section>
-      </section>
+      </div>
       <Footer />
     </Layout>
   );

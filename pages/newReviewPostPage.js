@@ -12,12 +12,35 @@ import {
   getValidSessionByToken,
 } from '../util/database';
 
+const backgroundColor = css`
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -30000;
+  height: 100%;
+  width: 100%;
+  margin-top: -50px;
+  margin-bottom: -100px;
+`;
+
 const formStyle = css`
   margin-left: 20px;
   max-width: 1500px;
   margin: auto;
   margin-bottom: 50px;
   display: block;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
 `;
 
 const firstDiv = css`
@@ -29,10 +52,22 @@ const firstDiv = css`
   max-height: 200px;
   margin-bottom: 50px;
   position: relative;
+  padding-top: 50px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
 
   > label {
     font-size: 20px;
     color: #0bc6d2;
+    @media screen and (max-width: 900px) {
+      margin-bottom: 20px;
+    }
     > span {
       color: red;
     }
@@ -61,6 +96,9 @@ const firstDiv = css`
     margin-right: 80px;
     width: 150px;
     height: 40px;
+    @media screen and (max-width: 900px) {
+      width: 50%;
+    }
   }
 
   > label > select {
@@ -72,6 +110,9 @@ const firstDiv = css`
     border: 1px solid #0bc6d2;
     transition: 0.3s ease-in-out;
     color: gray;
+    @media screen and (max-width: 900px) {
+      width: 70%;
+    }
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -102,23 +143,49 @@ const categorySection = css`
   margin: auto;
   justify-content: center;
   margin-bottom: 10px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+  }
 
   > div {
     display: flex;
     width: 100%;
     margin: auto;
     justify-content: center;
+    @media screen and (max-width: 900px) {
+      width: 90%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 50px;
+      flex-direction: column;
+      //margin-bottom: -40px;
+    }
 
     > span {
       width: 500px;
       padding-top: 10px;
       padding-right: 20px;
       margin-bottom: 20px;
+      @media screen and (max-width: 900px) {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
 
       > h2 {
         color: #0bc6d2;
         padding-bottom: 10px;
         margin-bottom: 10px;
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-left: -10px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-top: 80px;
+        }
       }
 
       > h4 {
@@ -134,6 +201,17 @@ const categorySection = css`
     > span + span {
       margin-left: 50px;
       width: 800px;
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+
+      > h2 {
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-top: -20px;
+          margin-left: -50px;
+        }
+      }
 
       > textarea {
         border: 1px solid #0bc6d2;
@@ -148,6 +226,11 @@ const categorySection = css`
         color: gray;
         font-size: 16px;
         font-weight: normal;
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-left: -40px;
+          margin-bottom: -20px;
+        }
 
         :focus {
           box-shadow: 0 0 10px rgba(11, 198, 210, 1);
@@ -168,8 +251,13 @@ const submitButton = css`
   height: 100px;
   margin: auto;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   text-align: right;
+  @media screen and (max-width: 900px) {
+    margin-top: 50px;
+    padding-bottom: 100px;
+    padding-right: 40px;
+  }
 
   > button {
     width: 200px;
@@ -184,7 +272,6 @@ const submitButton = css`
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
     margin-left: auto;
-
     :hover {
       background-color: #fed648;
       color: #583dfd;
@@ -223,12 +310,20 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 
   > div {
     display: flex;
     width: 100%;
     margin-left: 60px;
     margin-top: -20px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      margin-left: -10px;
+      margin-top: -80px;
+    }
   }
 
   > div > div > span {
@@ -335,264 +430,267 @@ export default function NewReviewPost(props) {
           {props.user.firstName} {props.user.lastName}
         </title>
       </Head>
-      <form>
-        <div css={formStyle}>
-          <div css={firstDiv}>
-            <label>
-              Street name
-              <input
-                data-cy="review-type-street-name"
-                placeholder="Street Name"
-                onChange={handleStreetNameChange}
-              />
-            </label>
-            <label>
-              House number
-              <input
-                data-cy="review-type-house-number"
-                placeholder="House #"
-                onChange={handleHouseNumberChange}
-              />
-            </label>
-            <label>
-              District <span>*</span> (required)
-              <select
-                name="func"
-                onChange={handleDistrictChange}
-                required
-                data-cy="review-select-district-from-dropdown"
-              >
-                <option value="">Please select district</option>
-                {props.districts.map((districtInstance) => (
-                  <option
-                    key={districtInstance.zip}
-                    value={districtInstance.zip}
-                  >
-                    {districtInstance.zip}&nbsp;{districtInstance.districtName}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </div>
-
-        <div css={categorySection}>
-          <div>
-            <span>
-              <h2>Rate your hood below</h2>
-            </span>
-            <span>
-              <h2>Write a comment for each category</h2>
-            </span>
-          </div>
-          <div css={infoTextStyle}>
-            <div>
-              <div>
-                <span>
-                  <i className="bi bi-info-square" />
-                </span>
-              </div>
-              <div>
-                <p>
-                  <span>Tip:</span> move the slider to set the rating between
-                  1-10. Where 1 is very bad and 10 is very good.
-                </p>
-              </div>
+      <div css={backgroundColor}>
+        <form>
+          <div css={formStyle}>
+            <div css={firstDiv}>
+              <label>
+                Street name
+                <input
+                  data-cy="review-type-street-name"
+                  placeholder="Street Name"
+                  onChange={handleStreetNameChange}
+                />
+              </label>
+              <label>
+                House number
+                <input
+                  data-cy="review-type-house-number"
+                  placeholder="House #"
+                  onChange={handleHouseNumberChange}
+                />
+              </label>
+              <label>
+                District <span>*</span> (required)
+                <select
+                  name="func"
+                  onChange={handleDistrictChange}
+                  required
+                  data-cy="review-select-district-from-dropdown"
+                >
+                  <option value="">Please select district</option>
+                  {props.districts.map((districtInstance) => (
+                    <option
+                      key={districtInstance.zip}
+                      value={districtInstance.zip}
+                    >
+                      {districtInstance.zip}&nbsp;
+                      {districtInstance.districtName}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </div>
           </div>
-          <div>
-            <span>
-              <h4>Safety</h4>
-              <Horizontal
-                data_cy="review-safety-slider"
-                onChangeComplete={setSafetyScore}
-                initial={safetyScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-safety-comment"
-                placeholder="What is your take on safety in your neighborhood?"
-                onChange={handleSafetyCommentChange}
-              />
-            </span>
+
+          <div css={categorySection}>
+            <div>
+              <span>
+                <h2>Rate your hood below</h2>
+              </span>
+              <span>
+                <h2>Write a comment for each category</h2>
+              </span>
+            </div>
+            <div css={infoTextStyle}>
+              <div>
+                <div>
+                  <span>
+                    <i className="bi bi-info-square" />
+                  </span>
+                </div>
+                <div>
+                  <p>
+                    <span>Tip:</span> move the slider to set the rating between
+                    1-10. Where 1 is very bad and 10 is very good.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span>
+                <h4>Safety</h4>
+                <Horizontal
+                  data_cy="review-safety-slider"
+                  onChangeComplete={setSafetyScore}
+                  initial={safetyScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-safety-comment"
+                  placeholder="What is your take on safety in your neighborhood?"
+                  onChange={handleSafetyCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Parks and Recreational Areas</h4>
+                <Horizontal
+                  onChangeComplete={setParksScore}
+                  initial={parksScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-parks-comment"
+                  placeholder="Are there enough parks around your neighborhood?"
+                  onChange={handleParksCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Shopping</h4>
+                <Horizontal
+                  onChangeComplete={setShoppingScore}
+                  initial={shoppingScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-shopping-comment"
+                  placeholder="How far are the shops (eg. groceries, clothing, etc)?"
+                  onChange={handleShoppingCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Kids Friendly</h4>
+                <Horizontal
+                  onChangeComplete={setKidsFriendlyScore}
+                  initial={kidsFriendlyScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-kids-comment"
+                  placeholder="Are there enough playgrounds, schools and kindergartens in the area?"
+                  onChange={handleKidsFriendlyCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Public Transport</h4>
+                <Horizontal
+                  onChangeComplete={setPublicTransportScore}
+                  initial={publicTransportScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-transport-comment"
+                  placeholder="Are you well connected to public transport?"
+                  onChange={handlePublicTransportCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Dining</h4>
+                <Horizontal
+                  onChangeComplete={setDiningScore}
+                  initial={diningScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-dining-comment"
+                  placeholder="Does the foodie in you feel well fed in the neighborhood?"
+                  onChange={handleDiningCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Entertainment</h4>
+                <Horizontal
+                  onChangeComplete={setEntertainmentScore}
+                  initial={entertainmentScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-entertainment-comment"
+                  placeholder="Are there fun things to do in your neighborhood (eg. cinemas, pubs, clubs, etc.)?"
+                  onChange={handleEntertainmentCommentChange}
+                />
+              </span>
+            </div>
+            <div>
+              <span>
+                <h4>Noise Comfort</h4>
+                <Horizontal
+                  onChangeComplete={setNoiseLevelScore}
+                  initial={noiseLevelScore}
+                />
+              </span>
+              <span>
+                <textarea
+                  data-cy="review-noise-comment"
+                  placeholder="Is your neighborhood quiet?"
+                  onChange={handleNoiseLevelCommentChange}
+                />
+              </span>
+            </div>
           </div>
-          <div>
-            <span>
-              <h4>Parks and Recreational Areas</h4>
-              <Horizontal
-                onChangeComplete={setParksScore}
-                initial={parksScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-parks-comment"
-                placeholder="Are there enough parks around your neighborhood?"
-                onChange={handleParksCommentChange}
-              />
-            </span>
+          <div css={submitButton}>
+            <button
+              data-cy="review-submit-new-review-button"
+              disabled={district === '' ? 'disabled' : ''}
+              onClick={async (event) => {
+                event.preventDefault();
+
+                const response = await fetch(`/api/reviews`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    userId: props.user.id,
+
+                    streetName: streetName,
+                    houseNumber: houseNumber,
+                    district: district,
+
+                    safetyScore: safetyScore,
+                    safetyComment: safetyComment,
+
+                    parksScore: parksScore,
+                    parksComment: parksComment,
+
+                    shoppingScore: shoppingScore,
+                    shoppingComment: shoppingComment,
+
+                    kidsFriendlyScore: kidsFriendlyScore,
+                    kidsFriendlyComment: kidsFriendlyComment,
+
+                    publicTransportScore: publicTransportScore,
+                    publicTransportComment: publicTransportComment,
+
+                    diningScore: diningScore,
+                    diningComment: diningComment,
+
+                    entertainmentScore: entertainmentScore,
+                    entertainmentComment: entertainmentComment,
+
+                    noiseLevelScore: noiseLevelScore,
+                    noiseLevelComment: noiseLevelComment,
+
+                    csrfToken: props.csrfToken,
+                  }),
+                });
+                await response.json();
+                router.push(`/profiles/${props.user.username}/?view=posts`);
+              }}
+            >
+              Submit Review
+            </button>
+            <button
+              data-cy="cancel-writting-review-button"
+              onClick={(event) => {
+                event.preventDefault();
+                router.push(`/profiles/${props.user.username}/?view=posts`);
+              }}
+            >
+              Cancel
+            </button>
           </div>
-          <div>
-            <span>
-              <h4>Shopping</h4>
-              <Horizontal
-                onChangeComplete={setShoppingScore}
-                initial={shoppingScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-shopping-comment"
-                placeholder="How far are the shops (eg. groceries, clothing, etc)?"
-                onChange={handleShoppingCommentChange}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              <h4>Kids Friendly</h4>
-              <Horizontal
-                onChangeComplete={setKidsFriendlyScore}
-                initial={kidsFriendlyScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-kids-comment"
-                placeholder="Are there enough playgrounds, schools and kindergartens in the area?"
-                onChange={handleKidsFriendlyCommentChange}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              <h4>Public Transport</h4>
-              <Horizontal
-                onChangeComplete={setPublicTransportScore}
-                initial={publicTransportScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-transport-comment"
-                placeholder="Are you well connected to public transport?"
-                onChange={handlePublicTransportCommentChange}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              <h4>Dining</h4>
-              <Horizontal
-                onChangeComplete={setDiningScore}
-                initial={diningScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-dining-comment"
-                placeholder="Does the foodie in you feel well fed in the neighborhood?"
-                onChange={handleDiningCommentChange}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              <h4>Entertainment</h4>
-              <Horizontal
-                onChangeComplete={setEntertainmentScore}
-                initial={entertainmentScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-entertainment-comment"
-                placeholder="Are there fun things to do in your neighborhood (eg. cinemas, pubs, clubs, etc.)?"
-                onChange={handleEntertainmentCommentChange}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              <h4>Noise Comfort</h4>
-              <Horizontal
-                onChangeComplete={setNoiseLevelScore}
-                initial={noiseLevelScore}
-              />
-            </span>
-            <span>
-              <textarea
-                data-cy="review-noise-comment"
-                placeholder="Is your neighborhood quiet?"
-                onChange={handleNoiseLevelCommentChange}
-              />
-            </span>
-          </div>
-        </div>
-        <div css={submitButton}>
-          <button
-            data-cy="review-submit-new-review-button"
-            disabled={district === '' ? 'disabled' : ''}
-            onClick={async (event) => {
-              event.preventDefault();
-
-              const response = await fetch(`/api/reviews`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  userId: props.user.id,
-
-                  streetName: streetName,
-                  houseNumber: houseNumber,
-                  district: district,
-
-                  safetyScore: safetyScore,
-                  safetyComment: safetyComment,
-
-                  parksScore: parksScore,
-                  parksComment: parksComment,
-
-                  shoppingScore: shoppingScore,
-                  shoppingComment: shoppingComment,
-
-                  kidsFriendlyScore: kidsFriendlyScore,
-                  kidsFriendlyComment: kidsFriendlyComment,
-
-                  publicTransportScore: publicTransportScore,
-                  publicTransportComment: publicTransportComment,
-
-                  diningScore: diningScore,
-                  diningComment: diningComment,
-
-                  entertainmentScore: entertainmentScore,
-                  entertainmentComment: entertainmentComment,
-
-                  noiseLevelScore: noiseLevelScore,
-                  noiseLevelComment: noiseLevelComment,
-
-                  csrfToken: props.csrfToken,
-                }),
-              });
-              await response.json();
-              router.push(`/profiles/${props.user.username}/?view=posts`);
-            }}
-          >
-            Submit Review
-          </button>
-          <button
-            data-cy="cancel-writting-review-button"
-            onClick={(event) => {
-              event.preventDefault();
-              router.push(`/profiles/${props.user.username}/?view=posts`);
-            }}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
       <Footer />
     </Layout>
   );

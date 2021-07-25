@@ -23,7 +23,6 @@ const backgroundColor = css`
   background-size: cover;
   background: #0bc6d2;
   width: 100%;
-
   min-height: 997px;
   margin-top: -100px;
   bottom: 0;
@@ -31,6 +30,11 @@ const backgroundColor = css`
   left: 0;
   z-index: -10;
   content: '';
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+  }
 `;
 
 const containerBox = css`
@@ -46,6 +50,18 @@ const containerBox = css`
   margin-top: 150px;
   height: 800px;
   z-index: 10;
+  @media screen and (max-width: 900px) {
+    width: 88%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: 30px;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 110px;
+    padding-bottom: 50px;
+    height: auto;
+  }
 `;
 
 const userTabStyles = css`
@@ -54,18 +70,30 @@ const userTabStyles = css`
   width: 100%;
   max-width: 1300px;
   border-bottom: 1px solid #ddd;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    border-bottom: none;
+    //margin-bottom: 50px;
+    z-index: 10;
+  }
 `;
 
 const avatarStyles = css`
   display: flex;
   margin-top: 40px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 50px;
+  }
 
   > div {
     border-radius: 50%;
     width: 70px;
     height: 70px;
     background-color: rgba(129, 255, 160, 0.5);
-    margin-left: 50px;
+    margin-left: 20px;
     background-image: url('/images/zebra.png');
     background-size: contain;
   }
@@ -82,6 +110,13 @@ const userTabButton = css`
   float: right;
   margin-bottom: auto;
   margin-top: -30px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 30px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: auto;
+  }
 
   > button {
     width: 300px;
@@ -89,6 +124,11 @@ const userTabButton = css`
     border: none;
     border-radius: 10px 0px 0px 0px;
     font-size: 20px;
+    cursor: pointer;
+    @media screen and (max-width: 900px) {
+      width: 49% !important;
+      font-size: 16px;
+    }
   }
 
   > button + button {
@@ -96,6 +136,10 @@ const userTabButton = css`
     margin-left: 1px;
     margin-right: 1px;
     font-size: 20px;
+    cursor: pointer;
+    @media screen and (max-width: 900px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -157,7 +201,7 @@ export default function SingleUserProfile(props: Props) {
 
             <div css={userTabButton}>
               <button
-              data-cy="navigate-to-user-page"
+                data-cy="navigate-to-user-page"
                 onClick={() => setShowSection(false)}
                 css={!showSection ? activeButton : inactiveButton}
               >

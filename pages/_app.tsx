@@ -35,8 +35,12 @@ export default function App({ Component, pageProps }: AppProps) {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
               Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+            background-color: #0bc6d2;
           }
-          @media (max-width: 600px) {
+          @media (max-width: 900px) {
+            .body {
+              background-color: #fff;
+            }
             .grid {
               width: 100%;
               flex-direction: column;

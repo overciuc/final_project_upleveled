@@ -10,6 +10,14 @@ const popup = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  /*
+  @media screen and (max-width: 900px) {
+    width: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
+
+  }
+  */
 `;
 
 const popupInner = css`
@@ -20,6 +28,12 @@ const popupInner = css`
   border-radius: 10px;
   padding-bottom: 40px;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  @media screen and (max-width: 900px) {
+    width: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 700px;
+  }
   > div {
     justify-content: center;
   }
@@ -38,6 +52,11 @@ const closeButton = css`
   color: #fff;
   background-color: #0bc6d2;
   border: none;
+  @media screen and (max-width: 900px) {
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-top: -200px;
+  }
   :hover {
     background-color: #0f41c1;
     color: #fff;

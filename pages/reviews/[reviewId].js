@@ -13,12 +13,35 @@ import {
   getValidSessionByToken,
 } from '../../util/database';
 
+const backgroundColor = css`
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -30000;
+  height: 100%;
+  width: 100%;
+  margin-top: -50px;
+  margin-bottom: -100px;
+`;
+
 const formStyle = css`
   margin-left: 20px;
   max-width: 1500px;
   margin: auto;
   margin-bottom: 50px;
   display: block;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
 `;
 
 const firstDiv = css`
@@ -30,10 +53,22 @@ const firstDiv = css`
   max-height: 200px;
   margin-bottom: 50px;
   position: relative;
+  padding-top: 50px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
 
   > label {
     font-size: 20px;
     color: #0bc6d2;
+    @media screen and (max-width: 900px) {
+      margin-bottom: 20px;
+    }
     > span {
       color: red;
     }
@@ -62,6 +97,9 @@ const firstDiv = css`
     margin-right: 80px;
     width: 150px;
     height: 40px;
+    @media screen and (max-width: 900px) {
+      width: 50%;
+    }
   }
 
   > label > select {
@@ -73,6 +111,9 @@ const firstDiv = css`
     border: 1px solid #0bc6d2;
     transition: 0.3s ease-in-out;
     color: gray;
+    @media screen and (max-width: 900px) {
+      width: 70%;
+    }
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -86,23 +127,49 @@ const categorySection = css`
   margin: auto;
   justify-content: center;
   margin-bottom: 50px;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+  }
 
   > div {
     display: flex;
     width: 100%;
     margin: auto;
     justify-content: center;
+    @media screen and (max-width: 900px) {
+      width: 90%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 50px;
+      flex-direction: column;
+      //margin-bottom: -40px;
+    }
 
     > span {
       width: 500px;
       padding-top: 10px;
       padding-right: 20px;
       margin-bottom: 20px;
+      @media screen and (max-width: 900px) {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
 
       > h2 {
         color: #0bc6d2;
         padding-bottom: 10px;
         margin-bottom: 10px;
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-left: -10px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-top: 80px;
+        }
       }
 
       > h4 {
@@ -118,6 +185,16 @@ const categorySection = css`
     > span + span {
       margin-left: 50px;
       width: 800px;
+      @media screen and (max-width: 900px) {
+        width: 100%;
+      }
+      > h2 {
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-top: -20px;
+          margin-left: -50px;
+        }
+      }
 
       > textarea {
         border: 1px solid #0bc6d2;
@@ -132,6 +209,11 @@ const categorySection = css`
         color: gray;
         font-size: 16px;
         font-weight: normal;
+        @media screen and (max-width: 900px) {
+          width: 100%;
+          margin-left: -40px;
+          margin-bottom: -20px;
+        }
 
         :focus {
           box-shadow: 0 0 10px rgba(11, 198, 210, 1);
@@ -154,6 +236,11 @@ const submitButton = css`
   margin-top: 20px;
   margin-bottom: 50px;
   text-align: right;
+  @media screen and (max-width: 900px) {
+    margin-top: 50px;
+    padding-bottom: 100px;
+    padding-right: 40px;
+  }
 
   > button {
     width: 200px;
@@ -202,12 +289,20 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
 
   > div {
     display: flex;
     width: 100%;
     margin-left: 60px;
     margin-top: -20px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      margin-left: -10px;
+      margin-top: -80px;
+    }
   }
 
   > div > div > span {
@@ -339,7 +434,7 @@ export default function NewReviewPost(props) {
           {props.user.firstName} {props.user.lastName}
         </title>
       </Head>
-      <div>
+      <div css={backgroundColor}>
         <form>
           <div css={formStyle}>
             <div css={firstDiv}>
