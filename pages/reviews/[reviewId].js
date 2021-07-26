@@ -234,7 +234,7 @@ const submitButton = css`
   height: 100px;
   margin: auto;
   margin-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   text-align: right;
   @media screen and (max-width: 900px) {
     margin-top: 50px;

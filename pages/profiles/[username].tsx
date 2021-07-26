@@ -212,7 +212,7 @@ export default function SingleUserProfile(props: Props) {
                 onClick={() => setShowSection(true)}
                 css={showSection ? activeButton : inactiveButton}
               >
-                Your Posts
+                Your Reviews
               </button>
             </div>
           </div>

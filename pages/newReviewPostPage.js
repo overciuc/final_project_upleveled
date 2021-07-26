@@ -25,15 +25,48 @@ const backgroundColor = css`
   width: 100%;
   margin-top: -50px;
   margin-bottom: -100px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-right: -15px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-right: -15px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding-right: 15px;
+  }
 `;
 
 const formStyle = css`
   margin-left: 20px;
   max-width: 1500px;
   margin: auto;
-  margin-bottom: 50px;
   display: block;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 450px) {
     width: 100%;
     padding-right: 10px;
     padding-left: 10px;
@@ -53,10 +86,26 @@ const firstDiv = css`
   margin-bottom: 50px;
   position: relative;
   padding-top: 50px;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
     width: 100%;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 20px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-top: -20px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 20px;
     flex-direction: column;
     margin-bottom: 20px;
     margin-top: -20px;
@@ -65,9 +114,18 @@ const firstDiv = css`
   > label {
     font-size: 20px;
     color: #0bc6d2;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
+      margin-bottom: 20px;
+      padding-right: 20px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+      padding-right: 20px;
+    }
+    @media screen and (max-width: 450px) {
       margin-bottom: 20px;
     }
+
     > span {
       color: red;
     }
@@ -82,6 +140,19 @@ const firstDiv = css`
     padding-left: 15px;
     border: 1px solid #0bc6d2;
     transition: 0.3s ease-in-out;
+    @media screen and (max-width: 1024px) {
+      width: 90%;
+      margin-right: 10px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 90%;
+      margin-right: 10px;
+    }
+    @media screen and (max-width: 450px) {
+      width: 90%;
+      margin-right: 10px;
+    }
+
     ::placeholder {
       color: gray;
     }
@@ -96,7 +167,13 @@ const firstDiv = css`
     margin-right: 80px;
     width: 150px;
     height: 40px;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 768px) {
+      width: 50%;
+    }
+    @media screen and (max-width: 450px) {
       width: 50%;
     }
   }
@@ -110,9 +187,16 @@ const firstDiv = css`
     border: 1px solid #0bc6d2;
     transition: 0.3s ease-in-out;
     color: gray;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
       width: 70%;
     }
+    @media screen and (max-width: 768px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 450px) {
+      width: 70%;
+    }
+
     :focus {
       box-shadow: 0 0 10px rgba(11, 198, 210, 1);
       outline: none !important;
@@ -143,7 +227,19 @@ const categorySection = css`
   margin: auto;
   justify-content: center;
   margin-bottom: 10px;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+  }
+  @media screen and (max-width: 450px) {
     width: 100%;
     margin-left: 10px;
     margin-right: 10px;
@@ -155,13 +251,26 @@ const categorySection = css`
     width: 100%;
     margin: auto;
     justify-content: center;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
       width: 90%;
       margin-left: 10px;
       margin-right: 10px;
       margin-top: 50px;
       flex-direction: column;
-      //margin-bottom: -40px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 90%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 50px;
+      flex-direction: column;
+    }
+    @media screen and (max-width: 450px) {
+      width: 90%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 50px;
+      flex-direction: column;
     }
 
     > span {
@@ -169,7 +278,17 @@ const categorySection = css`
       padding-top: 10px;
       padding-right: 20px;
       margin-bottom: 20px;
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      @media screen and (max-width: 450px) {
         width: 100%;
         margin-left: 10px;
         margin-right: 10px;
@@ -179,7 +298,21 @@ const categorySection = css`
         color: #0bc6d2;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+          margin-left: -10px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-top: 80px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          margin-left: -10px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          margin-top: 80px;
+        }
+        @media screen and (max-width: 450px) {
           width: 100%;
           margin-left: -10px;
           margin-right: 10px;
@@ -201,12 +334,28 @@ const categorySection = css`
     > span + span {
       margin-left: 50px;
       width: 800px;
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 1024px) {
+        width: 100%;
+      }
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+      @media screen and (max-width: 450px) {
         width: 100%;
       }
 
       > h2 {
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+          margin-top: -20px;
+          margin-left: -50px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          margin-top: -20px;
+          margin-left: -50px;
+        }
+        @media screen and (max-width: 450px) {
           width: 100%;
           margin-top: -20px;
           margin-left: -50px;
@@ -226,7 +375,17 @@ const categorySection = css`
         color: gray;
         font-size: 16px;
         font-weight: normal;
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 1024px) {
+          width: 100%;
+          margin-left: -40px;
+          margin-bottom: -20px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          margin-left: -40px;
+          margin-bottom: -20px;
+        }
+        @media screen and (max-width: 450px) {
           width: 100%;
           margin-left: -40px;
           margin-bottom: -20px;
@@ -252,11 +411,23 @@ const submitButton = css`
   margin: auto;
   margin-top: 20px;
   margin-bottom: 100px;
+  //padding-bottom: 50px;
   text-align: right;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
     margin-top: 50px;
     padding-bottom: 100px;
     padding-right: 40px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 50px;
+    padding-bottom: 100px;
+    padding-right: 40px;
+  }
+  @media screen and (max-width: 450px) {
+    margin-top: 50px;
+    padding-bottom: 100px;
+    padding-right: 20px;
+    width: 100%;
   }
 
   > button {
@@ -272,6 +443,9 @@ const submitButton = css`
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
     margin-left: auto;
+    @media screen and (max-width: 450px) {
+      width: 40%;
+    }
     :hover {
       background-color: #fed648;
       color: #583dfd;
@@ -294,6 +468,9 @@ const submitButton = css`
     font-size: 20px;
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
+    @media screen and (max-width: 450px) {
+      width: 40%;
+    }
 
     :hover {
       background-color: gray;
@@ -310,7 +487,16 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 450px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 270px) {
     width: 100%;
   }
 
@@ -319,7 +505,22 @@ const infoTextStyle = css`
     width: 100%;
     margin-left: 60px;
     margin-top: -20px;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      margin-left: -10px;
+      margin-top: -80px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-left: -10px;
+      margin-top: -80px;
+    }
+    @media screen and (max-width: 450px) {
+      width: 100%;
+      margin-left: -10px;
+      margin-top: -80px;
+    }
+    @media screen and (max-width: 270px) {
       width: 100%;
       margin-left: -10px;
       margin-top: -80px;

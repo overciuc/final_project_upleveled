@@ -17,11 +17,27 @@ const landingPageContainer = css`
   justify-content: center;
   flex-direction: row;
   background-color: #fff;
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1024px) {
     flex-direction: column;
     padding-right: 10px;
     width: 100%;
     margin-left: -60px;
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding-right: 10px;
+    width: 100%;
+    margin-left: -60px;
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    padding-right: 50px;
+    width: 100%;
+    margin-left: -70px;
     margin-bottom: 100px;
     overflow: hidden;
   }
@@ -32,7 +48,7 @@ const radioButtonContainer = css`
   margin-top: 30px;
   justify-content: center;
   width: 600px;
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     width: 100%;
     float: left;
     padding-left: -50px;
@@ -40,14 +56,45 @@ const radioButtonContainer = css`
     padding-right: 10px;
     justify-content: left;
   }
+  @media (max-width: 768px) {
+    width: 90%;
+    float: left;
+    padding-left: -50px;
+    font-size: 18px;
+    padding-right: 10px;
+    justify-content: left;
+  }
+  @media (max-width: 450px) {
+    width: 90%;
+    float: left;
+    padding-left: -50px;
+    font-size: 16px;
+    padding-right: 10px;
+    justify-content: left;
+    margin-right: 20px;
+  }
 
   > p {
     text-align: left;
     font-size: 24px;
     color: gray;
     width: 100%;
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: left;
+    }
+    @media (max-width: 768px) {
+      font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+      text-align: left;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
       width: 100%;
       padding-left: 10px;
       padding-right: 10px;
@@ -60,8 +107,20 @@ const radioButtonContainer = css`
     font-size: 30px;
     margin-top: 20px;
     width: 100%;
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    @media (max-width: 768px) {
+      font-size: 18px;
+      width: 100%;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
       width: 100%;
       padding-left: 10px;
       padding-right: 10px;
@@ -72,12 +131,26 @@ const radioButtonContainer = css`
     grid-template-columns: 50% 50%;
     column-gap: 40px;
     grid-template-rows: 1;
-    @media (max-width: 900px) {
+    @media (max-width: 1024px) {
       font-size: 16px;
       width: 100%;
       padding-left: -20px;
       padding-right: 10px;
       column-gap: 1rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 16px;
+      width: 100%;
+      padding-left: -20px;
+      padding-right: 10px;
+      column-gap: 1rem;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
+      width: 100%;
+      padding-left: -20px;
+      padding-right: 10px;
+      column-gap: 0.5rem;
     }
   }
 
@@ -104,8 +177,16 @@ const radioButtonContainer = css`
     margin-left: 20px;
     font-size: 24px;
     color: gray;
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 1024px) {
       font-size: 18px;
+      margin-left: 10px;
+    }
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    @media screen and (max-width: 450px) {
+      font-size: 16px;
       margin-left: 10px;
     }
   }
@@ -154,7 +235,19 @@ const infoTextStyle = css`
   grid-auto-columns: 20% 80%;
   column-gap: 40px;
   justify-content: center;
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 20px;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    padding-left: 0px;
+    padding-right: 10px;
+    padding-top: 20px;
+    justify-content: center;
+  }
+  @media (max-width: 450px) {
     padding-left: 0px;
     padding-right: 10px;
     padding-top: 20px;
@@ -185,6 +278,12 @@ const infoTextStyle = css`
     color: gray;
     width: 600px;
     margin-top: 5px;
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: 450px) {
+      font-size: 16px;
+    }
 
     > span {
       font-weight: bold;
@@ -197,11 +296,25 @@ const frontPageMap = css`
   height: 83vh;
   float: right;
   margin-left: auto;
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     margin-left: 80px;
     padding-top: 20px;
     padding-left: 20px;
     width: 100%;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+    margin-left: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 450px) {
+    margin-left: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 90%;
     margin-bottom: 20px;
   }
 `;
@@ -213,12 +326,23 @@ const criteriaIconStyle = css`
   margin: auto;
   text-align: center;
   margin-left: 120px;
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
     justify-content: center;
-    //margin: auto;
+  }
+  @media (max-width: 768px) {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
+  }
+  @media (max-width: 450px) {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
   }
 
   > i {

@@ -15,7 +15,17 @@ const headerStyles = css`
   background-color: #0bc6d2;
   color: #fff;
   min-height: 80px;
-  @media screen and (max-width: 1125px) {
+  @media screen and (max-width: 1024px) {
+    padding: 10px 24px;
+    width: 100%;
+    flex-direction: row;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 10px 24px;
+    width: 100%;
+    flex-direction: row;
+  }
+  @media screen and (max-width: 450px) {
     padding: 10px 24px;
     width: 100%;
     flex-direction: row;
@@ -93,7 +103,15 @@ const floatRightNavMenu = css`
 
 const logoStyles = css`
   height: 100px;
-  @media screen and (max-width: 1125px) {
+  @media screen and (max-width: 1024px) {
+    width: 70%;
+    height: auto;
+  }
+  @media screen and (max-width: 768px) {
+    width: 70%;
+    height: auto;
+  }
+  @media screen and (max-width: 450px) {
     width: 70%;
     height: auto;
   }

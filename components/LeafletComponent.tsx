@@ -434,7 +434,8 @@ const Map = (props: any) => {
                       <div css={districtLineStyles}>
                         <span>District:</span>
                         <span>
-                          &nbsp;{review.comments[0].district}&nbsp;
+                          &nbsp;{review.comments[0].streetName}&nbsp;
+                          {review.comments[0].district}&nbsp;
                           {review.comments[0].districtName}
                         </span>
                       </div>
