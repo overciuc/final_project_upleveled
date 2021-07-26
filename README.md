@@ -5,8 +5,13 @@ Olga Verciuc
 
 **Description:**
 Hood Review is a service that allows users to leave reviews about their district in the city of Vienna.
-One of the important aspects of moving to a new house or appartment is to know what kind of area it is. Are the schools nearby? Are there hospitals or clinics in a close vicinity? How long will it take me in the morning to get to work? These are just a few questions I was asking myself when looking for a new place to live. And it is even more important when you have kids.
-That is the reason behind making Hood Review, to help get a bit of feedback from real people who live in the area that you might be intersted in moving to.
+One of the important aspects of moving to a new house or appartment is to know about the neighborhood. 
+* Are the schools nearby? 
+* Are there hospitals or clinics in a close vicinity? 
+* How long will it take me to commute? 
+
+These are just a few questions I was asking myself when looking for a new place to live. And it is even more important when you have kids.
+That is the reason behind making Hood Review, to help get a bit of feedback from real people who live in that area in which you are interested.
 
 ***
 
@@ -19,7 +24,7 @@ Anyone can see the reviews left by users based on one of 8 criterias.
 
 
 **Landing Page with review popup:**
-Click on a map marker to see a popup with comments and ratings. The popup shows Average rating from multiple users for this criteria for this address, as well as individual rating and comments by each user.
+Click on a map marker to see a popup with comments and ratings. The popup shows Average rating from multiple users for this criteria and address, as well as individual rating and comments by each user.
 Home, Blog, About and Contact pages can be accessed without registration.
 ![2 home_page_popup](https://user-images.githubusercontent.com/81855159/126960378-22647aec-33e9-4234-b1eb-890af4eead38.png)
 
@@ -32,7 +37,7 @@ In order to write a review, users need to register and make an account. The Nav 
 
 
 **User profile page:**
-Here registered users can see their details and can edit first name, last name and email address. Or delete an account.
+Here registered users can see their details and can edit first name, last name and email address. Or they can delete their account.
 ![4 user_profile_screen](https://user-images.githubusercontent.com/81855159/126960865-21f9fea8-f2fd-40d9-a441-3f1883536cdb.png)
 
 
@@ -45,10 +50,7 @@ Here users can see all of their reviews, can create, edit or delete a review.
 
 **Single review page:**
 For the new review user needs to select a district for which this review will be made. Street name and house number are optional. Use slider to set the rating from 1-10 on the 8 provided criterias. Writting a comment for each criteria is optional, but greately appreciated.
-The street name and house number will converted to latitude and longitude using Geocoding. Once the review is saved, it will appear on the user reviews page and as a marker on the map. 
-
-
-
+The street name and house number will converted to latitude and longitude using a Geocoding API. Once the review is saved, it will appear on the user reviews page and as a marker on the map. 
 ![6 review_screen](https://user-images.githubusercontent.com/81855159/126961056-a621111f-f79b-4b54-95a3-509d904c6529.png)
 
 
@@ -72,7 +74,7 @@ Page with information about the Hood Review service and it's developer.
 
 
 **Contact Page:**
-Contact page with a simple form, that is able to send emails with a custom domain setup.
+Contact page with a simple form, that is able to send emails from a custom domain.
 ![10 contact_screen](https://user-images.githubusercontent.com/81855159/126962514-e213e675-d98f-49da-8662-5b49f6804bf6.png)
 
 
@@ -83,9 +85,9 @@ Contact page with a simple form, that is able to send emails with a custom domai
 **Technologies used:**
 1. Next.js for server-side-rendering and Front End development.
 2. PostgreSQL database
-3. Jest and Cypres for E2E and Unit Testing.
+3. Jest and Cypres for Unit, respectively End 2 End Testing.
 4. Ley for data migration.
-5. [Positionstack](https://positionstack.com/) for Geocoding.
+5. [Positionstack](https://positionstack.com/) for Geocoding API.
 6. [Namecheap](https://www.namecheap.com/) for domain registration.
 7. [SendGrid](https://sendgrid.com/) for email service.
 8. [React Leaflet](https://leafletjs.com/examples/choropleth/) for the map, markers, polygons.
