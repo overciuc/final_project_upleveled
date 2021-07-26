@@ -19,27 +19,39 @@ const landingPageContainer = css`
   background-color: #fff;
   @media screen and (max-width: 1024px) {
     flex-direction: column;
-    padding-right: 10px;
-    width: 100%;
-    margin-left: -60px;
+    padding-right: 20px;
+    width: 97%;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 100px;
+    padding-left: -60px;
     overflow: hidden;
+    height: auto;
+    padding-bottom: 50px;
   }
   @media screen and (max-width: 768px) {
     flex-direction: column;
-    padding-right: 10px;
-    width: 100%;
-    margin-left: -60px;
+    padding-right: 20px;
+    width: 97%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: -60px;
     margin-bottom: 100px;
+    padding-bottom: 50px;
     overflow: hidden;
+    height: auto;
   }
   @media screen and (max-width: 450px) {
     flex-direction: column;
-    padding-right: 50px;
-    width: 100%;
-    margin-left: -70px;
+    //padding-right: 40px;
+    width: 95%;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-bottom: 100px;
+    padding-left: -150px;
     overflow: hidden;
+    height: auto;
+    padding-bottom: 50px;
   }
 `;
 
@@ -49,29 +61,30 @@ const radioButtonContainer = css`
   justify-content: center;
   width: 600px;
   @media (max-width: 1024px) {
-    width: 100%;
+    width: 90%;
     float: left;
     padding-left: -50px;
     font-size: 18px;
-    padding-right: 10px;
+    padding-right: 20px;
     justify-content: left;
   }
   @media (max-width: 768px) {
     width: 90%;
     float: left;
-    padding-left: -50px;
+    padding-left: -100px;
     font-size: 18px;
-    padding-right: 10px;
+    padding-right: 20px;
     justify-content: left;
   }
   @media (max-width: 450px) {
     width: 90%;
     float: left;
-    padding-left: -50px;
+    padding-left: -150px;
     font-size: 16px;
-    padding-right: 10px;
+    padding-right: 20px;
     justify-content: left;
     margin-right: 20px;
+    left: 0;
   }
 
   > p {
@@ -81,24 +94,25 @@ const radioButtonContainer = css`
     width: 100%;
     @media (max-width: 1024px) {
       font-size: 18px;
-      width: 100%;
-      padding-left: 10px;
-      padding-right: 10px;
+      width: 90%;
+      padding-left: -20px;
+      padding-right: 20px;
       text-align: left;
     }
     @media (max-width: 768px) {
       font-size: 18px;
-      width: 100%;
-      padding-left: 10px;
-      padding-right: 10px;
+      width: 90%;
+      padding-left: -20px;
+      padding-right: 20px;
       text-align: left;
     }
     @media (max-width: 450px) {
       font-size: 16px;
-      width: 100%;
-      padding-left: 10px;
+      width: 90%;
+      padding-left: -100px;
       padding-right: 10px;
       text-align: left;
+      left: 0;
     }
   }
 
@@ -109,20 +123,20 @@ const radioButtonContainer = css`
     width: 100%;
     @media (max-width: 1024px) {
       font-size: 18px;
-      width: 100%;
-      padding-left: 10px;
+      width: 90%;
+      padding-left: -20px;
       padding-right: 10px;
     }
     @media (max-width: 768px) {
       font-size: 18px;
-      width: 100%;
-      padding-left: 10px;
+      width: 90%;
+      padding-left: -20px;
       padding-right: 10px;
     }
     @media (max-width: 450px) {
       font-size: 16px;
-      width: 100%;
-      padding-left: 10px;
+      width: 90%;
+      padding-left: -20px;
       padding-right: 10px;
     }
   }
@@ -299,21 +313,27 @@ const frontPageMap = css`
   @media (max-width: 1024px) {
     margin-left: 80px;
     padding-top: 20px;
-    padding-left: 20px;
-    width: 100%;
+    padding-left: -30px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    width: 90%;
     margin-bottom: 20px;
   }
   @media (max-width: 768px) {
     margin-left: 80px;
     padding-top: 20px;
-    padding-left: 20px;
-    width: 100%;
+    padding-left: -80px;
+    padding-right: 40px;
+    padding-bottom: 50px;
+    width: 90%;
     margin-bottom: 20px;
   }
   @media (max-width: 450px) {
     margin-left: 80px;
     padding-top: 20px;
-    padding-left: 20px;
+    padding-left: -30px;
+    padding-right: 50px;
+    padding-bottom: 50px;
     width: 90%;
     margin-bottom: 20px;
   }

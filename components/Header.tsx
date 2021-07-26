@@ -16,17 +16,17 @@ const headerStyles = css`
   color: #fff;
   min-height: 80px;
   @media screen and (max-width: 1024px) {
-    padding: 10px 24px;
+    padding: 10px 20px;
     width: 100%;
     flex-direction: row;
   }
   @media screen and (max-width: 768px) {
-    padding: 10px 24px;
+    padding: 10px 20px;
     width: 100%;
     flex-direction: row;
   }
   @media screen and (max-width: 450px) {
-    padding: 10px 24px;
+    padding: 10px 20px;
     width: 100%;
     flex-direction: row;
   }
@@ -99,12 +99,15 @@ const floatRightNavMenu = css`
   margin-right: 0;
   margin-left: auto;
   //margin-top: 20px;
+  /* @media screen and (max-width: 1024px) {
+  width: 20%;
+  }*/
 `;
 
 const logoStyles = css`
   height: 100px;
   @media screen and (max-width: 1024px) {
-    width: 70%;
+    width: 50%;
     height: auto;
   }
   @media screen and (max-width: 768px) {
