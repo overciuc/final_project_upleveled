@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import { useState } from 'react';
 import Burger from './Burger';
 import RightNav from './RightNav';
@@ -125,7 +125,15 @@ export default function Header(props: Props) {
   return (
     <header css={headerStyles}>
       <span>
-        <img src="/images/Logo2.gif" alt="Hood Review Logo" css={logoStyles} />
+        <Link href="/">
+          <a>
+            <img
+              src="/images/Logo2.gif"
+              alt="Hood Review Logo"
+              css={logoStyles}
+            />
+          </a>
+        </Link>
       </span>
       <div css={floatRightNavMenu}>
         {/*
