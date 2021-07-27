@@ -12,6 +12,11 @@ type Props = {
 const headerStyles = css`
   display: flex;
   padding: 5px 15px;
+  /* background-image: linear-gradient(
+    to bottom,
+    rgba(11, 198, 210, 1) 100%,
+    rgba(255, 0, 0, 0) 0%
+  );*/
   background-color: #0bc6d2;
   color: #fff;
   min-height: 80px;

@@ -21,14 +21,20 @@ type Props = {
 const backgroundColor = css`
   background-repeat: no-repeat;
   background-size: cover;
-  background: #0bc6d2;
+  background-image: linear-gradient(
+      0deg,
+      rgba(11, 198, 210, 0.5),
+      rgba(11, 198, 210, 0.5)
+    ),
+    url('/images/prater.jpeg');
+  //background: #0bc6d2;
   width: 100%;
   min-height: 997px;
-  margin-top: -100px;
+  margin-top: 10px;
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: -10;
+  z-index: -1000;
   content: '';
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -47,7 +53,7 @@ const containerBox = css`
   margin-right: auto;
   margin-left: 80px;
   margin-bottom: 100px;
-  margin-top: 150px;
+  margin-top: 120px;
   height: 800px;
   z-index: 10;
   @media screen and (max-width: 900px) {

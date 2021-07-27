@@ -55,24 +55,6 @@ const landingPageContainer = css`
   }
 `;
 
-const paddingLeft = css`
-  width: 100%;
-  display: flex;
-  position: relative;
-  margin: auto;
-  height: auto;
-  @media screen and (max-width: 1024px) {
-    padding-left: -50px;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding-left: -50px;
-  }
-  @media screen and (max-width: 450px) {
-    padding-left: -120px;
-  }
-`;
-
 const radioButtonContainer = css`
   margin-left: 100px;
   margin-top: 30px;
