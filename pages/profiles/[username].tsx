@@ -53,7 +53,7 @@ const containerBox = css`
   margin-right: auto;
   margin-left: 80px;
   margin-bottom: 100px;
-  margin-top: 120px;
+  margin-top: 90px;
   height: 800px;
   z-index: 10;
   @media screen and (max-width: 900px) {
