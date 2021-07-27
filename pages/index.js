@@ -500,126 +500,125 @@ export default function Home(props) {
         <title>Home</title>
       </Head>
       <section css={landingPageContainer}>
-        <div css={paddingLeft}>
-          <div css={radioButtonContainer}>
-            <p>
-              This map service will show you ratings in certain categories in
-              every district, left by people that actually leave there.
-            </p>
-            <h3>Visualize your hood based on ...</h3>
+        <div css={radioButtonContainer}>
+          <p>
+            This map service will show you ratings in certain categories in
+            every district, left by people that actually leave there.
+          </p>
+          <h3>Visualize your hood based on ...</h3>
+          <div>
             <div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'safety' ? 'checked' : ''}
-                    onChange={handleChangeSafety}
-                  />
-                  <span>&nbsp;Safety</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'parks' ? 'checked' : ''}
-                    onChange={handleChangeParks}
-                  />
-                  <span>&nbsp;Parks</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'shopping' ? 'checked' : ''}
-                    onChange={handleChangeShopping}
-                  />
-                  <span>&nbsp;Shopping</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'kids_friendly' ? 'checked' : ''}
-                    onChange={handleChangeKidsFriendly}
-                  />
-                  <span>&nbsp;Kids Friendly</span>
-                </label>
-              </div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'safety' ? 'checked' : ''}
+                  onChange={handleChangeSafety}
+                />
+                <span>&nbsp;Safety</span>
+              </label>
             </div>
             <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'parks' ? 'checked' : ''}
+                  onChange={handleChangeParks}
+                />
+                <span>&nbsp;Parks</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'shopping' ? 'checked' : ''}
+                  onChange={handleChangeShopping}
+                />
+                <span>&nbsp;Shopping</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'kids_friendly' ? 'checked' : ''}
+                  onChange={handleChangeKidsFriendly}
+                />
+                <span>&nbsp;Kids Friendly</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={
+                    showSelection === 'public_transport' ? 'checked' : ''
+                  }
+                  onChange={handleChangePublicTransport}
+                />
+                <span>&nbsp;Public Transport</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'dining' ? 'checked' : ''}
+                  onChange={handleChangeDining}
+                />
+                <span>&nbsp;Dining</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'entertainment' ? 'checked' : ''}
+                  onChange={handleChangeEntertainment}
+                />
+                <span>&nbsp;Entertainment</span>
+              </label>
+            </div>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="radio-group"
+                  checked={showSelection === 'noise_level' ? 'checked' : ''}
+                  onChange={handleChangeNoiseLevel}
+                />
+                <span>&nbsp;Noise Level</span>
+              </label>
+            </div>
+          </div>
+          <div css={infoTextStyle}>
+            <div>
               <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={
-                      showSelection === 'public_transport' ? 'checked' : ''
-                    }
-                    onChange={handleChangePublicTransport}
-                  />
-                  <span>&nbsp;Public Transport</span>
-                </label>
+                <span>
+                  <i className="bi bi-info-square" />
+                </span>
               </div>
               <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'dining' ? 'checked' : ''}
-                    onChange={handleChangeDining}
-                  />
-                  <span>&nbsp;Dining</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'entertainment' ? 'checked' : ''}
-                    onChange={handleChangeEntertainment}
-                  />
-                  <span>&nbsp;Entertainment</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input
-                    type="radio"
-                    name="radio-group"
-                    checked={showSelection === 'noise_level' ? 'checked' : ''}
-                    onChange={handleChangeNoiseLevel}
-                  />
-                  <span>&nbsp;Noise Level</span>
-                </label>
+                <p>
+                  <span>Tip:</span> Click on a marker for more info.
+                </p>
               </div>
             </div>
-            <div css={infoTextStyle}>
-              <div>
-                <div>
-                  <span>
-                    <i className="bi bi-info-square" />
-                  </span>
-                </div>
-                <div>
-                  <p>
-                    <span>Tip:</span> Click on a marker for more info.
-                  </p>
-                </div>
-              </div>
-            </div>
+          </div>
 
-            <div css={criteriaIconStyle}>
-              {getIconDisplayFromCriteria(showSelection)}
-            </div>
-            {/*
+          <div css={criteriaIconStyle}>
+            {getIconDisplayFromCriteria(showSelection)}
+          </div>
+          {/*
           <div css={attributionStyle}>
             <p>
               Icons made by&nbsp;
@@ -633,15 +632,14 @@ export default function Home(props) {
             </p>
           </div>
           */}
-          </div>
+        </div>
 
-          <div css={frontPageMap}>
-            <Map
-              // data-cy="find-marker-on-map"
-              allReviews={props.allReviews}
-              showSelectionOnMap={showSelection}
-            />
-          </div>
+        <div css={frontPageMap}>
+          <Map
+            // data-cy="find-marker-on-map"
+            allReviews={props.allReviews}
+            showSelectionOnMap={showSelection}
+          />
         </div>
       </section>
 
