@@ -29,7 +29,7 @@ const backgroundColor = css`
     url('/images/prater.jpeg');
   //background: #0bc6d2;
   width: 100%;
-  min-height: 997px;
+  height: 900px;
   margin-top: 10px;
   bottom: 0;
   right: 0;
