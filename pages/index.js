@@ -56,6 +56,11 @@ const landingPageContainer = css`
 `;
 
 const paddingLeft = css`
+  width: 100%;
+  display: flex;
+  position: relative;
+  margin: auto;
+  height: auto;
   @media screen and (max-width: 1024px) {
     padding-left: -50px;
   }
