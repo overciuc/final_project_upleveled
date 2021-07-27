@@ -51,9 +51,9 @@ const containerBox = css`
   position: absolute;
   float: left;
   margin-right: auto;
-  margin-left: 80px;
+  margin-left: 50px;
   margin-bottom: 100px;
-  margin-top: 90px;
+  margin-top: 50px;
   height: 800px;
   z-index: 10;
   @media screen and (max-width: 900px) {
@@ -99,7 +99,7 @@ const avatarStyles = css`
     width: 70px;
     height: 70px;
     background-color: rgba(129, 255, 160, 0.5);
-    margin-left: 20px;
+    margin-left: 80px;
     background-image: url('/images/zebra.png');
     background-size: contain;
   }
