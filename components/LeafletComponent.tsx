@@ -435,6 +435,7 @@ const Map = (props: any) => {
                         <span>District:</span>
                         <span>
                           &nbsp;{review.comments[0].streetName}&nbsp;
+                          {review.comments[0].houseNumber}&nbsp;
                           {review.comments[0].district}&nbsp;
                           {review.comments[0].districtName}
                         </span>
