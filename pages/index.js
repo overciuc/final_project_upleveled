@@ -43,15 +43,28 @@ const landingPageContainer = css`
   }
   @media screen and (max-width: 450px) {
     flex-direction: column;
-    //padding-right: 40px;
+    padding-right: 20px;
     width: 95%;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-bottom: 100px;
-    padding-left: -150px;
+    padding-left: 30px;
     overflow: hidden;
     height: auto;
     padding-bottom: 50px;
+  }
+`;
+
+const paddingLeft = css`
+  @media screen and (max-width: 1024px) {
+    padding-left: -50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: -50px;
+  }
+  @media screen and (max-width: 450px) {
+    padding-left: -120px;
   }
 `;
 
@@ -77,14 +90,15 @@ const radioButtonContainer = css`
     justify-content: left;
   }
   @media (max-width: 450px) {
-    width: 90%;
+    width: 100%;
     float: left;
     padding-left: -150px;
+    margin-left: 5px;
     font-size: 16px;
     padding-right: 20px;
     justify-content: left;
     margin-right: 20px;
-    left: 0;
+    //left: 0;
   }
 
   > p {
@@ -108,8 +122,9 @@ const radioButtonContainer = css`
     }
     @media (max-width: 450px) {
       font-size: 16px;
-      width: 90%;
-      padding-left: -100px;
+      width: 98%;
+      padding-left: -80px;
+      margin-left: 0px;
       padding-right: 10px;
       text-align: left;
       left: 0;
@@ -160,11 +175,11 @@ const radioButtonContainer = css`
       column-gap: 1rem;
     }
     @media (max-width: 450px) {
-      font-size: 16px;
+      font-size: 14px;
       width: 100%;
       padding-left: -20px;
       padding-right: 10px;
-      column-gap: 0.5rem;
+      column-gap: 1rem;
     }
   }
 
@@ -262,8 +277,8 @@ const infoTextStyle = css`
     justify-content: center;
   }
   @media (max-width: 450px) {
-    padding-left: 0px;
-    padding-right: 10px;
+    padding-left: auto;
+    padding-right: 50px;
     padding-top: 20px;
     justify-content: center;
   }
@@ -280,7 +295,6 @@ const infoTextStyle = css`
     color: #0bc6d2;
     margin: auto;
     margin-right: 20px;
-
     > i {
       font-size: 30px;
       margin: auto;
@@ -329,12 +343,12 @@ const frontPageMap = css`
     margin-bottom: 20px;
   }
   @media (max-width: 450px) {
-    margin-left: 80px;
-    padding-top: 20px;
-    padding-left: -30px;
-    padding-right: 50px;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-left: -10px;
+    padding-right: 10px;
     padding-bottom: 50px;
-    width: 90%;
+    width: 95%;
     margin-bottom: 20px;
   }
 `;
@@ -361,7 +375,7 @@ const criteriaIconStyle = css`
   @media (max-width: 450px) {
     padding-top: 20px;
     padding-left: 10px;
-    padding-right: 10px;
+    padding-right: 50px;
     justify-content: center;
   }
 
@@ -370,6 +384,14 @@ const criteriaIconStyle = css`
     margin: auto;
     color: #0bc6d2;
     opacity: 0.5;
+    @media (max-width: 450px) {
+      //padding-left: -100px;
+      padding-right: 50px;
+      margin-right: 20px;
+      margin-left: -40px;
+      margin-top: -30px;
+      margin-bottom: -40px;
+    }
   }
 `;
 /*
@@ -473,125 +495,126 @@ export default function Home(props) {
         <title>Home</title>
       </Head>
       <section css={landingPageContainer}>
-        <div css={radioButtonContainer}>
-          <p>
-            This map service will show you ratings in certain categories in
-            every district, left by people that actually leave there.
-          </p>
-          <h3>Visualize your hood based on ...</h3>
-          <div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'safety' ? 'checked' : ''}
-                  onChange={handleChangeSafety}
-                />
-                <span>&nbsp;Safety</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'parks' ? 'checked' : ''}
-                  onChange={handleChangeParks}
-                />
-                <span>&nbsp;Parks</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'shopping' ? 'checked' : ''}
-                  onChange={handleChangeShopping}
-                />
-                <span>&nbsp;Shopping</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'kids_friendly' ? 'checked' : ''}
-                  onChange={handleChangeKidsFriendly}
-                />
-                <span>&nbsp;Kids Friendly</span>
-              </label>
-            </div>
-          </div>
-          <div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={
-                    showSelection === 'public_transport' ? 'checked' : ''
-                  }
-                  onChange={handleChangePublicTransport}
-                />
-                <span>&nbsp;Public Transport</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'dining' ? 'checked' : ''}
-                  onChange={handleChangeDining}
-                />
-                <span>&nbsp;Dining</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'entertainment' ? 'checked' : ''}
-                  onChange={handleChangeEntertainment}
-                />
-                <span>&nbsp;Entertainment</span>
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="radio-group"
-                  checked={showSelection === 'noise_level' ? 'checked' : ''}
-                  onChange={handleChangeNoiseLevel}
-                />
-                <span>&nbsp;Noise Level</span>
-              </label>
-            </div>
-          </div>
-          <div css={infoTextStyle}>
+        <div css={paddingLeft}>
+          <div css={radioButtonContainer}>
+            <p>
+              This map service will show you ratings in certain categories in
+              every district, left by people that actually leave there.
+            </p>
+            <h3>Visualize your hood based on ...</h3>
             <div>
               <div>
-                <span>
-                  <i className="bi bi-info-square" />
-                </span>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'safety' ? 'checked' : ''}
+                    onChange={handleChangeSafety}
+                  />
+                  <span>&nbsp;Safety</span>
+                </label>
               </div>
               <div>
-                <p>
-                  <span>Tip:</span> Click on a marker for more info.
-                </p>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'parks' ? 'checked' : ''}
+                    onChange={handleChangeParks}
+                  />
+                  <span>&nbsp;Parks</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'shopping' ? 'checked' : ''}
+                    onChange={handleChangeShopping}
+                  />
+                  <span>&nbsp;Shopping</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'kids_friendly' ? 'checked' : ''}
+                    onChange={handleChangeKidsFriendly}
+                  />
+                  <span>&nbsp;Kids Friendly</span>
+                </label>
               </div>
             </div>
-          </div>
+            <div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={
+                      showSelection === 'public_transport' ? 'checked' : ''
+                    }
+                    onChange={handleChangePublicTransport}
+                  />
+                  <span>&nbsp;Public Transport</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'dining' ? 'checked' : ''}
+                    onChange={handleChangeDining}
+                  />
+                  <span>&nbsp;Dining</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'entertainment' ? 'checked' : ''}
+                    onChange={handleChangeEntertainment}
+                  />
+                  <span>&nbsp;Entertainment</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="radio-group"
+                    checked={showSelection === 'noise_level' ? 'checked' : ''}
+                    onChange={handleChangeNoiseLevel}
+                  />
+                  <span>&nbsp;Noise Level</span>
+                </label>
+              </div>
+            </div>
+            <div css={infoTextStyle}>
+              <div>
+                <div>
+                  <span>
+                    <i className="bi bi-info-square" />
+                  </span>
+                </div>
+                <div>
+                  <p>
+                    <span>Tip:</span> Click on a marker for more info.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <div css={criteriaIconStyle}>
-            {getIconDisplayFromCriteria(showSelection)}
-          </div>
-          {/*
+            <div css={criteriaIconStyle}>
+              {getIconDisplayFromCriteria(showSelection)}
+            </div>
+            {/*
           <div css={attributionStyle}>
             <p>
               Icons made by&nbsp;
@@ -605,14 +628,15 @@ export default function Home(props) {
             </p>
           </div>
           */}
-        </div>
+          </div>
 
-        <div css={frontPageMap}>
-          <Map
-            // data-cy="find-marker-on-map"
-            allReviews={props.allReviews}
-            showSelectionOnMap={showSelection}
-          />
+          <div css={frontPageMap}>
+            <Map
+              // data-cy="find-marker-on-map"
+              allReviews={props.allReviews}
+              showSelectionOnMap={showSelection}
+            />
+          </div>
         </div>
       </section>
 

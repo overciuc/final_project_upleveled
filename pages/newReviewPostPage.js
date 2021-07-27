@@ -102,7 +102,7 @@ const firstDiv = css`
     margin-bottom: 20px;
     margin-top: -20px;
   }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 450px) {
     width: 100%;
     margin-left: 10px;
     margin-right: 20px;
