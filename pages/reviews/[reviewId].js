@@ -259,6 +259,9 @@ const submitButton = css`
       background-color: #fed648;
       color: #583dfd;
     }
+    :active {
+      transform: scale(0.98);
+    }
   }
 
   > button + button {
@@ -277,6 +280,9 @@ const submitButton = css`
     :hover {
       background-color: gray;
       color: #fff;
+    }
+    :active {
+      transform: scale(0.98);
     }
   }
 `;

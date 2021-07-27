@@ -171,6 +171,9 @@ const deleteButton = css`
     background-color: red;
     color: #fff;
   }
+  :active {
+    transform: scale(0.98);
+  }
 `;
 
 const editButton = css`
@@ -194,6 +197,9 @@ const editButton = css`
   :hover {
     background-color: #fed648;
     color: #583dfd;
+  }
+  :active {
+    transform: scale(0.98);
   }
 `;
 

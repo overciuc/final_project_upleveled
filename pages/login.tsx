@@ -122,6 +122,9 @@ const loginBox = css`
       background-color: #0f41c1;
       color: #fff;
     }
+    :active {
+      transform: scale(0.98);
+    }
   }
   > div > p > span > a {
     text-decoration: none;

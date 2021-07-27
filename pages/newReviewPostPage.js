@@ -413,6 +413,7 @@ const submitButton = css`
   margin-bottom: 100px;
   //padding-bottom: 50px;
   text-align: right;
+
   @media screen and (max-width: 1024px) {
     margin-top: 50px;
     padding-bottom: 100px;
@@ -443,6 +444,9 @@ const submitButton = css`
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
     margin-left: auto;
+    :active {
+      transform: scale(0.98);
+    }
     @media screen and (max-width: 450px) {
       width: 40%;
     }
@@ -468,6 +472,10 @@ const submitButton = css`
     font-size: 20px;
     box-shadow: 0px 2px 2px gray;
     margin-right: 20px;
+    :active {
+      transform: scale(0.98);
+    }
+
     @media screen and (max-width: 450px) {
       width: 40%;
     }

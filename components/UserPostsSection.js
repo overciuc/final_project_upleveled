@@ -61,6 +61,9 @@ const userPostsPageGrid = css`
         background-color: #fed648;
         color: #583dfd;
       }
+      :active {
+        transform: scale(0.98);
+      }
     }
   }
 `;
@@ -137,6 +140,9 @@ const postsGrid = css`
           :hover {
             color: blueviolet;
           }
+          :active {
+            transform: scale(0.98);
+          }
         }
       }
       > div > button {
@@ -151,6 +157,9 @@ const postsGrid = css`
         padding-bottom: 30px;
         :hover {
           color: rebeccapurple;
+        }
+        :active {
+          transform: scale(0.98);
         }
       }
     }
